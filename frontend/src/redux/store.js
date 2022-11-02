@@ -1,9 +1,13 @@
-import {configureStore} from "@reduxjs/toolkit";
-import dummyReducer from "./dummySlice/dummySlice"
-const Store = configureStore({
-    reducer: {
-        dummy:dummyReducer
-    }
-})
+import { configureStore } from "@reduxjs/toolkit";
 
-export default Store
+import authReducer from "./slices/Auth";
+
+// const initialState = {
+//   value: false,
+// };
+
+export default configureStore({
+  reducer: {
+    auth: authReducer,
+  }
+})
