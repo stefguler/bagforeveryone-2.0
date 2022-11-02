@@ -1,0 +1,13 @@
+.button_groups{
+    padding: 30px;
+    display: flex;
+    column-gap: 10px;
+}
+
+.orange_buttons{
+    background-color: orange;
+    padding: 10px 10px 10px 10px;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 20px;
+}

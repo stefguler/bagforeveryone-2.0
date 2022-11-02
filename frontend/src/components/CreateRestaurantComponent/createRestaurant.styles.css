@@ -1,0 +1,26 @@
+input::-webkit-file-upload-button {
+    height: 40px;
+    width: 160px;
+    background-color: rgba(228, 125, 49, 1);
+    color: white;
+    font-size: 16px;
+    border-radius: 20px;
+    line-height: 23px;
+    border-style: none;
+ }
+ 
+ /* Restyles file input */
+ /* Note: Replace field_XXX with your own */
+ 
+  #field_123_upload:before {
+    content: "Drop file here or click to upload";
+    font-size: 1.1em;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 20px;
+    margin-left: -56px;
+  }
+  /* Removes "no file uploaded" text because otherwise it stays on screen when the user drags-and-drops a file */
+  input[type="file"] {
+    color: transparent;
+  }
