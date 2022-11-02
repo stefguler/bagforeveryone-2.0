@@ -2,7 +2,7 @@ version: '3'
 
 services:
   backend:
-    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/luna-project/team-2:latest
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/final-projects/bags-for-everyone-2.0:latest
     ports:
       - "8001:8000"
       - '4777:22'
@@ -26,7 +26,7 @@ services:
       - postgres_db:/var/lib/postgresql/data
 
   email:
-    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/luna-project/team-2:latest
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/final-projects/bags-for-everyone-2.0:latest
     restart: always
     env_file:
       - ./envs/dev.env

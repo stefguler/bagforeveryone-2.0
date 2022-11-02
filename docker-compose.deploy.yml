@@ -2,7 +2,7 @@ version: '3'
 
 services:
   backend:
-    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/luna-project/team-2:master
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/final-projects/bags-for-everyone-2.0:master
     env_file:
       - ./envs/prod.env
     command: "sh /scripts/prod.sh"
@@ -21,7 +21,7 @@ services:
       - postgres_db:/var/lib/postgresql/data
 
   email:
-    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/luna-project/team-2:master
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-21-aug-2022/final-projects/bags-for-everyone-2.0:master
     restart: always
     env_file:
       - ./envs/prod.env
