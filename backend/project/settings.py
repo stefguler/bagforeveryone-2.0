@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-75rj*u1rd^&_$3p#5vzs51kc5dsx*x)t_3e5&3=b#00(hzd$@y
 DEBUG = os.environ.get('DJANGO_DEBUG', "True") == "True"
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://team-2-luna-project.propulsion-learn.ch", 'http://127.0.0.1', "http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = ["https://bag-for-everyone.propulsion-learn.ch", 'http://127.0.0.1', "http://localhost:3000"]
 CORS_ALLOW_ALL_ORIGINS = True
 
 
@@ -44,10 +44,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "fullurl",
 
-
-
-
-
 # third party apps
     "django_extensions",
     "drf_yasg",
@@ -60,8 +56,6 @@ INSTALLED_APPS = [
     "restaurants_review",
     "emails",
     "registration",
-
-
 ]
 
 MIDDLEWARE = [
@@ -151,7 +145,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static-files') if DEBUG else '/static-file
 print('static root', STATIC_ROOT)
 
 
-MEDIA_URL = "/backend/media-files/" if DEBUG else "https://team-2-luna-project.propulsion-learn.ch/media-files/"
+MEDIA_URL = "/backend/media-files/" if DEBUG else "https://bag-for-everyone.propulsion-learn.ch/media-files/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media-files') if DEBUG else '/media-files/'
 print('media root', MEDIA_ROOT)
 
@@ -174,8 +168,8 @@ REST_FRAMEWORK = {
 
 # JWT
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=18),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=18),
 }
 
 # DOCUMENTATION
