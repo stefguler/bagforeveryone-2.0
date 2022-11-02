@@ -5,4 +5,4 @@ __pycache__
 *.sqlite3
 static-files
 media-files
-node_modules
+frontend/node_modules
