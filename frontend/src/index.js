@@ -13,7 +13,7 @@ import Cart from "./components/ShopSection/Cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<>
-  // <Provider store={store}>
+  {/*<Provider store={store}>*/}
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
@@ -23,7 +23,8 @@ root.render(<>
         <Route path="/shop/cart" element={<Cart/>} />
       </Routes>
     </BrowserRouter>
-  // </Provider></>
+  {/*</Provider>*/}
+</>
 );
 
 // If you want to start measuring performance in your app, pass a function
