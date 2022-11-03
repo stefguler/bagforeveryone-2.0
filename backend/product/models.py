@@ -4,7 +4,7 @@ from django.db import models
 User = get_user_model()
 
 
-class Restaurants(models.Model):
+class Product(models.Model):
     FINE_DINING = "FI"
     CASUAL_DINING = "CA"
     FAST_FOOD = "FA"
@@ -54,15 +54,9 @@ class Restaurants(models.Model):
     opening_hours = models.CharField(max_length=200)
     price_level = models.CharField(max_length=10, choices=PRICE_LEVEL_CHOICES)
     image = models.ImageField(blank=True, upload_to=restaurants_image_directory_path)
-    author = models.ForeignKey(to=User, on_delete=models.PROTECT, related_name='product')
     date_created = models.DateTimeField(auto_now_add=True)
     rating_average = models.FloatField(default=0)
     review_count = models.IntegerField(default=0)
-
-    def update_review_fields(self):
-        reviews = self.restaurant_reviews.all()
-        self.rating_average = reviews.aggregate(models.Avg('rating')).get('rating__avg')
-        self.save(update_fields=['rating_average'])
 
 
 
