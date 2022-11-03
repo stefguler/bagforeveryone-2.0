@@ -3,10 +3,10 @@ from django.db.models import Q
 from rest_framework.generics import ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.response import Response
 
-from restaurants.models import Restaurants
-from restaurants.serializer import RestaurantsSerializer
-from restaurants_review.models import RestaurantsReviews
-from restaurants_review.serializer import RestaurantsReviewsSerializer
+from product.models import Product
+from product.serializer import RestaurantsSerializer
+from product_review.models import ProductReview
+from product_review.serializer import RestaurantsReviewsSerializer
 from users.permissions import ReadOnly
 from users.serializers import UserSerializer, MyUserSerializer
 
@@ -58,11 +58,11 @@ class SearchUserView(ListAPIView):
         params = self.request.query_params.get("search")
         paramstype = self.request.query_params.get("type")
         if paramstype == "product":
-            queryset = Restaurants.objects.filter(name__icontains=params)
+            queryset = Product.objects.filter(name__icontains=params)
             return queryset
 
         elif paramstype == "reviews":
-            queryset = RestaurantsReviews.objects.filter(text_content__icontains=params)
+            queryset = ProductReview.objects.filter(text_content__icontains=params)
             return queryset
 
         elif paramstype == "users":

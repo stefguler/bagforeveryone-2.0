@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.urls import path
 
-from restaurants.views import ListCreateRestaurantsView, ListFilterRestaurantView, RetrieveUpdateDeleteRestaurantsView, \
+from product.views import ListCreateRestaurantsView, ListFilterRestaurantView, RetrieveUpdateDeleteRestaurantsView, \
     ListFilterRestaurantByCategoryView, ListUserRestaurantsView, ListCategoryView, BestRestaurantsView
 
 urlpatterns = [

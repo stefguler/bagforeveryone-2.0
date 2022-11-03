@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from restaurants_review.models import RestaurantsReviews
+from product_review.models import ProductReview
 
-admin.site.register(RestaurantsReviews)
+admin.site.register(ProductReview)
