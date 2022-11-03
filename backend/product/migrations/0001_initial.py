@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('opening_hours', models.CharField(max_length=200)),
                 ('price_level', models.CharField(choices=[('C', '$'), ('A', '$$'), ('E', '$$$')], max_length=10)),
                 ('image', models.ImageField(blank=True, upload_to='')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='restaurants', to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='product', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

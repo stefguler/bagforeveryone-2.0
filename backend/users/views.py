@@ -57,7 +57,7 @@ class SearchUserView(ListAPIView):
     def get_queryset(self):
         params = self.request.query_params.get("search")
         paramstype = self.request.query_params.get("type")
-        if paramstype == "restaurants":
+        if paramstype == "product":
             queryset = Restaurants.objects.filter(name__icontains=params)
             return queryset
 
@@ -74,7 +74,7 @@ class SearchUserView(ListAPIView):
 
     def get_serializer_class(self):
         paramstype = self.request.query_params.get("type")
-        if paramstype == "restaurants":
+        if paramstype == "product":
             serializer = RestaurantsSerializer
             return serializer
 

@@ -21,12 +21,12 @@ from restaurants.views import ListCreateRestaurantsView, ListFilterRestaurantVie
 
 urlpatterns = [
 
-    path('restaurants/', ListCreateRestaurantsView.as_view()),
-    path('restaurants/new/', ListCreateRestaurantsView.as_view()),
-    path('restaurants/user/<int:user_id>/', ListUserRestaurantsView.as_view()),
-    path('restaurants/category/<str:category>/', ListFilterRestaurantByCategoryView.as_view()),
-    path('restaurants/filter/', ListFilterRestaurantView.as_view()),
-    path('restaurants/<int:id>/', RetrieveUpdateDeleteRestaurantsView.as_view()),
+    path('product/', ListCreateRestaurantsView.as_view()),
+    path('product/new/', ListCreateRestaurantsView.as_view()),
+    path('product/user/<int:user_id>/', ListUserRestaurantsView.as_view()),
+    path('product/category/<str:category>/', ListFilterRestaurantByCategoryView.as_view()),
+    path('product/filter/', ListFilterRestaurantView.as_view()),
+    path('product/<int:id>/', RetrieveUpdateDeleteRestaurantsView.as_view()),
     path('category/list/', ListCategoryView.as_view()),
     path('home/', BestRestaurantsView.as_view()),
 

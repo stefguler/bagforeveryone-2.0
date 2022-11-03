@@ -43,10 +43,9 @@ urlpatterns = [
 
     path('backend/api/', include("users.urls")),
     path('backend/api/', include("comments_on_review.urls")),
-    path('backend/api/', include("restaurants.urls")),
-    path('backend/api/', include("restaurants_review.urls")),
-
-
+    path('backend/api/', include("product.urls")),
+    path('backend/api/', include("product_review.urls")),
+    path('backend/api/', include("post.urls")),
     path('backend/api/auth/', include("registration.urls")),
 
 

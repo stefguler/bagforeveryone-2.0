@@ -7,18 +7,18 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('restaurants', '0002_alter_restaurants_email_alter_restaurants_phone_and_more'),
+        ('product', '0002_alter_restaurants_email_alter_restaurants_phone_and_more'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='restaurants',
+            model_name='product',
             name='date_created',
             field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='restaurants',
+            model_name='product',
             name='zip',
             field=models.CharField(blank=True, max_length=100),
         ),

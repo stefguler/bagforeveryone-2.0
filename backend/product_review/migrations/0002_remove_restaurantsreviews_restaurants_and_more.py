@@ -7,19 +7,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('restaurants', '0003_restaurants_date_created_alter_restaurants_zip'),
-        ('restaurants_review', '0001_initial'),
+        ('product', '0003_restaurants_date_created_alter_restaurants_zip'),
+        ('product_review', '0001_initial'),
     ]
 
     operations = [
         migrations.RemoveField(
             model_name='restaurantsreviews',
-            name='restaurants',
+            name='product',
         ),
         migrations.AddField(
             model_name='restaurantsreviews',
-            name='restaurants',
-            field=models.ForeignKey(blank=True, default=1, on_delete=django.db.models.deletion.CASCADE, related_name='restaurant_reviews', to='restaurants.restaurants'),
+            name='product',
+            field=models.ForeignKey(blank=True, default=1, on_delete=django.db.models.deletion.CASCADE, related_name='restaurant_reviews', to='product.product'),
             preserve_default=False,
         ),
     ]
