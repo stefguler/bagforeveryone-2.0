@@ -146,3 +146,4 @@ class ToggleLikeView(GenericAPIView):
 
         return Response(self.get_serializer(post).data)
 
+
