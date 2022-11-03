@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('restaurants', '0007_restaurants_average_rating'),
+        ('product', '0007_restaurants_average_rating'),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='restaurants',
+            model_name='product',
             old_name='average_rating',
             new_name='rating_average',
         ),
         migrations.AddField(
-            model_name='restaurants',
+            model_name='product',
             name='review_count',
             field=models.IntegerField(default=0),
         ),

@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('restaurants', '0001_initial'),
+        ('product', '0001_initial'),
     ]
 
     operations = [
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('date_modified', models.DateTimeField(auto_now=True)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='restaurant_reviews', to=settings.AUTH_USER_MODEL)),
                 ('liked_by', models.ManyToManyField(blank=True, related_name='liked_reviews', to=settings.AUTH_USER_MODEL)),
-                ('restaurants', models.ManyToManyField(related_name='restaurant_reviews', to='restaurants.restaurants')),
+                ('product', models.ManyToManyField(related_name='restaurant_reviews', to='product.product')),
             ],
         ),
     ]
