@@ -62,3 +62,4 @@ cleanup:
     - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml down --remove-orphans
 
 
+
