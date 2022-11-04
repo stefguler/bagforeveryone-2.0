@@ -13,7 +13,7 @@ function ProductCard(props) {
     return (
     <>  
         <CardContainer onClick={handleNavigateToProduct} >
-        <Avatar src={`.${props.product.img}`}></Avatar>
+        <Avatar src={props.product.img}></Avatar>
         <Title>{props.product.title}</Title>
         <Price>CHF {props.product.price}</Price>
         
