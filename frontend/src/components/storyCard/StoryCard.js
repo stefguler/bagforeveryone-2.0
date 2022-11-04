@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { StoryWrapper, Modal } from './StoryCard.styles'
+import { StoryWrapper, Modal, UserHeader, ContentWrapper, Comments, StoryImages } from './StoryCard.styles'
+import Collapsible from 'react-collapsible';
+import Comment from '../comment/Comment';
 
 const StoryCard = props => {
 
@@ -16,12 +18,32 @@ const StoryCard = props => {
           <h3 className='hide'>{props.story.title}</h3>
       </StoryWrapper>
       <Modal style={{display: modal}}>
-        <button onClick={() => setModal('none')}>X</button>
+        <button className='modal-close' onClick={() => setModal('none')}>X</button>
         <div className='modal-story-wrapper'>
-          <h2>{props.story.title}</h2>
-          <img src={props.story.image}></img>
-          <p>{props.story.content}</p>
-          <p>Here we'll map out story comments</p>
+          <UserHeader>
+            <div className='user-info-wrapper'>
+              <img src='./assets/images/user/user.png' alt='user avatar'></img>
+              <div className='user-info'>
+                <span>Username</span>
+                <span>Created</span>
+              </div>
+            </div>
+            <div className='user-buttons'>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          </UserHeader>
+          {/* <h2>{props.story.title}</h2>  Display title?? */}
+          <ContentWrapper>
+            <p className='story-content'>{props.story.content}</p>
+            <StoryImages>
+              <img src={props.story.image}></img>
+            </StoryImages>
+            <Collapsible trigger="Show/ Hide comments">
+              <Comment />
+              <Comment />
+            </Collapsible>
+          </ContentWrapper>
         </div>
       </Modal>
   </>
