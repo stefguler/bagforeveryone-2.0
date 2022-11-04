@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from comments_on_review.serializer import CommentsSerializer, CreateCommentsSerializer
+from comment.serializer import CommentsSerializer, CreateCommentsSerializer
 from product_review.models import ProductReview
 from users.serializers import UserSerializer
 
