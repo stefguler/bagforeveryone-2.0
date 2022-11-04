@@ -44,3 +44,7 @@ export const StickyCartContainer = styled.div`
      }
     }
 `
+
+export const testWidth = styled.div`
+    width: 500px;
+`

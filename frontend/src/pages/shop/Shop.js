@@ -6,7 +6,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { IconContext } from "react-icons";
 import Sidebar from "react-sidebar";
 
-import { PageSection, StickyCartContainer } from "./Shop.styled";
+import { PageSection, StickyCartContainer, testWidth } from "./Shop.styled";
 
 export default function Shop() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,7 +21,7 @@ export default function Shop() {
         <Sidebar
           sidebar={
             <>
-              <b>this will be the stuff</b>
+              <testWidth>this will be the stuff</testWidth>
               <div>more content</div>
               <div>way content</div>
               <div>content never ends</div>
@@ -30,7 +30,7 @@ export default function Shop() {
           open={sidebarOpen}
           pullRight={true}
           onSetOpen={onSetSidebarOpen}
-          styles={{ sidebar: { background: "white" } }}
+          styles={{ sidebar: { background: "white", width: "20rem" } }}
         >
           <StickyCartContainer onClick={() => onSetSidebarOpen(true)}>
             <IconContext.Provider value={{ size: "100px" }}>
@@ -38,7 +38,6 @@ export default function Shop() {
             </IconContext.Provider>
             <div>5</div>
           </StickyCartContainer>
-          {/* <button onClick={() => onSetSidebarOpen(true)}>Open sidebar</button> */}
           <Catalog />
         </Sidebar>
       </PageSection>
