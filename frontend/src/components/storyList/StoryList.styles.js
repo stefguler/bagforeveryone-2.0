@@ -1,26 +1,26 @@
 import styled from "styled-components";
 
 export const StoryPageWrapper = styled.section `
+    border: 2px solid lightgray;
     display: flex;
     flex-direction: column;
     align-items: center;
     align-self: center;
-    padding: 1em;
     gap: 1em;
     background-color: white;
-    width: 100%;
-    height: 100%;
-    margin-top: 1rem;
     margin-left: 1rem;
+    margin-top: 15rem;
 
     .search {
         width: fit-content;
         display: flex;
         gap: 1em;
+        margin-top: 1rem;
     }
 
-    @media only screen and (max-width: 900px) {
-        margin-top: 3rem;
+    @media only screen and (max-width: 800px) {
+        align-self: flex-start;
+        margin-top: 1rem;
     }
 `
 

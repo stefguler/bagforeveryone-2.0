@@ -12,14 +12,17 @@ const StoryCard = props => {
   return (
     <>
       <StoryWrapper onClick={handleStoryClick}>
-          <img src={props.story.image}></img>
+          <img class="preview" src={props.story.image}></img>
           <h3 className='hide'>{props.story.title}</h3>
       </StoryWrapper>
       <Modal style={{display: modal}}>
-        <button onClick={() => setModal('none')}>CLOSE</button>
-        <img src='./assets/images/product/product_essentialbag.jpg'></img>
-        <p>{props.story.content}</p>
-        <p>Here we'll map out story comments</p>
+        <button onClick={() => setModal('none')}>X</button>
+        <div className='modal-story-wrapper'>
+          <h2>{props.story.title}</h2>
+          <img src={props.story.image}></img>
+          <p>{props.story.content}</p>
+          <p>Here we'll map out story comments</p>
+        </div>
       </Modal>
   </>
   )
