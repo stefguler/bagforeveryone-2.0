@@ -3,9 +3,15 @@ import styled from "styled-components";
 export const NavWrapper = styled.nav `
 
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
     gap: 1em;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
 
     ul {
         list-style-type: none;
@@ -23,11 +29,13 @@ export const NavWrapper = styled.nav `
     }
 
     @media only screen and (max-width: 800px) {
+        position: static;
         height: fit-content;
         flex-direction: column;
-        margin-top: 1em;
-        margin-left: 1em;
+        margin: 1em 1em 0 1em;
         justify-items: center;
+        width: fit-content;
+        padding: 0.5em;
 
         ul {
             margin: 0 auto;
