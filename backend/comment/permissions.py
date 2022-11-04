@@ -3,7 +3,7 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 class IsAuthor(BasePermission):
     def has_object_permission(self, request, view, obj):
-        return bool(obj.author == request.user)
+        return bool(obj.commenter == request.user)
 
 
 class ReadOnly(BasePermission):
