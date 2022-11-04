@@ -24,6 +24,7 @@ export const StoryWrapper = styled.section `
 `
 
 export const Modal = styled.section `
+// modal covering the whole screen:
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -46,8 +47,9 @@ export const Modal = styled.section `
     }
 
     .modal-story-wrapper {
-        border: 5px solid green;
+        // white background story container:
         overflow-y: scroll;
+        margin-top: 3em;
         background-color: white;
         display: flex;
         flex-direction: column;
@@ -55,8 +57,7 @@ export const Modal = styled.section `
         justify-content: center;
         color: black;
         max-width: 1000px;
-        width: 90%;
-        height: 90%;
+        max-height: 85%;
         min-width: 480px;
         min-height: 800px;
     }
@@ -67,15 +68,11 @@ export const ContentWrapper = styled.div `
     margin: 1em 0;
 
     .story-content {
-        border: 1px solid magenta;
         text-align: center;
     }
 `
 
-
 export const UserHeader = styled.div `
-    border: 1px solid red;
-    margin-top: 2em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -96,17 +93,31 @@ export const UserHeader = styled.div `
         display: flex;
         flex-direction: column;
     }
+`
+// Part with react icon and settings to edit or delete story:
+export const UserButtons = styled.div `
+    display: flex;
+    position: relative;
+    margin: 1rem;
+    flex-direction: column;
 
-    .user-buttons {
-        display: flex;
-        margin: 1rem;
-        flex-direction: column;
+    .options-icon {
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        padding: .1rem;
     }
+`
 
+export const OptionsMenu = styled.div `
+    gap: .2rem;
+    position: absolute;
+    top: 1.5em;
+    flex-direction: column;
+    margin: .2rem;
 `
 
 export const StoryImages = styled.section `
-    border: 1px solid yellow;
     padding: 1em;
+    display: flex;
 `
 
