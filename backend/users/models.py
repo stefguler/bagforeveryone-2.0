@@ -11,7 +11,7 @@ class User(AbstractUser):
     # asking for email in authentication. (Instead of username)
     USERNAME_FIELD = 'email'
 
-    REQUIRED_FIELDS = ['password']
+    REQUIRED_FIELDS = ['password', "username"]
 
     # For gender choice
     MALE = "M"
@@ -23,7 +23,7 @@ class User(AbstractUser):
         (FEMALE, "Female"),
         (OTHER, "Other"),
     ]
-
+    username = models.TextField(max_length=50)
     email = models.EmailField(unique=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

@@ -51,7 +51,6 @@ deploy:
     - docker-compose -f docker-compose.deploy.yml pull
     - docker-compose -f docker-compose.deploy.yml down --remove-orphans
     - docker volume rm bags-for-everyone-20_build
-    - docker volume rm bags-for-everyone-20_postgres_db
     - docker-compose -f docker-compose.deploy.yml up -d
 
 cleanup:
