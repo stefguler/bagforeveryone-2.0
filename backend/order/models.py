@@ -4,7 +4,7 @@ from product.models import Product
 
 User = get_user_model()
 
-class Post(models.Model):
+class Order(models.Model):
 
     OPEN = "OP"
     CLOSED = "CL"

@@ -23,7 +23,6 @@ urlpatterns = [
 
     path('product/', ListCreateRestaurantsView.as_view()),
     path('product/new/', ListCreateRestaurantsView.as_view()),
-    path('product/user/<int:user_id>/', ListUserRestaurantsView.as_view()),
     path('product/category/<str:category>/', ListFilterRestaurantByCategoryView.as_view()),
     path('product/filter/', ListFilterRestaurantView.as_view()),
     path('product/<int:id>/', RetrieveUpdateDeleteRestaurantsView.as_view()),
