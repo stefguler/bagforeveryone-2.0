@@ -8,16 +8,32 @@ class User(AbstractUser):
     def users_image_directory_path(instance, filename):
         return f'users/{instance.id}/{filename}'
     # REQUIRED_FIELDS = ["username"]
-    # USERNAME_FIELD = 'email'
-    username = models.CharField(max_length=100, unique=True)
-    location = models.CharField(max_length=250, blank=True)
+    # asking for email in authentication. (Instead of username)
+    USERNAME_FIELD = 'email'
+
+    # For gender choice
+    MALE = "M"
+    FEMALE = "F"
+    OTHER = "X"
+
+    GENDER_CHOICES = [
+        (MALE, "Male"),
+        (FEMALE, "Female"),
+        (OTHER, "Other"),
+    ]
+
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=50, blank=True)
-    things_I_love = models.TextField(blank=True)
-    description = models.TextField(blank=True)
-    joined_date = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    first_name = models.TextField(max_length=50)
+    last_name = models.TextField(max_length=50)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
+    street = models.TextField(max_length=50)
+    street_number = models.IntegerField(max_length=10)
+    zip = models.IntegerField(max_length=10)
+    city = models.TextField(max_length=50)
+    country = models.TextField(max_length=50)
     profile_picture = models.ImageField(blank=True, upload_to=users_image_directory_path)
-    updated_on = models.DateTimeField(auto_now=True)
     password = models.CharField(max_length=100)
     code = models.CharField(max_length=100, blank=True)
 

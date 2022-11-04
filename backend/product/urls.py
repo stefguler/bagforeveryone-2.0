@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path
 
 from product.views import ListCreateRestaurantsView, ListFilterRestaurantView, RetrieveUpdateDeleteRestaurantsView, \
-    ListFilterRestaurantByCategoryView, ListUserRestaurantsView, ListCategoryView, BestRestaurantsView
+    ListFilterRestaurantByCategoryView, ListCategoryView
 
 urlpatterns = [
 
@@ -28,6 +28,6 @@ urlpatterns = [
     path('product/filter/', ListFilterRestaurantView.as_view()),
     path('product/<int:id>/', RetrieveUpdateDeleteRestaurantsView.as_view()),
     path('category/list/', ListCategoryView.as_view()),
-    path('home/', BestRestaurantsView.as_view()),
+
 
 ]

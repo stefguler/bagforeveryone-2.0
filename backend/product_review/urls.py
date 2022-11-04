@@ -16,9 +16,7 @@ Including another URLconf
 
 from django.urls import path
 
-from product_review.views import ListCreateRestaurantsReviewsView, RetrieveUpdateDeleteRestaurantsReviewsView, \
-    CreateRestaurantsReviewsView, ListReviewsRestaurantsView, ListReviewsUserView, ToggleLikedReview, LikedReviewsView, \
-    ReviewsUserCommentsView
+from product_review.views import ListCreateRestaurantsReviewsView, CreateRestaurantsReviewsView, ListReviewsRestaurantsView
 
 urlpatterns = [
 
