@@ -51,6 +51,7 @@ deploy:
     - docker-compose -f docker-compose.deploy.yml pull
     - docker-compose -f docker-compose.deploy.yml down --remove-orphans
     - docker volume rm bags-for-everyone-20_build
+    - docker volume rm bags-for-everyone-20_postgres_db
     - docker-compose -f docker-compose.deploy.yml up -d
 
 cleanup:
@@ -59,5 +60,6 @@ cleanup:
   script:
     - docker rmi -f "$CI_PIPELINE_ID":"$CI_COMMIT_REF_NAME"
     - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml down --remove-orphans
+
 
 
