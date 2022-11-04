@@ -52,10 +52,11 @@ INSTALLED_APPS = [
 # User apps
     "users",
     "comments_on_review",
-    "restaurants",
-    "restaurants_review",
+    "product",
+    "product_review",
     "emails",
     "registration",
+    "post",
 ]
 
 MIDDLEWARE = [

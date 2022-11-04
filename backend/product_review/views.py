@@ -4,9 +4,9 @@ from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpda
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 
-from restaurants_review.models import RestaurantsReviews
-from restaurants_review.permissions import ReadOnly, IsAuthor
-from restaurants_review.serializer import RestaurantsReviewsSerializer, CreateRestaurantsReviewsSerializer
+from product_review.models import ProductReview
+from product_review.permissions import ReadOnly, IsAuthor
+from product_review.serializer import RestaurantsReviewsSerializer, CreateRestaurantsReviewsSerializer
 
 User = get_user_model()
 
@@ -14,7 +14,7 @@ User = get_user_model()
 class ListCreateRestaurantsReviewsView(ListCreateAPIView):
     serializer_class = CreateRestaurantsReviewsSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = RestaurantsReviews.objects.all()
+    queryset = ProductReview.objects.all()
 
 
     def perform_create(self, serializer):
@@ -24,7 +24,7 @@ class ListCreateRestaurantsReviewsView(ListCreateAPIView):
 class CreateRestaurantsReviewsView(CreateAPIView):
     serializer_class = CreateRestaurantsReviewsSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = RestaurantsReviews.objects.all()
+    queryset = ProductReview.objects.all()
     lookup_url_kwarg = 'restaurant_id'
 
     def perform_create(self, serializer):
@@ -37,7 +37,7 @@ class ListReviewsRestaurantsView(ListAPIView):
     lookup_url_kwarg = 'restaurant_id'
 
     def get_queryset(self, **kwargs):
-        queryset = RestaurantsReviews.objects.filter(restaurants_id=self.kwargs['restaurant_id'])
+        queryset = ProductReview.objects.filter(restaurants_id=self.kwargs['restaurant_id'])
         return queryset
 
 class ListReviewsUserView(ListAPIView):
@@ -46,13 +46,13 @@ class ListReviewsUserView(ListAPIView):
     lookup_url_kwarg = 'user_id'
 
     def get_queryset(self, **kwargs):
-        queryset = RestaurantsReviews.objects.filter(author_id=self.kwargs['user_id'])
+        queryset = ProductReview.objects.filter(author_id=self.kwargs['user_id'])
         return queryset
 
 
 class RetrieveUpdateDeleteRestaurantsReviewsView(RetrieveUpdateDestroyAPIView):
     serializer_class = CreateRestaurantsReviewsSerializer
-    queryset = RestaurantsReviews.objects.all()
+    queryset = ProductReview.objects.all()
     permission_classes = [IsAuthor | IsAdminUser | ReadOnly]
     lookup_url_kwarg = 'review_id'
 
@@ -61,7 +61,7 @@ class ToggleLikedReview(GenericAPIView):
 
     serializer_class = CreateRestaurantsReviewsSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = RestaurantsReviews.objects.all()
+    queryset = ProductReview.objects.all()
     lookup_url_kwarg = 'review_id'
 
     def patch(self, request, *args, **kwargs):
@@ -76,7 +76,7 @@ class ToggleLikedReview(GenericAPIView):
 
 
 class LikedReviewsView(GenericAPIView):
-    queryset = RestaurantsReviews.objects.all()
+    queryset = ProductReview.objects.all()
     serializer_class = CreateRestaurantsReviewsSerializer
     permission_classes = [ReadOnly]
 
@@ -88,7 +88,7 @@ class LikedReviewsView(GenericAPIView):
         return Response(serializer.data)
 
 class ReviewsUserCommentsView(GenericAPIView):
-    queryset = RestaurantsReviews.objects.all()
+    queryset = ProductReview.objects.all()
     serializer_class = CreateRestaurantsReviewsSerializer
     permission_classes = [ReadOnly]
 

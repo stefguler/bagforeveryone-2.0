@@ -4,9 +4,9 @@ from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpda
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 
-from restaurants.models import Restaurants
-from restaurants.permissions import ReadOnly, IsAuthor
-from restaurants.serializer import RestaurantsSerializer, CreateRestaurantsSerializer, CategorySerializer
+from product.models import Product
+from product.permissions import ReadOnly, IsAuthor
+from product.serializer import RestaurantsSerializer, CreateRestaurantsSerializer, CategorySerializer
 
 User = get_user_model()
 
@@ -14,12 +14,12 @@ User = get_user_model()
 class BestRestaurantsView(ListAPIView):
     serializer_class = RestaurantsSerializer
     permission_classes = [ReadOnly]
-    queryset = Restaurants.objects.all().order_by('-rating_average')[0:4]
+    queryset = Product.objects.all().order_by('-rating_average')[0:4]
 
 
 class ListUserRestaurantsView(GenericAPIView):
 
-    queryset = Restaurants.objects.all()
+    queryset = Product.objects.all()
     serializer_class = RestaurantsSerializer
     permission_classes = [ReadOnly]
     lookup_url_kwarg = 'user_id'
@@ -34,14 +34,14 @@ class ListUserRestaurantsView(GenericAPIView):
 class ListCreateRestaurantsView(ListCreateAPIView):
     serializer_class = CreateRestaurantsSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Restaurants.objects.all()
+    queryset = Product.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
 
 class ListFilterRestaurantByCategoryView(GenericAPIView):
-    queryset = Restaurants.objects.all()
+    queryset = Product.objects.all()
     serializer_class = RestaurantsSerializer
     permission_classes = [ReadOnly]
     lookup_url_kwarg = 'category'
@@ -56,18 +56,18 @@ class ListFilterRestaurantByCategoryView(GenericAPIView):
 class ListFilterRestaurantView(ListAPIView):
     serializer_class = RestaurantsSerializer
     permission_classes = [ReadOnly]
-    queryset = Restaurants.objects.all()
+    queryset = Product.objects.all()
 
     def get_queryset(self):
         params = self.request.query_params.get("search")
-        queryset = Restaurants.objects.filter(Q(name__icontains=params))
+        queryset = Product.objects.filter(Q(name__icontains=params))
 
         return queryset
 
 
 class RetrieveUpdateDeleteRestaurantsView(RetrieveUpdateDestroyAPIView):
     serializer_class = CreateRestaurantsSerializer
-    queryset = Restaurants.objects.all()
+    queryset = Product.objects.all()
     permission_classes = [IsAuthor | IsAdminUser | ReadOnly]
     lookup_url_kwarg = 'id'
 
@@ -75,6 +75,6 @@ class RetrieveUpdateDeleteRestaurantsView(RetrieveUpdateDestroyAPIView):
 class ListCategoryView(ListAPIView):
     serializer_class = CategorySerializer
     permission_classes = [ReadOnly]
-    queryset = Restaurants.objects.all()
+    queryset = Product.objects.all()
 
 
