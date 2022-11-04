@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const PageSection = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-`;
-
 export const StickyCartContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -31,13 +23,19 @@ export const StickyCartContainer = styled.div`
     color: black;
   }
 
+  :hover {
+    width: 20rem;
+  }
+
   @media screen and (max-width: 1400px)  {
     right: 0;
     top: 5rem;
     position: sticky;
     flex-direction: column;
     gap: 1rem;
+    /* width: 7rem; */
     height: 10rem;
+
 
     :hover {
       width: 8rem;

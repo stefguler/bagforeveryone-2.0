@@ -10,26 +10,22 @@ cursor: pointer;
    :hover span {
        color: #DABC39;
    }
-
-   :hover img {
-      width: 420px;
-   }
-
 `
 
 export const Avatar = styled.img`
-   width: 400px;
-   border-radius: 1rem;
-       
+   width: 500px;
+      
 `
 
 export const Title = styled.span`
    font-weight: bold;
    text-transform: uppercase;
    text-align: center;
+   font-size: 36px;
 `
 
 export const Price = styled.p`
    text-align: center;
    margin: 0;
+   font-size: 28px;
 `

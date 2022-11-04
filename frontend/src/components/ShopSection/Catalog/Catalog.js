@@ -1,7 +1,6 @@
 import ProductCard from "../ProductCard/ProductCard.js";
-import { CatalogGrid, PageHeader, StickyCart } from "./Catalog.styled.js";
-import { HiOutlineShoppingBag } from "react-icons/hi";
-import { IconContext } from "react-icons";
+import { CatalogGrid, PageHeader } from "./Catalog.styled.js";
+
 
 function Catalog() {
   const backbag = {
@@ -31,12 +30,6 @@ function Catalog() {
             return <ProductCard key={idx} product={product} />;
           })}
         </CatalogGrid>
-        <StickyCart>
-          <IconContext.Provider value={{ size: "100px" }}>
-            <HiOutlineShoppingBag />
-          </IconContext.Provider>
-          <div>5</div>
-        </StickyCart>
     </>
   );
 }
