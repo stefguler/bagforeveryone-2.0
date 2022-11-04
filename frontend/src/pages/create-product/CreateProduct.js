@@ -59,7 +59,7 @@ const CreateNewProduct = () => {
                 .then(response => response.json())
                 .then(data => {
                     setCreated(true)
-                    setTimeout(() => navigate('/home'), 2000)
+                    setTimeout(() => navigate('/'), 2000)
                     return data.response
                 })
                 .catch(error => console.log(error))
