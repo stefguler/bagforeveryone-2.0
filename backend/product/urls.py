@@ -17,17 +17,16 @@ Including another URLconf
 from django.urls import path
 
 from product.views import ListCreateRestaurantsView, ListFilterRestaurantView, RetrieveUpdateDeleteRestaurantsView, \
-    ListFilterRestaurantByCategoryView, ListUserRestaurantsView, ListCategoryView, BestRestaurantsView
+    ListFilterRestaurantByCategoryView, ListCategoryView
 
 urlpatterns = [
 
     path('product/', ListCreateRestaurantsView.as_view()),
     path('product/new/', ListCreateRestaurantsView.as_view()),
-    path('product/user/<int:user_id>/', ListUserRestaurantsView.as_view()),
     path('product/category/<str:category>/', ListFilterRestaurantByCategoryView.as_view()),
     path('product/filter/', ListFilterRestaurantView.as_view()),
     path('product/<int:id>/', RetrieveUpdateDeleteRestaurantsView.as_view()),
     path('category/list/', ListCategoryView.as_view()),
-    path('home/', BestRestaurantsView.as_view()),
+
 
 ]

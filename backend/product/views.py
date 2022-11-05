@@ -11,39 +11,14 @@ from product.serializer import RestaurantsSerializer, CreateRestaurantsSerialize
 User = get_user_model()
 
 
-class BestRestaurantsView(ListAPIView):
-    serializer_class = RestaurantsSerializer
-    permission_classes = [ReadOnly]
-    queryset = Product.objects.all().order_by('-rating_average')[0:4]
-
-
-class ListUserRestaurantsView(GenericAPIView):
-
-    queryset = Product.objects.all()
-    serializer_class = RestaurantsSerializer
-    permission_classes = [ReadOnly]
-    lookup_url_kwarg = 'user_id'
-
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        queryset = queryset.filter(author=self.kwargs['user_id'])
-        serializer = RestaurantsSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-
 class ListCreateRestaurantsView(ListCreateAPIView):
     serializer_class = CreateRestaurantsSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Product.objects.all()
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
 
 
 class ListFilterRestaurantByCategoryView(GenericAPIView):
     queryset = Product.objects.all()
     serializer_class = RestaurantsSerializer
-    permission_classes = [ReadOnly]
     lookup_url_kwarg = 'category'
 
     def get(self, request, *args, **kwargs):

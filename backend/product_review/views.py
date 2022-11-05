@@ -18,7 +18,7 @@ class ListCreateRestaurantsReviewsView(ListCreateAPIView):
 
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+        serializer.save(reviewer=self.request.user)
 
 
 class CreateRestaurantsReviewsView(CreateAPIView):
@@ -28,7 +28,7 @@ class CreateRestaurantsReviewsView(CreateAPIView):
     lookup_url_kwarg = 'restaurant_id'
 
     def perform_create(self, serializer):
-        serializer.save(restaurants_id=self.kwargs['restaurant_id'], author=self.request.user)
+        serializer.save(product_id=self.kwargs['restaurant_id'])
 
 
 class ListReviewsRestaurantsView(ListAPIView):
@@ -37,65 +37,7 @@ class ListReviewsRestaurantsView(ListAPIView):
     lookup_url_kwarg = 'restaurant_id'
 
     def get_queryset(self, **kwargs):
-        queryset = ProductReview.objects.filter(restaurants_id=self.kwargs['restaurant_id'])
+        queryset = ProductReview.objects.filter(product_id=self.kwargs['restaurant_id'])
         return queryset
 
-class ListReviewsUserView(ListAPIView):
-    serializer_class = RestaurantsReviewsSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    lookup_url_kwarg = 'user_id'
-
-    def get_queryset(self, **kwargs):
-        queryset = ProductReview.objects.filter(author_id=self.kwargs['user_id'])
-        return queryset
-
-
-class RetrieveUpdateDeleteRestaurantsReviewsView(RetrieveUpdateDestroyAPIView):
-    serializer_class = CreateRestaurantsReviewsSerializer
-    queryset = ProductReview.objects.all()
-    permission_classes = [IsAuthor | IsAdminUser | ReadOnly]
-    lookup_url_kwarg = 'review_id'
-
-
-class ToggleLikedReview(GenericAPIView):
-
-    serializer_class = CreateRestaurantsReviewsSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = ProductReview.objects.all()
-    lookup_url_kwarg = 'review_id'
-
-    def patch(self, request, *args, **kwargs):
-        post = self.get_object()
-        user = self.request.user
-        user_liked_post = user in post.liked_by.all()
-        if user_liked_post:
-            post.liked_by.remove(user)
-        else:
-            post.liked_by.add(user)
-        return Response(self.get_serializer(post).data)
-
-
-class LikedReviewsView(GenericAPIView):
-    queryset = ProductReview.objects.all()
-    serializer_class = CreateRestaurantsReviewsSerializer
-    permission_classes = [ReadOnly]
-
-    def get(self, request, *args, **kwargs):
-        user = self.request.user.id
-        queryset = self.get_queryset()
-        queryset = queryset.filter(liked_by=user)
-        serializer = CreateRestaurantsReviewsSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-class ReviewsUserCommentsView(GenericAPIView):
-    queryset = ProductReview.objects.all()
-    serializer_class = CreateRestaurantsReviewsSerializer
-    permission_classes = [ReadOnly]
-
-    def get(self, request, *args, **kwargs):
-        user = self.request.user.id
-        queryset = self.get_queryset()
-        queryset = queryset.filter(comments__author=user)
-        serializer = CreateRestaurantsReviewsSerializer(queryset, many=True)
-        return Response(serializer.data)
 

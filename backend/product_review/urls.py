@@ -16,20 +16,13 @@ Including another URLconf
 
 from django.urls import path
 
-from product_review.views import ListCreateRestaurantsReviewsView, RetrieveUpdateDeleteRestaurantsReviewsView, \
-    CreateRestaurantsReviewsView, ListReviewsRestaurantsView, ListReviewsUserView, ToggleLikedReview, LikedReviewsView, \
-    ReviewsUserCommentsView
+from product_review.views import ListCreateRestaurantsReviewsView, CreateRestaurantsReviewsView, ListReviewsRestaurantsView
 
 urlpatterns = [
 
     path('review/list/', ListCreateRestaurantsReviewsView.as_view()),
     path('reviews/new/<int:restaurant_id>/', CreateRestaurantsReviewsView.as_view()),
     path('reviews/restaurant/<int:restaurant_id>/', ListReviewsRestaurantsView.as_view()),
-    path('reviews/user/<int:user_id>/', ListReviewsUserView.as_view()),
-    path('reviews/<int:review_id>/', RetrieveUpdateDeleteRestaurantsReviewsView.as_view()),
-    path('reviews/like/<int:review_id>/', ToggleLikedReview.as_view()),
-    path('reviews/likes/', LikedReviewsView.as_view()),
-    path('reviews/comments/', ReviewsUserCommentsView.as_view()),
 
 
 

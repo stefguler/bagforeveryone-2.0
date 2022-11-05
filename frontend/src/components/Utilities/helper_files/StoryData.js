@@ -1,8 +1,16 @@
 const stories = [
     {id: '1',
      image: './assets/images/story-previews/preview1.jpg',
-     title: 'story1',
-     content: 'Content of Story 1',
+     title: 'End of the year on Lesvos',
+     content: `The end of the year has seen significant further changes inside 
+     the refugee camp where Lesvos refugees live. The best of all are that, 
+     after so many years of hygienic issues and he stay in tents, finally new 
+     containers with toilets and hot water showers connected to the municipal 
+     water supply were put in place across numerous sites in the camp. Also, 
+     all those residents who were living in tents have been moved into improved 
+     Refugee Housing Units (RHUs) over the past few weeks. This move did not 
+     prevent many individuals living in tents during extremely cold weather of 
+     the beginning and middle of December.`,
      comments: ['Great!', 'Super!']
     },
     {id: '2',
