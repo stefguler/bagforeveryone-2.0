@@ -18,10 +18,15 @@ export const CatalogGrid = styled.div`
     /* gap: 5rem; */
     margin: 0 auto;
     padding: 0 10rem;
-    gap: 0;
+    gap: 5rem;
+    max-width: 1000px;
 
     @media screen and (max-width: 1300px)  {
       grid-template-columns: 1fr;
       gap: 0;
+    }
+
+    @media screen and (max-width: 700px)  {
+      padding: 0;
     }
 `
