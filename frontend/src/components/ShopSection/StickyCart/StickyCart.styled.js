@@ -4,11 +4,8 @@ export const StickyCartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  right: 2rem;
-  bottom: 20rem;
+  bottom: 0rem;
   width: 10rem;
-  height: 7rem;
   align-self: flex-end;
   cursor: pointer;
   

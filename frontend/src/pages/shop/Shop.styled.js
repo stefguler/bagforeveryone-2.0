@@ -4,7 +4,8 @@ export const PageSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    justify-content: center;
+    position: relative;
     width: 100%;
 `;
 
@@ -14,7 +15,7 @@ export const StickyCartContainer = styled.div`
   align-items: center;
   position: absolute;
   right: 2rem;
-  bottom: 20rem;
+  bottom: 5rem;
   width: 10rem;
   height: 7rem;
   align-self: flex-end;
