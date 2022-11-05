@@ -21,19 +21,26 @@ export const AvatarContainer = styled.div`
     max-width: 500px;
   }
 
-  h3 {
-    opacity: 0;
-    color: white;
-    text-shadow: 2px 2px 2px black;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 1em;
+  div {
+   display: flex;
+   align-items: flex-stat;
+   justify-content: center;
+   font-size: 36px;
+   padding-top: 1rem;
+   opacity: 0;
+   color: white;
+   /* text-shadow: 2px 2px 2px black; */
+   width: 100%;
+   height: 97%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   background: black;
+    /* padding: 2rem; */
   }
-  h3:hover {
-    opacity: 1;
-  }
+      div:hover {
+         opacity: 0.2;
+   }
 
   img {
     width: 500px;

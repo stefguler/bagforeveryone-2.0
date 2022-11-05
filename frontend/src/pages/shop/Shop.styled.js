@@ -46,6 +46,15 @@ export const StickyCartContainer = styled.div`
     }
 `
 
-export const testWidth = styled.div`
-    width: 500px;
+export const SidebarHeader = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+   
+    span {
+      padding-right: 5rem;
+      font-size: 24px;
+    }
+
 `

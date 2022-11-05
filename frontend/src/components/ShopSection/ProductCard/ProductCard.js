@@ -20,7 +20,7 @@ function ProductCard(props) {
       <CardContainer onClick={handleNavigateToProduct}>
         <AvatarContainer>
           <img class="preview" src={props.product.img} alt="product image - bag"></img>
-          <h3 className="hide">Show more!</h3>
+          <div className="hide">Show more!</div>
         </AvatarContainer>
         <Title>{props.product.title}</Title>
         <Price>CHF {props.product.price}</Price>

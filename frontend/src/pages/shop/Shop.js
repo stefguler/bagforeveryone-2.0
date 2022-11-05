@@ -3,10 +3,11 @@ import Catalog from "../../components/ShopSection/Catalog/Catalog.js";
 // import StickyCart from "../../components/ShopSection/StickyCart/StickyCart.js";
 import { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
+import {BsArrowRight} from 'react-icons/bs'
 import { IconContext } from "react-icons";
 import Sidebar from "react-sidebar";
 
-import { PageSection, StickyCartContainer, testWidth } from "./Shop.styled";
+import { PageSection, StickyCartContainer, SidebarHeader } from "./Shop.styled";
 
 export default function Shop() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,7 +22,12 @@ export default function Shop() {
         <Sidebar
           sidebar={
             <>
-              <testWidth>this will be the stuff</testWidth>
+              <SidebarHeader>
+                <IconContext.Provider value={{ size: "50px" }}>
+                  <BsArrowRight />
+                </IconContext.Provider>
+                <span>Cart</span>
+              </SidebarHeader>
               <div>more content</div>
               <div>way content</div>
               <div>content never ends</div>
@@ -30,7 +36,16 @@ export default function Shop() {
           open={sidebarOpen}
           pullRight={true}
           onSetOpen={onSetSidebarOpen}
-          styles={{ sidebar: { background: "white", width: "20rem" } }}
+          styles={{
+            sidebar: {
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: "1rem",
+              background: "white",
+              width: "20rem",
+            },
+          }}
         >
           <StickyCartContainer onClick={() => onSetSidebarOpen(true)}>
             <IconContext.Provider value={{ size: "100px" }}>
