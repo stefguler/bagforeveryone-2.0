@@ -14,8 +14,12 @@ import {
   Content,
   ProductContainer,
   AddRemoveContainer,
-  SidebarFooter
+  SidebarFooter,
+  SubTotalContainer,
+  CheckoutContainer
+
 } from "./Shop.styled";
+import { useNavigate } from "react-router-dom";
 
 const product1 = {
   img: "../assets/images/product/product_olive_backbag.jpg",
@@ -27,10 +31,15 @@ let products = [product1];
 
 export default function Shop() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
   };
+
+  const handleNavigateToCheckout = () => {
+    navigate("/shop/1")
+  }
 
   return (
     <>
@@ -39,7 +48,7 @@ export default function Shop() {
           sidebar={
             <>
               <SidebarHeader>
-                <IconContext.Provider value={{ size: "50px" }}>
+                <IconContext.Provider value={{ size: "50px", className: "arrow"}}>
                   <BsArrowRight />
                 </IconContext.Provider>
                 <span>Cart</span>
@@ -48,7 +57,7 @@ export default function Shop() {
                 {products.map((product, idx) => {
                   return (
                     <>
-                      <ProductContainer>
+                      <ProductContainer key = {idx}>
                         <img src={product.img} alt="product in cart"></img>
                         <div>
                           <span>{product.title}</span>
@@ -64,7 +73,13 @@ export default function Shop() {
                   );
                 })}
               </Content>
-              <SidebarFooter>content never ends</SidebarFooter>
+              <SidebarFooter>
+                <SubTotalContainer>
+                  <span>Subtotal</span>
+                  <span style={{fontWeight:"bold"}}>CHF 100</span>
+                </SubTotalContainer>
+                <CheckoutContainer onClick={handleNavigateToCheckout}>Checkout</CheckoutContainer>
+              </SidebarFooter>
             </>
           }
           open={sidebarOpen}
@@ -76,7 +91,6 @@ export default function Shop() {
               justifyContent: "space-between",
               flexDirection: "column",
               alignItems: "center",
-              padding: "1rem",
               background: "white",
               width: "20rem",
             },

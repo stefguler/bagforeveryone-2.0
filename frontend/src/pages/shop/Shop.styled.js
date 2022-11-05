@@ -50,11 +50,19 @@ export const SidebarHeader = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
    
     span {
+      display: flex;
+      align-items: center;
       padding-right: 5rem;
       font-size: 24px;
+      text-align: center;
+    }
+
+    .arrow {
+      padding: 1rem;
+      justify-self: flex-start;
     }
 
 `
@@ -95,11 +103,39 @@ export const AddRemoveContainer = styled.div`
           
           :hover {
             color: #DABC39;
+            
           }
 
         }
 `
 
 export const SidebarFooter = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `
+
+export const SubTotalContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+padding-bottom: 5rem;
+font-size: 24px;
+`
+
+export const CheckoutContainer = styled.div`
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  background: #DABC39;
+  padding: 0.5rem 0;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.4
+  }
+
+`
+
 
