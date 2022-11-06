@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const PageWrapper = styled.section`
+    min-width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-
 `;
+
