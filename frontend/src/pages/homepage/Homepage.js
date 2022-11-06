@@ -1,15 +1,17 @@
 import React from 'react'
 import Navbar from '../../components/navbar/Navbar'
+import Footer from '../../components/footer/Footer'
 import Mission from '../../components/mission/Mission'
 import { PageWrapper } from './Homepage.styles'
-import StoryList from '../../components/storyList/StoryList'
+import About from '../../components/about/About'
 
 const Homepage = () => {
   return (
     <PageWrapper>
         <Navbar />
-        <StoryList />
+        <About />
         <Mission />
+        <Footer />
     </PageWrapper>
   )
 }
