@@ -11,6 +11,7 @@ import Product from "./pages/product/Product";
 import Login from "./components/LoginSection/Login/Login";
 import Register from "./components/LoginSection/Register/Register";
 import Validate from "./components/LoginSection/Validate/Validate";
+import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<>
@@ -22,6 +23,7 @@ root.render(<>
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:id" element={<Product />} />
         <Route path="/checkout" element={<CheckouPage />} />
+        <Route path="/orderconfirmed" element={<OrderConfirmationPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/validate" element={<Validate />} />      
