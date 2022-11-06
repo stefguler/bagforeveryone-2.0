@@ -51,12 +51,13 @@ INSTALLED_APPS = [
 
 # User apps
     "users",
-    "comments_on_review",
+    "comment",
     "product",
     "product_review",
     "emails",
     "registration",
     "post",
+    "order",
 ]
 
 MIDDLEWARE = [
@@ -104,8 +105,6 @@ DATABASES = {
         "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

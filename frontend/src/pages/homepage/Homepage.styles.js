@@ -8,5 +8,6 @@ export const PageWrapper = styled.div `
 
     @media only screen and (max-width: 800px) {
         flex-direction: row;
+        justify-content: center;
     }
 `
