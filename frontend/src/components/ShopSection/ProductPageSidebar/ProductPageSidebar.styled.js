@@ -108,8 +108,6 @@ export const ProductContainer = styled.div`
       gap: 0.5rem;
 
     }
-
-
 `
 
 export const AddRemoveContainer = styled.div`

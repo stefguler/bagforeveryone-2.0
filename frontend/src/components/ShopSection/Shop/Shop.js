@@ -48,7 +48,7 @@ export default function Shop() {
   };
 
   const handleNavigateToCheckout = () => {
-    navigate("/shop/1")
+    navigate("/checkout")
   }
 
   return (

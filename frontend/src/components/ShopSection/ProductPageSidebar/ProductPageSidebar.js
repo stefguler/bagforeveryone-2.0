@@ -16,7 +16,7 @@ import {
   SubTotalContainer,
   CheckoutContainer
 
-} from "./Test.styled";
+} from "./ProductPageSidebar.styled";
 import { useNavigate } from "react-router-dom";
 import ProductPage from "../ProductPage/ProductPage.js";
 
@@ -49,7 +49,7 @@ export default function Shop() {
   };
 
   const handleNavigateToCheckout = () => {
-    navigate("/shop/1")
+    navigate("/checkout")
   }
 
   return (
