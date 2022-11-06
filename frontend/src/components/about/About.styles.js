@@ -1,47 +1,78 @@
 import styled from "styled-components";
 import "@fontsource/montserrat";
-// import background_image from '../assets/images/about/AboutMain.png';
+
 
 
 
 export const LandingPageContainerDiv = styled.div`
     height: auto;
     height: 100%; 
-    margin: 0 auto -100px; /*Allow for footer height*/
-    vertical-align:bottom;
+    margin: 0 auto -100px;
 `;
 
 export const PictureContainerDiv = styled.div`
     display: flex;
     justify-content: flex-end;
-    background-color: beige;
+    background: url('../assets/images/about/AboutMain.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100vw;
-    height: 60vh;
+    height: 75vh;
 `;
 
 export const ContentConteinerDiv = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: right;
     flex-direction: column;
     width: 730px;
-    height: 160px;
+    height: 300px;
+    margin-top: 20vh;
     margin-right: 50px;
-    text-align: right;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
+    *{
+        font-family: 'Montserrat', sans-serif;
+    }
 
-   .button{
-    background-color: #FFFFFF;
-    border: 3px solid #DABC39;
-    border-radius: 15px;
-    font-weight: 400;
-    width: 139px;
-    height: 60px;
-    align-items: center;
-    margin-right: 10px;
-   }
+    p{
+        text-align: right; 
+        color: #FFFFFF;
+        font-weight: 600;
+        font-size: 32px;
+    }
 
+    button {
+        background: #E1C23B;
+        border: none;
+        border-radius: 15px;
+        width: 150px;
+        height: 60px;
+        font-size: 24px;
+        align-self: flex-end;
+    }
 `;
 
 export const StickyButtonDiv = styled.div`
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    height: 100px;
+    width: 50px;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    top: 65vh;
+    background-color: rgba(225, 194, 59, 0.44);
+    :hover{
+     background-color: #DABC39;
+    }
+    
+    button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        transform: rotate(-90deg);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 26px;
+
+    }
 `;

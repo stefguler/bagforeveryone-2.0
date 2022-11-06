@@ -6,6 +6,7 @@ import {
     StickyButtonDiv,
 } from './About.styles'
 
+
 const About = () => {
     return (
         <> 
@@ -13,10 +14,11 @@ const About = () => {
             <PictureContainerDiv>
                 <ContentConteinerDiv>
                     <p>The bagforeveryone project aims to bring together the strengths, experiences, and talents of people by teaching the transferable skill of sewing.</p>
-                    <span>DONATE</span>
+                    <button>DONATE</button>
                 </ContentConteinerDiv>
             </PictureContainerDiv>
             <StickyButtonDiv>
+                <button>Stories</button>
             </StickyButtonDiv>
         </LandingPageContainerDiv>
         </>
