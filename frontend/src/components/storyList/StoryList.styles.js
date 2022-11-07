@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StoryPageWrapper = styled.section `
     border: 2px solid lightgray;
+    border-radius: 7px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +10,7 @@ export const StoryPageWrapper = styled.section `
     gap: 1em;
     background-color: white;
     margin-left: 1rem;
-    margin-top: 15rem;
+    margin-top: 20rem;
 
     .search {
         width: fit-content;
@@ -41,6 +42,7 @@ export const StoryListWrapper = styled.div `
     @media only screen and (max-width: 1400px) {
         flex-direction: column;
         grid-template-columns: 1fr 1fr;
+        padding-left: 1em; 
         align-items: center;
     }
 

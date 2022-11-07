@@ -1,59 +1,91 @@
 import styled from "styled-components";
+// import "@fontsource/montserrat";
 
-export const NavWrapper = styled.nav `
-
+export const NavWrapper = styled.nav`
     display: flex;
-    position: fixed;
+    position: absolute;
+    box-sizing: border-box;
     top: 0;
     left: 0;
-    width: 100%;
-    z-index: 3;
-    gap: 1em;
-    justify-content: space-between;
+    width: 100vw;
+    height: 122px;
+    justify-content: flex-start;
     align-items: center;
-    background-color: white;
+    border: 1px solid #DDD8C4;
+    background-color: rgba(255, 255, 255, 0.54);
+`;
 
-    ul {
-        list-style-type: none;
-        display: flex;
-        gap: 1em;
-        margin-right: 1em;
-    }
+export const NavbarLogoContainerDiv = styled.img`
+    display: flex;
+    justify-content: flex-start;
+    width: 120px;
+    height: 90px;
+    margin-left: 95px;
+`;
 
-    li {
-        background-color: lightgray;
-        min-width: fit-content;
-        border-radius: 5px; 
-        height: fit-content;
-        padding: .5em;
-    }
-
-    @media only screen and (max-width: 800px) {
-        position: static;
-        height: fit-content;
-        flex-direction: column;
-        margin: 1em 1em 0 1em;
-        justify-items: center;
-        width: fit-content;
-        padding: 0.5em;
-
-        ul {
-            margin: 0 auto;
-            flex-direction: column;
-            padding: .1em;
-            gap: .1em;
+export const NavbarLeftButtonsContainerDiv = styled.div`
+    display: flex;
+    width: 350px;
+    margin-left: 30px;
+    justify-content: space-between;
+    :hover {
+        text-decoration-color: #DABC39;
         }
-        li {
-            text-align: center;
-        }
+`;
+
+export const NavbarLeftTabsDiv = styled.span`
+    display: flex;
+    justify-content: center;
+    *{
+        background: none;
+        cursor: pointer;
+        color: #1E1E1E;
+        border: none;
+        height: 30px;
+        font-size: 24px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
     }
-`
+`;
 
-export const Logo = styled.img `
-    width: 200px;
+export const NavbarRightButtonsContainerDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: auto 20px auto auto;
+    max-width: 50%;
+    min-width: 10%;
+`;
 
-    @media only screen and (max-width: 800px) {
+export const NavbarRightTabsDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    *{
+        cursor: pointer;
+        color: #1E1E1E;
+        font-size: 24px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    &:first-child{
+        background-color: rgba(255, 255, 255, 0.54);
+        border: 3px solid #DABC39;
+        border-radius: 15px;
+        font-weight: 400;
+        width: 139px;
+        height: 60px;
+        align-items: center;
+        margin-right: 10px;
+    }
+    &:not(:first-child):not(:last-child){
+        border: 1.5px solid #DABC39;
+        width: 0;
+        height: 60px;
+    }
+    &:last-child{
+        border: none;  
         width: 100px;
+        height: 60px;
+        align-items: center;
     }
+`;
 
-`
+

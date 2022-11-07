@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 // ------------------- GLOBAL STYLES ------------------
 
@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Montserrat', sans-serif;
         background: white;
         display: flex;
-        align-items: center;
+        /* align-items: center; */
         margin: 0 auto;
         padding: 0;
         box-sizing: border-box;
@@ -15,3 +15,14 @@ export const GlobalStyle = createGlobalStyle`
         height: 100vh;
     }
 `;
+
+export const PageButton = styled.button `
+    background: #DABC39;
+    border: 3px solid #DABC39;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+`
+
+    
