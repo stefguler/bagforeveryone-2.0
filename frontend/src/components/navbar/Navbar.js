@@ -1,7 +1,6 @@
 import React from 'react'
-import Media from 'react-media';
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { 
   NavWrapper,
   NavbarLogoContainerDiv,
@@ -9,67 +8,46 @@ import {
   NavbarLeftTabsDiv,
   NavbarRightButtonsContainerDiv,
   NavbarRightTabsDiv,
-  NavbarButtonsContainerDiv
   } from './Navbar.styles';
 
 const Navbar = () => {
+  const navigate = useNavigate();
 
-  const [showTabs, setShowTabs] = useState(false);
-
-  const handleClick = () => {
-    setShowTabs(!showTabs)
+  const handleNavigateTo = (destination) => {
+    navigate(`/${destination}`)
   }
+  
 
   return (
     <>
         <NavWrapper> 
 
           {/* make logo clickable and return to landing page onClick */}
-            <NavbarLogoContainerDiv src="../assets/images/logo/logo.png" />
-
-            <Media queries={{small: {minWidth: 500}  }}>
-            {matches => 
-            matches.small ? ( 
-              <GiHamburgerMenu className='hamburger' onClick={handleClick} />
-            ) : (
-              <>
-              <NavbarLeftButtonsContainerDiv /><NavbarRightButtonsContainerDiv />
-              </> 
-            )
-            }
-            </Media>
-
-            {showTabs && 
-              <>
-              <NavbarLeftButtonsContainerDiv /><NavbarRightButtonsContainerDiv />
-              </> }
-
-
-
+            <NavbarLogoContainerDiv src="../assets/images/logo/logo.png" onClick={() => handleNavigateTo("")}/>
             <NavbarLeftButtonsContainerDiv> 
               {/* need to add navigation to other pages onClick */}
                 <NavbarLeftTabsDiv> 
-                  <span>ABOUT</span>
+                  <span onClick={() => handleNavigateTo("/about")}>ABOUT</span>
                 </NavbarLeftTabsDiv>
                 <NavbarLeftTabsDiv> 
-                  <span>STORY</span>
+                  <span onClick={() => handleNavigateTo("story")}>STORY</span>
                 </NavbarLeftTabsDiv>
                 <NavbarLeftTabsDiv> 
-                  <span>TEAM</span>
+                  <span onClick={() => handleNavigateTo("team")}>TEAM</span>
                 </NavbarLeftTabsDiv>
                 <NavbarLeftTabsDiv> 
-                  <span>BUY</span>
+                  <span onClick={() => handleNavigateTo("shop")}>BUY</span>
                 </NavbarLeftTabsDiv>
             </NavbarLeftButtonsContainerDiv>
             <NavbarRightButtonsContainerDiv>
                 <NavbarRightTabsDiv> 
-                  <span>DONATE</span>
+                  <span onClick={() => handleNavigateTo("donate")}>DONATE</span>
                 </NavbarRightTabsDiv>
                 <NavbarRightTabsDiv> 
                   <span></span> { /* that line between the buttons */}
                 </NavbarRightTabsDiv>
                 <NavbarRightTabsDiv> 
-                  <span>LOG IN</span>
+                  <span onClick={() => handleNavigateTo("login")}>LOG IN</span>
                 </NavbarRightTabsDiv>
             </NavbarRightButtonsContainerDiv> 
         </NavWrapper>

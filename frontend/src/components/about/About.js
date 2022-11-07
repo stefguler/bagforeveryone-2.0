@@ -7,7 +7,7 @@ import {
 } from './About.styles'
 
 
-const About = () => {
+const About1 = () => {
     return (
         <> 
         <LandingPageContainerDiv>
@@ -25,4 +25,4 @@ const About = () => {
     )
 }
 
-export default About
+export default About1

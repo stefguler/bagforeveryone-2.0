@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import "@fontsource/montserrat";
+// import "@fontsource/montserrat";
 
 
 
@@ -73,6 +73,89 @@ export const StickyButtonDiv = styled.div`
         transform: rotate(-90deg);
         font-family: 'Montserrat', sans-serif;
         font-size: 26px;
+    }
+`;
 
+export const AboutContainerDiv = styled.div`
+    margin: auto;
+    background: #FAF5E1;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+ 
+    width: 100vw;
+    height: 80vh;
+    margin-top: 122px;
+    margin-bottom: 113px;
+`;
+
+export const ContentBoxDiv = styled.div` 
+    display: flex;
+    
+    justify-content: space-evenly;
+    width: 80vw;
+    background: #FFFFFF;
+    border: 1px solid #DDD8C4;
+    flex-direction: row;
+`;
+
+export const TextBoxDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 40vw;
+    
+    h1 {
+        color: #DABC39;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 48px;
+        text-align: right;
+        
+    }
+
+    p {
+        color: #000000;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        text-align: right;
+       
+    }
+
+ @media only screen and (max-width: 450px) {
+        justify-content: flex-start;
+        
+        h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        p {
+            font-size: 11px;
+            margin: 5px;
+        }
+    }
+`;  
+
+export const PictureBoxDiv = styled.div`
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    max-width: 30vw;
+
+    @media only screen and (max-width: 450px) {
+        justify-content: space-evenly;
+    }
+`;
+
+export const PictureDiv = styled.img`
+    width: 25vw;
+    height: 33vh;
+    border-radius: 15px;
+    align-content: left;
+
+    @media only screen and (max-width: 450px) {
+        width: 30vw;
+        height: 13vh;
+        border-radius: 15px;
     }
 `;
