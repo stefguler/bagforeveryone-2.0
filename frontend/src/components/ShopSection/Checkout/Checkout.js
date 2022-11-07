@@ -1,4 +1,5 @@
 // import { useNavigate } from "react-router-dom";
+
 import {CheckoutContainer} from "./Checkout.styled.js";
 
 export default function Checkout(props) {
@@ -8,8 +9,8 @@ export default function Checkout(props) {
   return (
     <>
       <CheckoutContainer >
+        {/* <CheckoutHeader>Checkout</CheckoutHeader> */}
 
-        Checkout Implementation
 
         
       </CheckoutContainer>

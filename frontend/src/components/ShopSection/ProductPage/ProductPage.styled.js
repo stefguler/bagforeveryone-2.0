@@ -4,14 +4,11 @@ import styled from "styled-components";
 export const PageContainer = styled.div`
     display: flex;
     flex-direction : column;
-    gap: 1rem;
     margin: 0 auto;
 `
 
 export const NavigateContainer = styled.div`
     display: flex;
-    /* flex-direction: column; */
-    gap: 1rem;
     justify-content: center;
 
     span {
@@ -25,7 +22,7 @@ export const BackToCatalogContainer = styled.div`
     align-items: center;
     font-size: 24px;
     gap: 1rem;
-    padding-bottom: 5rem;
+    padding-bottom: 2rem;
     cursor: pointer;
 
     :hover{

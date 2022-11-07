@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PageSection = styled.section`
+    margin-top: 9rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +17,7 @@ export const StickyCartContainer = styled.div`
   align-items: center;
   position: absolute;
   right: 2rem;
-  bottom: 5rem;
+  bottom: 8rem;
   width: 10rem;
   height: 7rem;
   align-self: flex-end;

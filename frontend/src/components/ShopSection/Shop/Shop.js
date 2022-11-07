@@ -100,6 +100,7 @@ export default function Shop() {
           onSetOpen={onSetSidebarOpen}
           styles={{
             sidebar: {
+              position: "fixed",
               display: "flex",
               justifyContent: "space-between",
               flexDirection: "column",

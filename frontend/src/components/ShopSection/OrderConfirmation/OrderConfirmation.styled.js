@@ -10,6 +10,7 @@ export const OrderConfirmationContainer = styled.div`
   font-size: 32px;
   margin: 0 auto;
   justify-content: center;
+  margin-top: 7.5rem;
 `
 
 export const Content = styled.div`
