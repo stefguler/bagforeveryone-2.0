@@ -2,13 +2,12 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StoryListWrapper, StoryPageWrapper } from './StoryList.styles'
-import StoryCard from '../storyCard/StoryCard'
+import StoryCard from '../storyCard/StoryCard';
 import StoryData from '../Utilities/helper_files/StoryData';
 import { SlMagnifier } from 'react-icons/sl';
 import SearchBar from '../Utilities/Filters/SearchBar/SearchBar';
-import { Modal } from '../storyCard/StoryCard.styles';
+import { StoryWrapper, UserHeader, ContentWrapper } from '../../pages/story-page/StoryPage.styles';
 import { PageButton } from '../../styles/global.styles';
-import { UserHeader, ContentWrapper } from '../storyCard/StoryCard.styles';
 import { FormWrapper } from '../../pages/create-product/CreateProduct.styles';
 
 const StoryList = () => {
@@ -23,7 +22,7 @@ const StoryList = () => {
       }
   )
   const navigate = useNavigate();
-  const allStories = StoryData.map((story, index) => <StoryCard story={story} />)
+  const allStories = StoryData.map((story, index) => <StoryCard key={index} story={story} />)
 
   const handleStoryChange = e => {
     setStoryData(prevFormData => {
@@ -32,7 +31,7 @@ const StoryList = () => {
             [e.target.name]: e.target.value
         }
     })
-}
+  }
 
     const handleImageUpload = e => {
         const imageUrl = e.target.files;
@@ -95,8 +94,8 @@ const StoryList = () => {
       </StoryListWrapper>
 
       {/* Create a story MODAL:  */}
-      <Modal style={{display: inputModal}}>
-        <PageButton className='modal-close' onClick={() => setInputModal('none')}>X</PageButton>
+      <StoryWrapper style={{display: inputModal}}>
+        <PageButton onClick={() => setInputModal('none')}>X</PageButton>
         <div className='modal-story-wrapper'>
           <UserHeader>
             <div className='user-info-wrapper'>
@@ -116,11 +115,11 @@ const StoryList = () => {
               <textarea id="story" name="content" onChange = {handleStoryChange} required></textarea>
               <label htmlFor="select">Upload image:</label>
               <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
-              <button type={"submit"} onClick={CreateStory}>{created ? 'SUCCESS!' : 'Create'}</button>
+              <PageButton type={"submit"} onClick={CreateStory}>{created ? 'SUCCESS!' : 'Create'}</PageButton>
             </ FormWrapper>
           </ContentWrapper>
         </div>
-      </Modal>
+      </StoryWrapper>
       {/* Create a story MODAL:  */}
     </StoryPageWrapper>
   )
