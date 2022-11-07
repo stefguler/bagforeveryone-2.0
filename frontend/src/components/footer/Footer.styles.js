@@ -3,12 +3,15 @@ import "@fontsource/montserrat";
 
 
 export const FooterWrapperDiv = styled.div`
+    position:absolute;
     display: flex;
     box-sizing: border-box;
+    justify-content: flex-start;
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 113px;
+    max-height: 113px;
+   
     align-items: center;
     border: 1px solid #DDD8C4;
     background-color: rgba(255, 255, 255, 1);
@@ -18,7 +21,8 @@ export const FooterWrapperDiv = styled.div`
 
 export const TabsContainerDiv = styled.div`
     display: flex;
-    width: 700px;
+    max-width: 700px;
+    min-width: 350px;
     height: 70px;
     justify-content: space-between;
     margin-top: 20px;
@@ -29,6 +33,18 @@ export const TabsContainerDiv = styled.div`
     font-size: 24px;
     font-family: 'Montserrat', sans-serif; 
     }
+
+    @media screen and (min-width: 401px) {
+        *{ 
+        font-size: 24px;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        *{ 
+        font-size: 14px;
+        }   
+    }
 `;
 
 export const TabsDiv = styled.div`
@@ -36,8 +52,9 @@ export const TabsDiv = styled.div`
     justify-content: space-between;
     flex-direction: column;
     *{
-        margin-right: 10px;
+        margin-right: 5px;
     }
+
 `;
 
 export const Signature = styled.div`
@@ -46,5 +63,4 @@ export const Signature = styled.div`
     align-items:center;
     color: black;
     font-size:12px;
-
 `;

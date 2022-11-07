@@ -9,24 +9,25 @@ export const NavWrapper = styled.nav`
     left: 0;
     width: 100vw;
     height: 122px;
-    justify-content: flex-start;
+    justify-content: left;
     align-items: center;
     border: 1px solid #DDD8C4;
     background-color: rgba(255, 255, 255, 0.54);
+    flex-direction: row;
 `;
 
 export const NavbarLogoContainerDiv = styled.img`
     display: flex;
     justify-content: flex-start;
-    width: 120px;
-    height: 90px;
-    margin-left: 95px;
+    max-width: 120px;
+    min-width: 80px;
+    max-height: 90px;
+    min-height: 60px;
 `;
 
 export const NavbarLeftButtonsContainerDiv = styled.div`
     display: flex;
-    width: 350px;
-    margin-left: 30px;
+    max-width: 350px;
     justify-content: space-between;
     :hover {
         text-decoration-color: #DABC39;
@@ -46,14 +47,26 @@ export const NavbarLeftTabsDiv = styled.span`
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
     }
+
+    @media screen and (min-width: 401px) {
+        *{ 
+        font-size: 24px;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        *{ 
+        font-size: 14px;
+        }   
+    }
 `;
 
 export const NavbarRightButtonsContainerDiv = styled.div`
     display: flex;
     justify-content: space-between;
     margin: auto 20px auto auto;
-    max-width: 50%;
-    min-width: 10%;
+    max-width: 50vw;
+    min-width: 10vw;
 `;
 
 export const NavbarRightTabsDiv = styled.div`
@@ -88,4 +101,6 @@ export const NavbarRightTabsDiv = styled.div`
     }
 `;
 
+export const NavbarButtonsContainerDiv = styled.div`
+`;
 
