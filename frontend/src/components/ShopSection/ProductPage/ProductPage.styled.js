@@ -5,11 +5,13 @@ export const PageContainer = styled.div`
     display: flex;
     flex-direction : column;
     margin: 0 auto;
+    padding-bottom: 10rem;
 `
 
 export const NavigateContainer = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 2rem;
 
     span {
         padding: 1rem;
@@ -55,7 +57,6 @@ export const ProductContainer = styled.div`
     align-items: flex-start;
     justify-content: center;
     gap: 5rem;
-
 `
 
 export const MediaContainer = styled.div`

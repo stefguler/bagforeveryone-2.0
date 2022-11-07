@@ -9,11 +9,11 @@ export const NavWrapper = styled.nav`
     top: 0;
     left: 0;
     width: 100%;
-    height: 122px;
+    height: 9rem;
     justify-content: flex-start;
     align-items: center;
     border: 1px solid #DDD8C4;
-    background-color: rgba(255, 255, 255, 0.54);
+    background-color: rgba(255, 255, 255, 0.80);
 `;
 
 export const NavbarLogoContainerDiv = styled.img`

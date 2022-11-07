@@ -14,7 +14,13 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         height: 100vh;
     }
+
+    *{
+        box-sizing: border-box;
+    }
 `;
+
+
 
 export const PageButton = styled.button `
     background: #DABC39;
