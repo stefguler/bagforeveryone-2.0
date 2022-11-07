@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { StoryWrapper, Modal, UserHeader, 
-  OptionsMenu, ContentWrapper, StoryImages, UserButtons } from './StoryCard.styles'
+  OptionsMenu, ContentWrapper, StoryImages, UserButtons,
+FullImage, Image } from './StoryCard.styles'
 import Collapsible from 'react-collapsible';
 import Comment from '../comment/Comment';
 import { SlOptionsVertical } from 'react-icons/sl';
@@ -9,10 +10,15 @@ import { PageButton } from '../../styles/global.styles';
 const StoryCard = props => {
 
   const[modal, setModal] = useState('none');
+  const[imageModal, setImageModal] = useState('none');
   const[options, setOptions] = useState('none');
   
   const handleStoryClick = e => {
     setModal('flex');
+  }
+
+  const handleImageClick = e => {
+    setImageModal('flex');
   }
 
   const handleOptionsClick = e => {
@@ -26,11 +32,11 @@ const StoryCard = props => {
           <h3 className='hide'>{props.story.title}</h3>
       </StoryWrapper>
       <Modal style={{display: modal}}>
-        <button className='modal-close' onClick={() => {
+        <PageButton className='modal-close' onClick={() => {
                                                   setModal('none')
                                                   setOptions('none')
                                                   }}
-        >X</button>
+        >X</PageButton>
         <div className='modal-story-wrapper'>
           <UserHeader>
             <div className='user-info-wrapper'>
@@ -52,7 +58,7 @@ const StoryCard = props => {
           <ContentWrapper>
             <p className='story-content'>{props.story.content}</p>
             <StoryImages>
-              <img src={props.story.image} alt="description"></img>
+              <img src={props.story.image} alt="description" onClick={handleImageClick}></img>
             </StoryImages>
             <Collapsible trigger="Show/ Hide comments">
               <Comment />
@@ -60,6 +66,13 @@ const StoryCard = props => {
             </Collapsible>
           </ContentWrapper>
         </div>
+        {/* Modal displaying full image; mapped out if multiple images: */}
+        <Modal style={{display: imageModal}}>
+          <FullImage>
+          <PageButton className='modal-close' onClick={() => setImageModal('none')}>X</PageButton>
+            <Image src={props.story.image} alt="description"></Image>                         
+          </FullImage>
+        </Modal>
       </Modal>
   </>
   )

@@ -117,7 +117,23 @@ export const OptionsMenu = styled.div `
 `
 
 export const StoryImages = styled.section `
-    padding: 1em;
     display: flex;
+    margin-bottom: 1em;
+
+    img {
+        max-width: 300px;
+    }
+`
+
+export const FullImage = styled.div `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+`
+
+export const Image = styled.img `
+    
 `
 
