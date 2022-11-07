@@ -5,12 +5,16 @@ import styled, { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     body, #root {
         font-family: 'Montserrat', sans-serif;
-        background: pink;
+        /* background: pink; */
         display: flex;
         margin: 0 auto;
         padding: 0;
         box-sizing: border-box;
         width: 100%;
+
+        *{
+        box-sizing: border-box;
+        }
     }
     // hamburger icon in mobile size (it is
     // a flex item):
@@ -26,14 +30,11 @@ export const GlobalStyle = createGlobalStyle`
         left: .8em;
     }
 
-    *{
-        box-sizing: border-box;
-    }
 `;
 
 
 
-export const PageButton = styled.button `
+export const PageButton = styled.button`
     background: #DABC39;
     border: 3px solid #DABC39;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
@@ -42,4 +43,4 @@ export const PageButton = styled.button `
     color: black;
 `
 
-    
+

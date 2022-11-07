@@ -5,6 +5,7 @@ export const PageHeader = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10rem;
     p {
       font-size: 24px;
     }

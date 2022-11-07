@@ -6,6 +6,7 @@ export const PageContainer = styled.div`
     flex-direction : column;
     margin: 0 auto;
     padding-bottom: 10rem;
+    margin-top: 8rem;
 `
 
 export const NavigateContainer = styled.div`
@@ -66,7 +67,7 @@ export const MediaContainer = styled.div`
 `
 
 export const Avatar = styled.img`
-    width: 500px;
+    width: 400px;
     border-radius: 1rem;
 
 `
@@ -77,7 +78,7 @@ export const ImageGallery = styled.div`
 
 `
 export const GalleryItem = styled.img`
-    width: 100px;
+    width: 70px;
     border-radius: 1rem;
     cursor: pointer;
 
@@ -90,7 +91,7 @@ export const GalleryItem = styled.img`
 export const Details = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     max-width: 500px;
 
 `
@@ -112,6 +113,8 @@ export const DetailDiv = styled.div`
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        font-size: 16px;
+        padding-bottom: 2rem;
     }
 
     .Collapsible__trigger {
@@ -166,10 +169,10 @@ export const CartContainer = styled.div`
 `
 
 export const AmountInCartInput = styled.input`
-    max-width: 110px;
-    padding: 1rem;
+    max-width: 10%;
+    padding: 0.5rem;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     border: 1px solid #DABC39;
 
 `
