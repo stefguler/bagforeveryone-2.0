@@ -12,13 +12,15 @@ import Login from "./components/LoginSection/Login/Login";
 import Register from "./components/LoginSection/Register/Register";
 import Validate from "./components/LoginSection/Validate/Validate";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
+import About from "./components/about/About";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<>
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+      <Route path="/" element={<Homepage />} />
+        <Route path="/story" element={<Homepage />} />
         <Route path="/create" element={<CreateProduct />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:id" element={<Product />} />

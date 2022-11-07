@@ -12,12 +12,9 @@ export const PageHeader = styled.div`
 
 export const CatalogGrid = styled.div`
     display: grid;
-    /* justify-self: ; */
     grid-template-columns: repeat(2, 1fr);
     font-weight: 400;
-    /* gap: 5rem; */
     margin: 0 auto;
-    padding: 0 10rem;
     gap: 5rem;
     max-width: 1000px;
 
