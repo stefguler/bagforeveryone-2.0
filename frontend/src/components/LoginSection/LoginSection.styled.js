@@ -24,7 +24,6 @@ padding-left: 42px;
 
 export const StyledButton = styled.button`
 font-family: 'Montserrat';
-
 background-color: #DABC39;
 border-radius: 15px;
 border-color:  #DABC39;
@@ -62,4 +61,11 @@ a {
     color: #000000;
     font-weight: bold;
 }
+`;
+
+export const ErrorContainer = styled.div`
+    color: #979797;
+    padding: 24px;
+    font-size: 18px;
+    font-weight: bold;
 `;
