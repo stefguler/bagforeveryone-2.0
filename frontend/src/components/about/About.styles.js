@@ -5,9 +5,8 @@ import styled from "styled-components";
 
 
 export const LandingPageContainerDiv = styled.div`
-    height: auto;
-    height: 100%; 
-    margin: 0 auto -100px;
+    height: 100vh;
+    width: 100vw; 
 `;
 
 export const PictureContainerDiv = styled.div`
@@ -16,18 +15,17 @@ export const PictureContainerDiv = styled.div`
     background: url('../assets/images/about/AboutMain.png');
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100vw;
-    height: 75vh;
+    max-width: 100vw;
+    height: auto;
 `;
 
 export const ContentConteinerDiv = styled.div`
     display: flex;
     justify-content: right;
     flex-direction: column;
-    width: 730px;
-    height: 300px;
-    margin-top: 20vh;
-    margin-right: 50px;
+    max-width: 730px;
+    height: auto;
+    margin-right: auto;
     *{
         font-family: 'Montserrat', sans-serif;
     }
@@ -77,52 +75,58 @@ export const StickyButtonDiv = styled.div`
 `;
 
 export const AboutContainerDiv = styled.div`
-    margin: auto;
     background: #FAF5E1;
     display: flex;
     justify-content: center;
-    box-sizing: border-box;
- 
     width: 100vw;
-    height: 80vh;
+
     margin-top: 122px;
-    margin-bottom: 113px;
+    @media only screen and (max-width: 450px) {
 `;
 
 export const ContentBoxDiv = styled.div` 
     display: flex;
-    
     justify-content: space-evenly;
     width: 80vw;
     background: #FFFFFF;
     border: 1px solid #DDD8C4;
-    flex-direction: row;
+    flex-direction: column;
 `;
 
 export const TextBoxDiv = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-self: center;
     flex-direction: column;
-    max-width: 40vw;
+    max-width: 70vw;
     
     h1 {
         color: #DABC39;
         font-family: 'Montserrat', sans-serif;
         font-size: 48px;
         text-align: right;
+        margin-right: 21vw;
         
     }
 
     p {
         color: #000000;
         font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
+        font-size: 18px;
         text-align: right;
-       
+        flex-direction: row
+    }
+
+    img {
+        float: right;
+        width: 20vw;
+        max-height: 28vh;
+        border-radius: 15px;
+        margin-left: 50px;
     }
 
  @media only screen and (max-width: 450px) {
-        justify-content: flex-start;
+        justify-content: space-evenly;
         
         h1 {
             font-size: 18px;
@@ -130,8 +134,15 @@ export const TextBoxDiv = styled.div`
         }
 
         p {
-            font-size: 11px;
+            font-size: 12px;
             margin: 5px;
+        }
+
+        img {
+        width: 40vw;
+        max-height: 30vh;
+        border-radius: 15px;
+        margin-left: 5px;
         }
     }
 `;  
@@ -148,14 +159,14 @@ export const PictureBoxDiv = styled.div`
 `;
 
 export const PictureDiv = styled.img`
-    width: 25vw;
-    height: 33vh;
+    max-width: 100%;
+    height: auto;
     border-radius: 15px;
     align-content: left;
 
     @media only screen and (max-width: 450px) {
-        width: 30vw;
-        height: 13vh;
+        width: auto;
+        height: auto;
         border-radius: 15px;
     }
 `;
