@@ -1,34 +1,38 @@
 import styled from "styled-components";
 
 export const NavWrapper = styled.nav `
-
+    width: fit-content;
+    border: 1px solid lightgray;
+    border-radius: 5px;
     display: flex;
+    flex-direction: column;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 3;
-    gap: 1em;
-    justify-content: space-between;
-    align-items: center;
+    z-index: 4;
+    left: .6em;
+    top: 3.5em;
     background-color: white;
 
+    //LOGO:
+    img {
+        width: 100px;
+    }
+
     ul {
-        list-style-type: none;
+        padding: 0;
         display: flex;
-        gap: 1em;
-        margin-right: 1em;
+        flex-direction: column;
+        gap: .2em;
+        list-style-type: none;
+        margin-bottom: .2em;
     }
 
     li {
-        background-color: lightgray;
-        min-width: fit-content;
-        border-radius: 5px; 
-        height: fit-content;
-        padding: .5em;
+        text-align: center;
+        font-size: .8em;
+        border: 1px solid lightgray;
     }
 
-    @media only screen and (max-width: 800px) {
+    /* @media only screen and (max-width: 800px) {
         position: static;
         height: fit-content;
         flex-direction: column;
@@ -46,14 +50,15 @@ export const NavWrapper = styled.nav `
         li {
             text-align: center;
         }
-    }
+    } */
 `
 
 export const Logo = styled.img `
-    width: 200px;
+    // in mobile design it is a hamburger icon!
+    max-width: 200px;
 
-    @media only screen and (max-width: 800px) {
+    /* @media only screen and (min-width: 800px) {
         width: 100px;
-    }
+    } */
 
 `

@@ -5,16 +5,16 @@ const Navbar = () => {
 
   return (
     <>
-        <NavWrapper>
-            <Logo src="../assets/images/logo/logo.png" />
-            <ul>
-                <li>Storyboard</li>
-                <li>About Us</li>
-                <li>Donate</li>
-                <li>Shop</li>
-                <li>Login/ Signup</li>
-            </ul>
-        </NavWrapper>
+      <NavWrapper>
+          <Logo src="../assets/images/logo/logo.png" />
+          <ul>
+              <li>Storyboard</li>
+              <li>About Us</li>
+              <li>Donate</li>
+              <li>Shop</li>
+              <li>Login/ Signup</li>
+          </ul>
+      </NavWrapper>
     </>
   )
 }

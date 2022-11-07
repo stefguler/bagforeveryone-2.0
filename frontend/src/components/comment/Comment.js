@@ -5,7 +5,7 @@ const Comment = () => {
   return (
     <CommentWrapper>
         <div className='comment-header'>
-            <img src='./assets/images/user/user.png'></img>
+            <img src='../assets/images/user/user.png' alt='user avatar'></img>
             <span>User12345</span>
         </div>
         <p>This is definitely a comment</p>

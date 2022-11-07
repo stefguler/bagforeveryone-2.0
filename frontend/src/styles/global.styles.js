@@ -5,14 +5,25 @@ import styled, { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     body, #root {
         font-family: 'Montserrat', sans-serif;
-        background: white;
+        background: pink;
         display: flex;
-        /* align-items: center; */
         margin: 0 auto;
         padding: 0;
         box-sizing: border-box;
         width: 100%;
-        height: 100vh;
+    }
+    // hamburger icon in mobile size (it is
+    // a flex item):
+    .hamburger {
+        padding: .5em;
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        color: #DABC39;
+        align-self: flex-start;
+        position: fixed;
+        z-index: 1;
+        left: .8em;
     }
 `;
 
