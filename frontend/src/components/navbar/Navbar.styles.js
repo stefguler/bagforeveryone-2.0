@@ -1,64 +1,106 @@
 import styled from "styled-components";
+// import "@fontsource/montserrat";
 
-export const NavWrapper = styled.nav `
-    width: fit-content;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+export const NavWrapper = styled.nav`
     display: flex;
-    flex-direction: column;
     position: fixed;
-    z-index: 4;
-    left: .6em;
-    top: 3.5em;
-    background-color: white;
+    box-sizing: border-box;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 122px;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #DDD8C4;
+    background-color: rgba(255, 255, 255, 0.54);
+`;
 
-    //LOGO:
-    img {
-        width: 100px;
-    }
+export const NavbarLogoContainerDiv = styled.img`
+    display: flex;
+    justify-content: flex-start;
+    width: 120px;
+    height: 90px;
+    margin-left: 95px;
+    cursor: pointer;
+`;
 
-    ul {
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: .2em;
-        list-style-type: none;
-        margin-bottom: .2em;
-    }
-
-    li {
-        text-align: center;
-        font-size: .8em;
-        border: 1px solid lightgray;
-    }
-
-    /* @media only screen and (max-width: 800px) {
-        position: static;
-        height: fit-content;
-        flex-direction: column;
-        margin: 1em 1em 0 1em;
-        justify-items: center;
-        width: fit-content;
-        padding: 0.5em;
-
-        ul {
-            margin: 0 auto;
-            flex-direction: column;
-            padding: .1em;
-            gap: .1em;
+export const NavbarLeftButtonsContainerDiv = styled.div`
+    display: flex;
+    width: 350px;
+    margin-left: 30px;
+    justify-content: space-between;
+    
+    :hover {
+        text-decoration-color: #DABC39;
         }
-        li {
-            text-align: center;
+
+        span {
+            :hover{
+            color: #DABC39;
         }
-    } */
-`
+        }
+`;
 
-export const Logo = styled.img `
-    // in mobile design it is a hamburger icon!
-    max-width: 200px;
+export const NavbarLeftTabsDiv = styled.span`
+    display: flex;
+    justify-content: center;
+    *{
+        background: none;
+        cursor: pointer;
+        color: #1E1E1E;
+        border: none;
+        height: 30px;
+        font-size: 24px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+    }
+`;
 
-    /* @media only screen and (min-width: 800px) {
+export const NavbarRightButtonsContainerDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: auto 20px auto auto;
+    max-width: 50%;
+    min-width: 10%;
+`;
+
+export const NavbarRightTabsDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    *{
+        cursor: pointer;
+        color: #1E1E1E;
+        font-size: 24px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    &:first-child{
+        background-color: rgba(255, 255, 255, 0.54);
+        border: 3px solid #DABC39;
+        border-radius: 15px;
+        font-weight: 400;
+        width: 139px;
+        height: 60px;
+        align-items: center;
+        margin-right: 10px;
+    }
+    &:not(:first-child):not(:last-child){
+        border: 1.5px solid #DABC39;
+        width: 0;
+        height: 60px;
+    }
+    &:last-child{
+        border: none;  
         width: 100px;
-    } */
+        height: 60px;
+        align-items: center;
+    }
 
-`
+    span {
+            :hover{
+            color: #DABC39;
+        }
+        }
+`;
+
+

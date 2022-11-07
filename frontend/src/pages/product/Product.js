@@ -1,13 +1,16 @@
-import ProductPage from '../../components/ShopSection/ProductPage/ProductPage.js';
-
-import { PageSection}  from "./Product.styled"
+import Footer from "../../components/footer/Footer.js";
+import Navbar from "../../components/navbar/Navbar.js";
+import ProductPageSidebar from "../../components/ShopSection/ProductPageSidebar/index.js";
+import { PageWrapper } from "./Product.styled";
 
 export default function Product() {
   return (
     <>
-      <PageSection>
-        <ProductPage />
-      </PageSection>
+      <PageWrapper>
+        <Navbar />
+        <ProductPageSidebar />
+        <Footer />
+      </PageWrapper>
     </>
   );
 }
