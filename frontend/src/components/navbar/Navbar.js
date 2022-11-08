@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { NavbarWrapper, Logo, GroupLeft, GroupRight } from './Navbar.styles';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   // This styling will be applied to a <NavLink> when the
@@ -12,6 +13,7 @@ const Navbar = () => {
   let activeClassName = "underline";
 
   const navigate = useNavigate();
+  const authSlice = useSelector((state) => state.auth)
 
   return (
       <NavbarWrapper>
@@ -52,12 +54,14 @@ const Navbar = () => {
                 DONATE
               </NavLink>
             </li>
+            {(!authSlice.accessToken || authSlice.accessToken.length < 1) &&
             <li>
               <NavLink id="login" to="/login" className={({ isActive }) => isActive ? activeClassName : undefined}
               >
                 LOGIN
               </NavLink>
             </li>
+            }
           </ul>
         </GroupRight>
       </NavbarWrapper>
