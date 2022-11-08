@@ -69,10 +69,10 @@ export const GroupLeft = styled.div`
 export const GroupRight = styled.div`
     /* border: 1px solid red; */
 
-@media (min-width: 480px) {
-    width: 30%;
-    display: flex;
-}
+    @media (min-width: 480px) {
+        width: 30%;
+        display: flex;
+    }
 
 ul {
     @media (min-width: 480px) {
@@ -92,7 +92,12 @@ export const Logo = styled.img`
     padding: .5em;
 
     @media (min-width: 480px) {
-        padding: 0.5em 1em;
+        width: 100px;
+	}
+
+    @media (min-width: 800px) {
+        width: 120px;
+        font-size: 1em;
 	}
 `
 

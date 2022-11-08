@@ -44,11 +44,11 @@ export const StoryWrapper = styled.section `
         text-align: justify;
 
         @media (min-width: 480px) {
-        font-size: 1.2em;
-    }
+            font-size: 1.2em;
+        }
 
         @media (min-width: 780px) {
-        font-size: 1.5em;
+            font-size: 1.5em;
 	    }
     }
 `

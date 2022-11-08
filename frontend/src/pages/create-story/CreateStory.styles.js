@@ -14,6 +14,10 @@ export const CreateStoryWrapper = styled(StoryWrapper) `
     .modal-story-wrapper {
         margin-top: 1em;
         background-color: white;
+
+        @media (min-width: 480px) {
+            width: 50%;
+        }
     }
 
     .modal-story-button {
@@ -27,6 +31,10 @@ export const CreateStoryWrapper = styled(StoryWrapper) `
         align-items: center;
         gap: 1em;
         margin: 1em 0;
+    }
+
+    .file-field {
+        margin: 0 auto;
     }
 `
 

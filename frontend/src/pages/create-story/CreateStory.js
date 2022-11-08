@@ -88,8 +88,10 @@ function CreateStory() {
                         </label>
                         <textarea id="story" name="content" onChange = {handleStoryChange} required></textarea>
                         <label htmlFor="select">Upload image:</label>
-                        <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
-                        <PageButton type={"submit"} onClick={CreateStory}>{created ? 'SUCCESS!' : 'Create'}</PageButton>
+                        <div className='file-field'>
+                            <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
+                        </div>
+                        <PageButton type={"submit"} onClick={CreateStory}>{created ? 'SUCCESS!' : 'Create'}</PageButton> 
                     </ FormWrapper>
                 </div>
         </CreateStoryWrapper>

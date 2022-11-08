@@ -30,6 +30,18 @@ export const StoryWrapper = styled.section `
                 opacity: 1;
             }
 	}
-    
+
+    // set image for responsiveness and equal size:
+    img {
+        display: block;
+        max-width: 100%;
+        margin: 0 auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+
+        @media (min-width: 1300px) {
+            max-width: 360px;
+        }
+    } 
 `
 

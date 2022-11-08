@@ -51,7 +51,6 @@ export const TabsContainerDiv = styled.div`
 	}
 
     @media (min-width: 800px) {
-        border: 1px solid red;
         justify-content: center;
         gap: 6em;
 	}
