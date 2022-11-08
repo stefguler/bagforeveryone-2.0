@@ -6,7 +6,7 @@ import authReducer from "./slices/Auth";
 //   value: false,
 // };
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     auth: authReducer,
   }
