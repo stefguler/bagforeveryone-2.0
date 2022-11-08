@@ -1,4 +1,3 @@
-import Catalog from "../Catalog/Catalog.js";
 import { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BsArrowRight } from "react-icons/bs";

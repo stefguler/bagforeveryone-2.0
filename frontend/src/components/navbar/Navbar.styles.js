@@ -1,4 +1,5 @@
 import styled from "styled-components";
+// import "@fontsource/montserrat";
 
 export const NavbarWrapper = styled.nav`
     border: 1px solid #DDD8C4;
@@ -95,7 +96,7 @@ export const Logo = styled.img`
 	}
 `
 
-// ALINA/ backup: 
+// ALINA/ backup:
 
 // import styled from "styled-components";
 // // import "@fontsource/montserrat";
@@ -129,7 +130,7 @@ export const Logo = styled.img`
 //     width: 350px;
 //     margin-left: 30px;
 //     justify-content: space-between;
-    
+
 //     :hover {
 //         text-decoration-color: #DABC39;
 //         }
@@ -189,7 +190,7 @@ export const Logo = styled.img`
 //         height: 60px;
 //     }
 //     &:last-child{
-//         border: none;  
+//         border: none;
 //         width: 100px;
 //         height: 60px;
 //         align-items: center;
