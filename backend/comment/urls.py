@@ -17,15 +17,14 @@ Including another URLconf
 from django.urls import path
 
 
-from comment.views import ListCommentsView, ListCommentsUserView, CreateCommentsView, \
-    RetrieveUpdateDeleteCommentView
+from comment.views import ListCommentView, ListCommentUserView, CreateCommentView, RetrieveUpdateDeleteCommentView
 
 urlpatterns = [
 
-    path('review/comment/list/', ListCommentsView.as_view()),
-    path('review/comment/<int:user_id>/', ListCommentsUserView.as_view()),
-    path('review/comment/new/<int:post_id>/', CreateCommentsView.as_view()),
-    path('review/comment/id/<int:comment_id>/', RetrieveUpdateDeleteCommentView.as_view()),
+    path('list/', ListCommentView.as_view()),
+    path('user/<int:user_id>/', ListCommentUserView.as_view()),
+    path('new/<int:post_id>/', CreateCommentView.as_view()),
+    path('id/<int:comment_id>/', RetrieveUpdateDeleteCommentView.as_view()),
 
 
 
