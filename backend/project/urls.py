@@ -46,6 +46,7 @@ urlpatterns = [
     path('backend/api/product/', include("product.urls")),
     path('backend/api/review/', include("product_review.urls")),
     path('backend/api/post/', include("post.urls")),
+    path('backend/api/order/', include("order.urls")),
     path('backend/api/auth/', include("registration.urls")),
 
 

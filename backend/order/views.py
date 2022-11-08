@@ -1,3 +1,100 @@
-from django.shortcuts import render
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, GenericAPIView
+from rest_framework.response import Response
+# from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
+from order.models import Order
+from product.models import Product
+from order.serializers import OrderSerializer, NewOrderSerializer, ChangeOrderStatusSerializer
+
+
+class ListCreateOrderView(ListCreateAPIView):
+    """
+        get:
+        Get a List of all orders
+
+        Get a List of all orders made by anyone.
+
+        post:
+        Create a new order
+
+        Create a new order. The current User will be set as buyer.
+        """
+
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return NewOrderSerializer
+        return OrderSerializer
+
+    def get_queryset(self):
+        # can be ordered here or in a Meta Class in the model
+        return Order.objects.order_by("-created")
+
+    permission_classes = []
+
+
+# class ListOwnOrderView(ListAPIView):
+#     """
+#        get:
+#        Get all posts of the logged-in user
+#
+#        Get all posts of the current user by passing his access-Token in the header.
+#        Will be listed in chronological order of creation (newest first).
+#     """
+#     # permission_classes = [
+#     #     XXX IsAuthenticated
+#     # ]
+#     serializer_class = OrderSerializer
+#
+#     def get_queryset(self):
+#         return Order.objects.filter(owner=self.request.user)
+#
+#
+# class ListUserOrderView(ListAPIView):
+#     """
+#        get:
+#        Get all posts of a specific user
+#
+#        Get all the posts of a user by passing the user-id as a parameter into the URL.
+#        Will be listed in chronological order of creation (newest first).
+#     """
+#     # permission_classes = [
+#     #     IsOwnerOrReadOnly
+#     # ]
+#     serializer_class = OrderSerializer
+#
+#     def get_queryset(self):
+#         return Order.objects.filter(buyer=self.kwargs["userID"])
+#
+#
+# class RetrieveUpdateDestroyPostView(RetrieveUpdateDestroyAPIView):
+#     """
+#        get:
+#        Get a specific post by id
+#
+#        Get the content of one post by passing the post-id as a parameter into the URL.
+#
+#        put:
+#        Update a specific post by id
+#
+#        Update the entire content of a specific post. The entire data is required and will be overwritten.
+#        Only allowed if user is owner of the post or staff.
+#
+#        patch:
+#        Update parts of a specific post by id
+#
+#        Update partial data of a specific post.
+#        Only allowed if user is owner of the post or staff.
+#
+#        delete:
+#        Delete a post by id
+#
+#        Delete a post by passing the post-id as a parameter into the URL.
+#        Only allowed if user is owner of the post or staff.
+#     """
+#     # permission_classes = [
+#     #     XXX IsOwnerOrReadOnly
+#     # ]
+#     serializer_class = OrderSerializer
+#     queryset = Order.objects.all()
+#     lookup_field = 'id'
