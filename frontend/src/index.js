@@ -15,10 +15,12 @@ import VerifiedPage from "./pages/login/VerifiedPage";
 import TeamPage from "./pages/team/TeamPage";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
 import About from "./components/about/About";
+import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<>
     <GlobalStyle />
+    <CookiesProvider>
     <BrowserRouter>
       <Routes>
       <Route path="/" element={<Homepage />} />
@@ -35,5 +37,6 @@ root.render(<>
         <Route path="/team" element={<TeamPage />} /> 
       </Routes>
     </BrowserRouter>
+    </CookiesProvider>
 </>
 );
