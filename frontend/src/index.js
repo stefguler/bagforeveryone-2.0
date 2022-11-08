@@ -13,6 +13,7 @@ import Register from "./components/LoginSection/Register/Register";
 import Validate from "./components/LoginSection/Validate/Validate";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
 import AboutPage from "./pages/about/About";
+import UpdateStockPage from "./pages/updateStock/UpdateStock"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<>
@@ -30,6 +31,7 @@ root.render(<>
         <Route path="/register" element={<Register />} />
         <Route path="/validate" element={<Validate />} />  
         <Route path="/about" element={<AboutPage />} /> 
+        <Route path="/updateStock" element={<UpdateStockPage />} /> 
 
       </Routes>
     </BrowserRouter>

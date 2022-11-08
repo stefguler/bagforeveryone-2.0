@@ -61,7 +61,7 @@ export const ContentConteinerDiv = styled.div`
         button {
             width: 100px;
             height: 40px;
-            font-size: 14;
+            font-size: 16px;
         }
     }
 `;
@@ -92,9 +92,19 @@ export const StickyButtonDiv = styled.div`
     }
 `;
 
+{ /* cant center it :/ */}
 export const Link = styled.div`
+    position: absolute;
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    
+
 `;
 
 export const AboutContainerDiv = styled.div`

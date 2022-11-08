@@ -5,14 +5,37 @@ import Modal, { ModalProvider, BaseModalBackground } from "styled-react-modal";
 
 
 const StyledModal = Modal.styled`
-  width: 20rem;
-  height: 20rem;
+  width: 70vw;
+  height: 50vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  opacity: ${(props) => props.opacity};
-  transition : all 0.3s ease-in-out;`;
+  flex-direction: collumn;
+  justify-content: flex-start;
+  align-items: left;
+  color: #DABC39;
+  background-color: 'rgba(30, 30, 30, 0.95)';
+  transition : all 0.3s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+  
+  h3 {
+    font-size: 50px;
+}
+    p {
+     font-size: 14px;
+    }
+
+    @media only screen and (max-width: 450px) {
+
+        h3 { 
+            font-size: 30px;
+            width: 250px;
+        }
+
+        p {
+            font-size: 18px;
+           }
+    }      
+`;
+
 
 const MissionModal = () => {
 
@@ -23,45 +46,22 @@ const MissionModal = () => {
     }
 
     return (
-            <ModalProvider  onClick={closeModal} backgroundComponent={FadingBackground}>
+            <ModalProvider backgroundComponent={FadingBackground}>
                 <StyledModal
                         isOpen={isOpen}
                         onBackgroundClick={closeModal}
                         allowScroll = {false}
-                        style={{
-                            overlay: {
-                            position: 'fixed',
-                            zIndex: 5,
-                            top: 0,
-                            left: 0,
-                            width: '100vw',
-                            height: '100vh',
-                            background: 'rgba(255, 255, 255, 0.75)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            },
-
-                            content: {
-                            background: 'white',
-                            width: '45rem',
-                            maxWidth: 'calc(100vw - 2rem)',
-                            maxHeight: 'calc(100vh - 2rem)',
-                            overflowY: 'auto',
-                            position: 'relative',
-                            border: '1px solid #ccc',
-                            borderRadius: '0.3rem',
-                            }
-                        }}>
-                        <h1>‘We are living in the era of barbed wire and walls…please let us stop this shipwreck of civilization!’</h1>
-                        <p>Pope Francis when visiting camp for refugees in Moria, on the Greek island of Lesvos  </p>
+                        onClick={closeModal}
+                        >
+                        <h3>'We are living in the era of barbed wire and walls…please let us stop this shipwreck of civilization!'</h3>
+                        { /*  <p>Pope Francis when visiting camp for refugees in Moria, on the Greek island of Lesvos  </p> */ }
                 </StyledModal>
             </ModalProvider>
     )
 }
 
 const FadingBackground = styled(BaseModalBackground)`
-  transition: all 0.3s ease-in-out;
-`;
+  background-color: rgba(30, 30, 30, 0.95);
+`; 
 
 export default MissionModal

@@ -30,8 +30,9 @@ const LandingPage = () => {
             smooth={true}
             offset={-122}
             duration={500}
+            ignoreCancelEvents={true}
             >
-                <button>Scroll to read more</button>
+            Click to read more
             </Link>
             <About1 />
         </LandingPageContainerDiv>
