@@ -1,22 +1,21 @@
 import styled from "styled-components";
 import { StoryWrapper } from "../story-page/StoryPage.styles";
 
-export const CreateStoryWrapper = styled(StoryWrapper) `
+export const CreateStoryWrapper = styled.section `
     position: fixed;
-    background-color: black;
     top: 0;
-    bottom: 0;
     left: 0;
-    flex-direction: column;
-    align-items: center;
+    background-color: black;
     width: 100%;
+    height: 100%;
 
     .modal-story-wrapper {
-        margin-top: 1em;
+        margin: 1em;
         background-color: white;
 
         @media (min-width: 480px) {
             width: 50%;
+            margin: 0 auto;
         }
     }
 

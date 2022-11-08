@@ -13,12 +13,13 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
 
         *{
-        box-sizing: border-box;
+            box-sizing: border-box;
         }
     }
     // hamburger icon in mobile size (it is
     // a flex item):
     .hamburger {
+        box-sizing: content-box !important;
         padding: .5em;
         background-color: white;
         border: 1px solid lightgray;
@@ -31,6 +32,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .hamburger-footer {
+        box-sizing: content-box !important;
         padding: .5em;
         background-color: white;
         border: 1px solid lightgray;
