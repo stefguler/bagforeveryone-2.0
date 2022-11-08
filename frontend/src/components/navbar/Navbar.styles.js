@@ -1,18 +1,19 @@
 import styled from "styled-components";
-import "@fontsource/montserrat";
+// import "@fontsource/montserrat";
 
 export const NavWrapper = styled.nav`
     display: flex;
-    position: absolute;
+    position: fixed;
     box-sizing: border-box;
+    z-index: 1;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 122px;
+    width: 100%;
+    height: 9rem;
     justify-content: flex-start;
     align-items: center;
     border: 1px solid #DDD8C4;
-    background-color: rgba(255, 255, 255, 0.54);
+    background-color: rgba(255, 255, 255, 0.80);
 `;
 
 export const NavbarLogoContainerDiv = styled.img`
@@ -21,6 +22,7 @@ export const NavbarLogoContainerDiv = styled.img`
     width: 120px;
     height: 90px;
     margin-left: 95px;
+    cursor: pointer;
 `;
 
 export const NavbarLeftButtonsContainerDiv = styled.div`
@@ -28,8 +30,15 @@ export const NavbarLeftButtonsContainerDiv = styled.div`
     width: 350px;
     margin-left: 30px;
     justify-content: space-between;
+    
     :hover {
         text-decoration-color: #DABC39;
+        }
+
+        span {
+            :hover{
+            color: #DABC39;
+        }
         }
 `;
 
@@ -86,6 +95,12 @@ export const NavbarRightTabsDiv = styled.div`
         height: 60px;
         align-items: center;
     }
+
+    span {
+            :hover{
+            color: #DABC39;
+        }
+        }
 `;
 
 
