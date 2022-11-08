@@ -28,7 +28,7 @@ const LandingPage = () => {
             to="about"
             spy={true}
             smooth={true}
-            offset={-70}
+            offset={-122}
             duration={500}
             >
                 <button>Scroll to read more</button>
