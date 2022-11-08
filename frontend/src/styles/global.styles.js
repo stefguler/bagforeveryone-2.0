@@ -22,8 +22,21 @@ export const GlobalStyle = createGlobalStyle`
         color: #DABC39;
         align-self: flex-start;
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         left: .8em;
+    }
+
+    .hamburger-footer {
+        padding: .5em;
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        color: #DABC39;
+        align-self: flex-start;
+        position: fixed;
+        bottom: .8em;
+        left: .8em;
+        z-index: 2;
     }
 `;
 

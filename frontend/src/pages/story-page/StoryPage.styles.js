@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { PageButton } from "../../styles/global.styles";
 
 export const CloseButton = styled(PageButton) `
-    border: 1px solid green;
     margin: 1em 0 1em 1em;
     align-self: flex-start;
 `
@@ -10,6 +9,7 @@ export const DarkBackground = styled.div `
     position: absolute;
     display: inline-block;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
@@ -35,6 +35,22 @@ export const StoryWrapper = styled.section `
         max-width: 100%;
         margin: 0 auto;
     }
+
+    // story text:
+    .story-content {
+        line-height: 1.5em;
+        margin: .5em 0;
+        padding: 1em;
+        text-align: justify;
+
+        @media (min-width: 480px) {
+        font-size: 1.2em;
+    }
+
+        @media (min-width: 780px) {
+        font-size: 1.5em;
+	    }
+    }
 `
 
 export const ContentWrapper = styled.div `
@@ -44,12 +60,19 @@ export const ContentWrapper = styled.div `
 export const UserHeader = styled.div `
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 3em;
 
     img {
         // user avatar:
         width: 50px;
         margin: 0;
+    }
+
+    .user-display {
+        display: flex;
+        align-items: center;
+        gap: 1em;
     }
 
     .user-info {
@@ -59,8 +82,6 @@ export const UserHeader = styled.div `
 `
 // Part with react icon and settings to edit or delete story:
 export const UserButton = styled.div `
-    // options menu will position relative to these
-    //buttons
     position: relative;
     display: flex;
     gap: .5em;
@@ -77,10 +98,8 @@ export const UserButton = styled.div `
 `
 
 export const OptionsMenu = styled.div `
-    // menu that displays 'edit, delete, cancel';
-    // gets 'display: flex' on react icon click
-    border: 1px solid red;
     position: absolute;
+    display: flex;
     gap: .2rem;
     top: 2em;
     flex-direction: column;
@@ -88,17 +107,12 @@ export const OptionsMenu = styled.div `
 `
 
 export const StoryImages = styled.section `
-    /* display: flex; */
-    /* margin-bottom: 1em; */
-
-    /* img {
-        max-width: 300px;
-    } */
+    
 `
 
-// full image modal:
 export const FullImageModal = styled.div `
     display: flex;
+    position: fixed;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -109,4 +123,12 @@ export const FullImageModal = styled.div `
 
 export const Image = styled.img `
     // full image displayed upon click on story images.
+`
+
+export const CloseModalButton = styled(PageButton) `
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 1em;
+    margin-left: 1em;
 `
