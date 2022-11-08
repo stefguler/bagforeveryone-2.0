@@ -1,13 +1,16 @@
 import React from 'react'
+import { Link, animateScroll as scroll } from "react-scroll";
 import { 
     LandingPageContainerDiv,
     PictureContainerDiv,
     ContentConteinerDiv,
     StickyButtonDiv,
 } from './About.styles'
+import About1 from './About1.2'
 
 
-const About1 = () => {
+const LandingPage = () => {
+
     return (
         <> 
         <LandingPageContainerDiv>
@@ -19,10 +22,22 @@ const About1 = () => {
             </PictureContainerDiv>
             <StickyButtonDiv>
                 <button>Stories</button>
-            </StickyButtonDiv>
+            </StickyButtonDiv> 
+            <Link
+            activeClass="active"
+            to="about"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            >
+                <button>Scroll to read more</button>
+            </Link>
+            <About1 />
         </LandingPageContainerDiv>
         </>
     )
 }
 
-export default About1
+export default LandingPage
+

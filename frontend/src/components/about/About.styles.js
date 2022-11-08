@@ -2,11 +2,13 @@ import styled from "styled-components";
 // import "@fontsource/montserrat";
 
 
-
-
 export const LandingPageContainerDiv = styled.div`
-    height: 100vh;
-    width: 100vw; 
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 113px;
 `;
 
 export const PictureContainerDiv = styled.div`
@@ -14,18 +16,22 @@ export const PictureContainerDiv = styled.div`
     justify-content: flex-end;
     background: url('../assets/images/about/AboutMain.png');
     background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: center;
     background-size: cover;
     max-width: 100vw;
-    height: auto;
+    height: 75vh;
 `;
 
 export const ContentConteinerDiv = styled.div`
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     flex-direction: column;
-    max-width: 730px;
+    max-width: 600px;
     height: auto;
-    margin-right: auto;
+    padding-right: 5vw;
+    padding-bottom: 5vh;
+    
     *{
         font-family: 'Montserrat', sans-serif;
     }
@@ -45,6 +51,18 @@ export const ContentConteinerDiv = styled.div`
         height: 60px;
         font-size: 24px;
         align-self: flex-end;
+    }
+
+    @media only screen and (max-width: 450px) {
+        p {
+            font-size: 18px;
+        }
+
+        button {
+            width: 100px;
+            height: 40px;
+            font-size: 14;
+        }
     }
 `;
 
@@ -74,20 +92,27 @@ export const StickyButtonDiv = styled.div`
     }
 `;
 
+export const Link = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
 export const AboutContainerDiv = styled.div`
     background: #FAF5E1;
     display: flex;
     justify-content: center;
     width: 100vw;
-
+    height: auto;
     margin-top: 122px;
-    @media only screen and (max-width: 450px) {
+    margin-bottom: 113px;
 `;
 
 export const ContentBoxDiv = styled.div` 
     display: flex;
     justify-content: space-evenly;
-    width: 80vw;
+    max-width: 80vw;
+    margin: auto;
+    padding: 20px;
     background: #FFFFFF;
     border: 1px solid #DDD8C4;
     flex-direction: column;
@@ -99,14 +124,14 @@ export const TextBoxDiv = styled.div`
     align-self: center;
     flex-direction: column;
     max-width: 70vw;
+    overflow: hidden;
     
     h1 {
         color: #DABC39;
         font-family: 'Montserrat', sans-serif;
         font-size: 48px;
-        text-align: right;
-        margin-right: 21vw;
-        
+        text-align: left;
+        padding-left: 20px;
     }
 
     p {
@@ -114,7 +139,6 @@ export const TextBoxDiv = styled.div`
         font-family: 'Montserrat', sans-serif;
         font-size: 18px;
         text-align: right;
-        flex-direction: row
     }
 
     img {
@@ -139,34 +163,11 @@ export const TextBoxDiv = styled.div`
         }
 
         img {
-        width: 40vw;
-        max-height: 30vh;
-        border-radius: 15px;
-        margin-left: 5px;
+            float: right;
+            width: 40vw;
+            max-height: 30vh;
+            border-radius: 15px;
+            margin-left: 5px;
         }
     }
 `;  
-
-export const PictureBoxDiv = styled.div`
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    max-width: 30vw;
-
-    @media only screen and (max-width: 450px) {
-        justify-content: space-evenly;
-    }
-`;
-
-export const PictureDiv = styled.img`
-    max-width: 100%;
-    height: auto;
-    border-radius: 15px;
-    align-content: left;
-
-    @media only screen and (max-width: 450px) {
-        width: auto;
-        height: auto;
-        border-radius: 15px;
-    }
-`;
