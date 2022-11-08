@@ -11,6 +11,7 @@ import RegisterPage from "./pages/login/RegisterPage";
 import ValidatePage from "./pages/login/ValidatePage";
 import LoginPage from "./pages/login/LoginPage";
 import VerifiedPage from "./pages/login/VerifiedPage";
+import TeamPage from "./pages/team/TeamPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<>
@@ -25,6 +26,7 @@ root.render(<>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/validate" element={<ValidatePage />} />  
         <Route path="/verified" element={<VerifiedPage />} />     
+        <Route path="/team" element={<TeamPage />} /> 
       </Routes>
     </BrowserRouter>
 </>
