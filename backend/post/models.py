@@ -9,8 +9,8 @@ def post_directory_path(instance, filename):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=100, blank=True)
-    content = models.TextField(max_length=500, blank=True)
+    title = models.CharField(max_length=200, blank=True)
+    content = models.TextField(max_length=1500, blank=True)
     image = models.ImageField(blank=True, upload_to=post_directory_path)
     author = models.ForeignKey(User, related_name='post', on_delete=models.PROTECT, blank=True)
     created = models.DateTimeField(auto_now_add=True)

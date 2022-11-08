@@ -23,16 +23,4 @@ class NewPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        exclude = ["is_liked_by"]
-
-
-class TogglePostSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Post
-        fields = "is_liked_by"
-
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['owner'] = UserSerializer(instance.owner, many=False).data["username"]
-        return representation
+        fields = '__all__'
