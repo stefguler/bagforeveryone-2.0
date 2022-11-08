@@ -34,7 +34,7 @@ function ProductPage() {
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState({});
   const [products, setProducts] = useState([]);
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState("");
   const navigate = useNavigate();
   const emoji = require("emoji-dictionary");
   const [cookies, setCookie] = useCookies(["shoppingcart"]);
@@ -220,59 +220,48 @@ function ProductPage() {
           setAvatar(selectedProduct[0]?.image);
         }
       });
+  },[]);
 
-      // if (id === "1") {
-      //   setSelectedProduct(products?.filter(elem => elem.id === 1));
-      //   console.log("fetched product: ", products)
-      //   console.log("filter: ", products?.filter(elem => elem.id === 1))
-      //   console.log("selected product: ", selectedProduct)
-      //   setAvatar(selectedProduct?.image);
-      //   // setAlternateProduct(essential_bag)
-      // } else if (id === "2") {
-      //   setSelectedProduct(products?.filter(elem => elem.title === "Essential Bag"));
-      //   setAvatar(selectedProduct?.image);
-      //   // setAlternateProduct(backbag)
-      // }
-  }, [id]);
-
-  // const handleNavigateToCatalog = () => {
-  //   navigate("/shop/");
-  // };
-
-  const handleChangeProduct = (color) => {
+  const handleChangeProduct = async (color) => {
     console.log("change gallery to color: ", color);
     // set product according to color
+    let newProd
     switch (color) {
       case "#B2AFA0":
-        setSelectedProduct(products?.filter(elem => elem.name === "Shopper Sandgrey"));
-        setAvatar(selectedProduct[0]?.image);
+        newProd = products?.filter(elem => elem.name === "Shopper Sandgrey")
+        setSelectedProduct(newProd);
+        setAvatar(newProd[0]?.image);
         break;
       case "#A51919":
-        setSelectedProduct(products?.filter(elem => elem.name === "Shopper Red"));
-        setAvatar(selectedProduct[0]?.image);
+        newProd = products?.filter(elem => elem.name === "Shopper Red")
+        setSelectedProduct(newProd);
+        setAvatar(newProd[0]?.image);
         break;
       case "#36658F":;
-      setSelectedProduct(products?.filter(elem => elem.name === "Shopper Blue"));
-      setAvatar(selectedProduct[0]?.image);
+      newProd = products?.filter(elem => elem.name === "Shopper Blue")
+      setSelectedProduct(newProd);
+      setAvatar(newProd[0]?.image);
         break;
       case "#654A30":
-        setSelectedProduct(products?.filter(elem => elem.name === "Shopper Brown"));
-        setAvatar(selectedProduct[0]?.image);
+        newProd = products?.filter(elem => elem.name === "Shopper Brown")
+        setSelectedProduct(newProd);
+        setAvatar(newProd[0]?.image);
         break;
       case "#AA8A39":
-        setSelectedProduct(products?.filter(elem => elem.name === "Shopper Gold"));
-        setAvatar(selectedProduct[0]?.image);
+        newProd = products?.filter(elem => elem.name === "Shopper Gold")
+        setSelectedProduct(newProd);
+        setAvatar(newProd[0]?.image);
         break;
       case "#4B5C19":
-        setSelectedProduct(products?.filter(elem => elem.name === "Shopper Olive"));
-        setAvatar(selectedProduct[0]?.image);;
+        newProd = products?.filter(elem => elem.name === "Shopper Olive")
+        setSelectedProduct(newProd);
+        setAvatar(newProd[0]?.image);     
         break;
       default:
         break;
 
     }
   };
-
 
 
   const handleShareLink = (link) => {
@@ -289,7 +278,13 @@ function ProductPage() {
   }
 
   const handleAddToCart = () => {
-    // setCookie('Products', )
+    const cookieObj = {
+      product: selectedProduct,
+      amount: amountToCart,
+    }
+    console.log("CookieObj", JSON.stringify(cookieObj))
+    setCookie('Inventory', JSON.stringify(cookieObj))
+    console.log("CookieContent: ", cookies)
   }
 
   console.log(avatar)
