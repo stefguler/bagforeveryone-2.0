@@ -15,9 +15,11 @@ import VerifiedPage from "./pages/login/VerifiedPage";
 import TeamPage from "./pages/team/TeamPage";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
 import About from "./components/about/About";
+import { Provider } from 'react-redux'
+import { store } from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<>
+root.render(<Provider store={store}>
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
@@ -35,5 +37,5 @@ root.render(<>
         <Route path="/team" element={<TeamPage />} /> 
       </Routes>
     </BrowserRouter>
-</>
+</Provider>
 );

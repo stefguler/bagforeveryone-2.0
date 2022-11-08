@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { 
   NavWrapper,
@@ -12,6 +13,7 @@ import {
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const authSlice = useSelector((state) => state.auth)
 
   const handleNavigateTo = (destination) => {
     navigate(`/${destination}`)
@@ -45,9 +47,13 @@ const Navbar = () => {
                 <NavbarRightTabsDiv> 
                   <span></span> { /* that line between the buttons */}
                 </NavbarRightTabsDiv>
-                <NavbarRightTabsDiv> 
+                {
+                  (!authSlice.accessToken || authSlice.accessToken.length < 1) &&
+                  <NavbarRightTabsDiv> 
                   <span onClick={() => handleNavigateTo("login")}>LOG IN</span>
                 </NavbarRightTabsDiv>
+
+                }
             </NavbarRightButtonsContainerDiv>  
         </NavWrapper>
     </>

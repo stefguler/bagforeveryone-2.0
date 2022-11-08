@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setRefreshToken, setAccessToken } from '../../../redux/slices/Auth';
 
 import {
     StyledButton,
@@ -13,7 +15,8 @@ import {
 } from './Login.styled'
 
 import {
-    NavLink
+    NavLink,
+    useNavigate
 } from 'react-router-dom';
 
 const Login = () => {
@@ -21,6 +24,15 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const dispatch = useDispatch();
+    const authSlice = useSelector((state) => state.auth)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (authSlice.accessToken && authSlice.accessToken.length > 0) {
+            navigate('/shop')
+        }
+    }, [authSlice.accessToken])
 
     const onSubmit = (args) => {
         args.preventDefault();
@@ -34,7 +46,30 @@ const Login = () => {
             return;
         }     
         setError('');
-    }
+
+        fetch('https://bag-for-everyone.propulsion-learn.ch/backend/api/auth/token/', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email, 
+                password: password
+            })
+          })
+          .then((response) => {
+            return response.json();
+          })
+          .then((json) => {
+            if (json.detail) {
+                setError(json.detail);
+                return;
+            }
+            dispatch(setAccessToken(json.access));
+            dispatch(setRefreshToken(json.refresh));
+          });    
+        }
 
     return (
         <StyledLoginSectionContainer>
