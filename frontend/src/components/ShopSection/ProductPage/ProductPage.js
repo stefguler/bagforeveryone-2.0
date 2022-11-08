@@ -7,13 +7,11 @@ import {
   PageContainer,
   NavigateContainer,
   BackToCatalogContainer,
-  SwitchProductContainer,
   ProductContainer,
   MediaContainer,
   Avatar,
   ImageGallery,
   GalleryItem,
-  AlternateProductAvatar,
   Details,
   Title,
   Price,
@@ -297,7 +295,7 @@ function ProductPage() {
               <Price>chf {product.price}</Price>
             </DetailDiv>
 
-            <DetailDiv style={{ paddingBottom: "3rem" }}>
+            <DetailDiv style={{ paddingBottom: "1rem" }}>
               {
                 product.stock > 5 ? <StockAmount style={{ color: "green" }}>{product.stock}  on Stock! {emoji.getUnicode("blush")}</StockAmount> :
                   product.stock > 0 ? <StockAmount style={{ color: "orange" }}>{product.stock} on Stock! {emoji.getUnicode("cold_sweat")}</StockAmount> :
@@ -305,7 +303,7 @@ function ProductPage() {
               }
             </DetailDiv>
 
-            <DetailDiv style={{ paddingBottom: "3rem" }}>
+            <DetailDiv style={{ paddingBottom: "1rem" }}>
               <DetailTitle>Colors</DetailTitle>
               <Colors>
                 {product.colors !== undefined
@@ -316,7 +314,7 @@ function ProductPage() {
               </Colors>
             </DetailDiv>
 
-            <DetailDiv style={{ paddingBottom: "3rem" }}>
+            <DetailDiv style={{ paddingBottom: "1rem" }}>
               <DetailTitle>Add quantity</DetailTitle>
               <CartContainer>
                 <AmountInCartInput
