@@ -16,13 +16,13 @@ Including another URLconf
 
 from django.urls import path
 
-from product_review.views import ListCreateRestaurantsReviewsView, CreateRestaurantsReviewsView, ListReviewsRestaurantsView
+from product_review.views import ListCreateRestaurantsReviewsView, CreateProductReviewView, ListReviewProductView
 
 urlpatterns = [
 
-    path('review/list/', ListCreateRestaurantsReviewsView.as_view()),
-    path('reviews/new/<int:restaurant_id>/', CreateRestaurantsReviewsView.as_view()),
-    path('reviews/restaurant/<int:restaurant_id>/', ListReviewsRestaurantsView.as_view()),
+    path('list/', ListCreateRestaurantsReviewsView.as_view()),
+    path('new/<int:product_id>/', CreateProductReviewView.as_view()),
+    path('product/<int:product_id>/', ListReviewProductView.as_view()),
 
 
 

@@ -41,11 +41,11 @@ urlpatterns = [
     path('backend/admin/', admin.site.urls),
     path('backend/api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
-    path('backend/api/', include("users.urls")),
-    path('backend/api/', include("comment.urls")),
-    path('backend/api/', include("product.urls")),
-    path('backend/api/', include("product_review.urls")),
-    path('backend/api/', include("post.urls")),
+    path('backend/api/user/', include("users.urls")),
+    path('backend/api/post/comment/', include("comment.urls")),
+    path('backend/api/product/', include("product.urls")),
+    path('backend/api/review/', include("product_review.urls")),
+    path('backend/api/post/', include("post.urls")),
     path('backend/api/auth/', include("registration.urls")),
 
 
