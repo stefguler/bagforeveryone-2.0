@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "./styles/global.styles";
 import ShopPage from "./pages/shop/ShopPage.js";
 import CheckouPage from "./pages/checkout/CheckoutPage.js";
-import Homepage from '../src/pages/homepage/Homepage'
 import CreateProduct from '../src/pages/create-product/CreateProduct'
 import Product from "./pages/product/Product";
 import RegisterPage from "./pages/login/RegisterPage";
@@ -15,14 +14,19 @@ import VerifiedPage from "./pages/login/VerifiedPage";
 import TeamPage from "./pages/team/TeamPage";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
 import About from "./components/about/About";
+import Storiespage from './pages/stories/Storiespage';
+import StoryPage from "./pages/story-page/StoryPage";
+import CreateStory from "./pages/create-story/CreateStory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<>
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Homepage />} />
-        <Route path="/story" element={<Homepage />} />
+      <Route path="/" element={<About />} />
+        <Route path="/story" element={<Storiespage />} />
+        <Route path="/story/:id" element={<StoryPage />} />
+        <Route path="/story/create" element={<CreateStory />} />
         <Route path="/create" element={<CreateProduct />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:id" element={<Product />} />
