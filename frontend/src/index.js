@@ -8,9 +8,11 @@ import CheckouPage from "./pages/checkout/CheckoutPage.js";
 import Homepage from '../src/pages/homepage/Homepage'
 import CreateProduct from '../src/pages/create-product/CreateProduct'
 import Product from "./pages/product/Product";
-import Login from "./components/LoginSection/Login/Login";
-import Register from "./components/LoginSection/Register/Register";
-import Validate from "./components/LoginSection/Validate/Validate";
+import RegisterPage from "./pages/login/RegisterPage";
+import ValidatePage from "./pages/login/ValidatePage";
+import LoginPage from "./pages/login/LoginPage";
+import VerifiedPage from "./pages/login/VerifiedPage";
+import TeamPage from "./pages/team/TeamPage";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
 import About from "./components/about/About";
 
@@ -26,9 +28,11 @@ root.render(<>
         <Route path="/shop/:id" element={<Product />} />
         <Route path="/checkout" element={<CheckouPage />} />
         <Route path="/orderconfirmed" element={<OrderConfirmationPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/validate" element={<Validate />} />      
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/validate" element={<ValidatePage />} />  
+        <Route path="/verified" element={<VerifiedPage />} />     
+        <Route path="/team" element={<TeamPage />} /> 
       </Routes>
     </BrowserRouter>
 </>
