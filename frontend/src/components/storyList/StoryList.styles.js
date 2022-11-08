@@ -48,6 +48,15 @@ export const StoryPageWrapper = styled.section `
     .search-form {
         justify-content: space-around;
     }
+
+    @media (min-width: 800px) {
+        // new distance due to change of header:
+            margin-top: 7em;
+        }
+    
+    .search-form {
+        justify-content: space-around;
+    }
 `
 // wrapper around stories (excluding searchbar and post button). It
 // will change to grid and adjust column numbers:

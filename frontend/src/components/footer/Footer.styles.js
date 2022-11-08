@@ -39,6 +39,8 @@ export const TabsContainerDiv = styled.div`
     border-bottom: 1px solid #DDD8C4;
     display: flex;
     flex-direction: column;
+    gap: 2em;
+    margin: 1em 0;
 
     *{
     cursor: pointer;
