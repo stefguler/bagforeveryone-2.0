@@ -3,9 +3,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Sidebar from "react-sidebar";
-import { useCookies } from "react-cookie";
 import { useEffect } from "react";
-
+import Cart from "../Cart/Cart"
 import {
   PageSection,
   StickyCartContainer,
@@ -20,36 +19,22 @@ import {
 import { useNavigate } from "react-router-dom";
 import ProductPage from "../ProductPage/ProductPage.js";
 
-// const product1 = {
-//   img: "../assets/images/product/product_olive_backbag.jpg",
-//   title: "Shopper Olive",
-//   price: 100,
-// };
-
-// const product2 = {
-//   img: "../assets/images/product/product_red_backbag.jpg",
-//   title: "Shopper red",
-//   price: 100,
-// };
-
-// const product3 = {
-//   img: "../assets/images/product/product_red_backbag.jpg",
-//   title: "Shopper red",
-//   price: 100,
-// };
-
-// let products = [product1, product2, product3, product3];
-
-export default function Shop() {
+export default function ProductPageSidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  let [cart, setCart] = useState([]);
+  let localCart = localStorage.getItem("cart");
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDY2MDk0LCJpYXQiOjE2Njc5MTA4OTQsImp0aSI6IjlmNDIzYThhMmRlODQyNGViYzljZDRkNmRlZTlhNmEzIiwidXNlcl9pZCI6MX0.DFOLGAOVNAg6udQZbwdSe12tNofJSlj0y3KJ9-tp3og";
-  const [cookies, setCookie] = useCookies(["shoppingcart"]);
 
-  useEffect(() => {
-    const config = {
+
+    useEffect(() => {
+    
+      localCart = JSON.parse(localCart);
+      if (localCart) setCart(localCart);
+
+      const config = {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -65,13 +50,36 @@ export default function Shop() {
       });
   }, []);
 
+  const handleAddToCart = (product) => {
+
+    let cartCopy = [...cart];
+    cartCopy.push(product);
+
+    setCart(cartCopy);
+    let stringCart = JSON.stringify(cartCopy);
+    localStorage.setItem("cart", stringCart);
+  };
+
+const handleRemoveFromCart = (product) => {
+
+  let cartCopy = [...cart];
+  const index = cartCopy.map(object => object.id).indexOf(product.id)
+  console.log(index)
+  cartCopy.splice(index, 1)
+
+
+  setCart(cartCopy);
+  let stringCart = JSON.stringify(cartCopy);
+  localStorage.setItem("cart", stringCart);
+
+}
+
+
+
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
   };
 
-  const handleNavigateToCheckout = () => {
-    navigate("/checkout");
-  };
 
   return (
     <>
@@ -88,31 +96,41 @@ export default function Shop() {
                 <p>Cart</p>
               </SidebarHeader>
               <Content>
-                {products?.map((product, idx) => {
+                <>
+                {/* <Cart/> */}
+                {
+                cart.filter((value, index, self) =>
+                index === self.findIndex((t) => (
+                  t?.place === value?.place && t?.name === value?.name
+                ))
+                ).map((product, idx) => {
                   return (
                     <>
-                      <ProductContainer key={idx}>
-                        <img src={product.image} alt="product in cart"></img>
+                      <ProductContainer key = {idx}>
+                        <img src={product?.image} alt="product in cart"></img>
                         <div>
-                          <span>{product.title}</span>
-                          <span>CHF {product.price}</span>
+                          <span>{product?.name}</span>
+                          <span>CHF {product?.price}</span>
                           <AddRemoveContainer>
-                            <div>+</div>1<div>-</div>
+                            <div onClick={() => handleAddToCart(product)}>+</div>
+                            {cart?.filter(item => item?.id === product?.id).length}
+                            <div onClick={() => handleRemoveFromCart(product)}>-</div>
                           </AddRemoveContainer>
                         </div>
                       </ProductContainer>
                     </>
                   );
                 })}
-              </Content>
+                </>
+             </Content>
               <SidebarFooter>
                 <SubTotalContainer>
                   <span>Subtotal</span>
                   <span style={{ fontWeight: "bold" }}>
-                    CHF {products.reduce((prev, curr) => prev + curr.price, 0)}
+                    CHF {cart?.reduce((prev, curr) => prev + curr.price, 0)}
                   </span>
                 </SubTotalContainer>
-                <CheckoutContainer onClick={handleNavigateToCheckout}>
+                <CheckoutContainer onClick={() => navigate("/checkout")}>
                   Checkout
                 </CheckoutContainer>
               </SidebarFooter>
@@ -137,9 +155,14 @@ export default function Shop() {
             <IconContext.Provider value={{ size: "100px" }}>
               <HiOutlineShoppingBag />
             </IconContext.Provider>
-            {/* <div>5</div> */}
+            <div>
+              {
+              JSON.parse(localCart)?.length != undefined ?
+              JSON.parse(localCart)?.length : 0
+              }
+              </div>
           </StickyCartContainer>
-          <ProductPage />
+          <ProductPage products={products} />
         </Sidebar>
       </PageSection>
     </>
