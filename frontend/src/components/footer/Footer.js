@@ -20,14 +20,14 @@ const Footer = () => {
             <FooterWrapperDiv>
                 <TabsContainerDiv>
                     <TabsDiv>
-                        <span>Find Us</span>
+                        <p>LOCATION</p>
                     </TabsDiv>
                     <TabsDiv>
-                        <span>Contact Us</span>
+                        <p>CONTACT</p>
                     </TabsDiv>
                     <TabsDiv>
-                        <span>Follow Us</span>
-                        <div>
+                        <p>FOLLOW</p>
+                        <div className='social'>
                         <a href="https://www.instagram.com/bag.foreveryone/">
                             <SlSocialInstagram />     
                         </a>  
@@ -37,8 +37,8 @@ const Footer = () => {
                         </div>
                     </TabsDiv>
                     <TabsDiv>
-                        <span>Share Us</span>
-                        <div>
+                        <p>SHARE</p>
+                        <div className='social'>
                         <a href="">  {  /* how do i share page on social media? */ }
                             <SlSocialInstagram />     
                         </a>

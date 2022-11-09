@@ -1,20 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { StoryWrapper, CloseButton, UserHeader, UserButton,
    OptionsMenu, ContentWrapper, StoryImages, FullImageModal, Image,
-  DarkBackground } from '../../pages/story-page/StoryPage.styles';
+  DarkBackground, CloseModalButton } from '../../pages/story-page/StoryPage.styles';
 import { PageButton } from '../../styles/global.styles';
-import StoryData from '../../components/Utilities/helper_files/StoryData'
+// import StoryData from '../../components/Utilities/helper_files/StoryData'
 import Comment from '../../components/comment/Comment';
 import { SlOptionsVertical } from 'react-icons/sl';
 import Collapsible from 'react-collapsible';
 
 const StoryPage = () => {
 
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDY4NTc5LCJpYXQiOjE2Njc5MTMzNzksImp0aSI6ImI0MzVmZTJmMmE4NTQyYWE4NDYwY2YyOTRjZjk3YTJjIiwidXNlcl9pZCI6MX0.ppZOLHl3QOhKULkLS-4LfG7jgDKHHjSkCVMc_l_AxiM";
+
+  // 
+
   const { id } = useParams();
-  const story = StoryData[id - 1];
+  // const story = StoryData[id - 1];
   const navigate = useNavigate();
+  const [showOptions, setShowOptions] = useState(false);
+  const [imageModal, setImageModal] = useState('none');
+  const [story, setStory] = useState('');
+
+  const handleOptionClick = () => {
+    setShowOptions(!showOptions);
+  }
+
+  // fetch single story corresponding to page:
+  useEffect(() => {
+    const config = {
+      method: "GET",
+      headers: new Headers ({
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      })
+    };
+  fetch(`https://bag-for-everyone.propulsion-learn.ch/backend/api/post/${id}/`, config).then(response => {
+    return response.json();
+    
+  }).then(data => {
+    setStory(data)});
+}, []);
 
   return (
     <DarkBackground>
@@ -22,24 +49,28 @@ const StoryPage = () => {
             <CloseButton onClick={() => navigate('/story')}>X</CloseButton>
               <div className='modal-story-wrapper'>
                 <UserHeader>
-                    <img src='../assets/images/user/user.png' alt='user avatar'></img>
-                    <div className='user-info'>
-                      <span>Username</span>
-                      <span>Created on: 12.03.1999</span>
+                    <div className='user-display'>
+                      <img src={'../assets/images/user/user.png'} alt='user avatar'></img>
+                      <div className='user-info'>
+                        <span>Username</span>
+                        <span>Created on: 12.03.1999</span>
+                      </div>
                     </div>
                     <UserButton>
-                      <SlOptionsVertical className='options-icon'/>
-                      <OptionsMenu>
-                        <PageButton>EDIT</PageButton>
-                        <PageButton>DELETE</PageButton>
-                        <PageButton>CANCEL</PageButton>
-                      </OptionsMenu>
+                      <SlOptionsVertical onClick={handleOptionClick} className='options-icon'/>
+                      {showOptions && <OptionsMenu>
+                        <PageButton onClick={handleOptionClick}>EDIT</PageButton>
+                        <PageButton onClick={handleOptionClick}>DELETE</PageButton>
+                        <PageButton onClick={handleOptionClick}>CANCEL</PageButton>
+                      </OptionsMenu>}
                     </UserButton>
                 </UserHeader>
                 <ContentWrapper>
-                  <p className='story-content'>{story.content}</p>
-                  <StoryImages>
-                    <img src={`.${story.image}`} alt="description"></img>
+                  <section className='story-content'>
+                      <p>{story.content}</p>
+                  </section>
+                  <StoryImages onClick={() => setImageModal('flex')}>
+                    <img src={story.image} alt="description"></img>
                   </StoryImages>
                   <Collapsible trigger="Show/ Hide comments">
                     <Comment />
@@ -47,9 +78,9 @@ const StoryPage = () => {
                   </Collapsible>
                 </ContentWrapper>
               </div>
-          <FullImageModal style={{display: 'none'}}>
-            <PageButton>X</PageButton>
-              <Image src={story.image} alt="description"></Image>                         
+          <FullImageModal style={{display: imageModal}}>
+            <CloseModalButton onClick={() => setImageModal('none')}>X</CloseModalButton>
+              <Image src={story.image} alt="description"></Image>                        
           </FullImageModal>
         </StoryWrapper>
       </DarkBackground>

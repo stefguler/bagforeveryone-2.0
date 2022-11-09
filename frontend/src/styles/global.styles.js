@@ -13,12 +13,13 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
 
         *{
-        box-sizing: border-box;
+            box-sizing: border-box;
         }
     }
     // hamburger icon in mobile size (it is
     // a flex item):
     .hamburger {
+        box-sizing: content-box !important;
         padding: .5em;
         background-color: white;
         border: 1px solid lightgray;
@@ -26,13 +27,24 @@ export const GlobalStyle = createGlobalStyle`
         color: #DABC39;
         align-self: flex-start;
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         left: .8em;
     }
 
+    .hamburger-footer {
+        box-sizing: content-box !important;
+        padding: .5em;
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        color: #DABC39;
+        align-self: flex-start;
+        position: fixed;
+        bottom: .8em;
+        left: .8em;
+        z-index: 2;
+    }
 `;
-
-
 
 export const PageButton = styled.button`
     background: #DABC39;
@@ -43,4 +55,4 @@ export const PageButton = styled.button`
     color: black;
 `
 
-
+    

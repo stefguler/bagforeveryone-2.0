@@ -9,7 +9,7 @@ import {
 
 const About = () => {
     return (
-        <> 
+        <>
         <LandingPageContainerDiv>
             <PictureContainerDiv>
                 <ContentConteinerDiv>

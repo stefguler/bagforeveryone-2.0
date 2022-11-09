@@ -5,8 +5,8 @@ export const StyledTeamContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
-    height: 100vh;
-    margin: 120px 10vw 0;
+    margin: 10px 10vw 0;
+    height: 100%;
     justify-content: center;
 
     h2 {
@@ -42,7 +42,7 @@ export const StyledTeamContainer = styled.div`
             flex-direction: row;
             gap: 10px;
             height: 170px;
-            margin-top: 50px;
+            margin-top: 30px;
             radius: 15px;
 
             label {
