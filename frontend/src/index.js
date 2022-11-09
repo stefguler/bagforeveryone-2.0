@@ -10,9 +10,6 @@ import Product from "./pages/product/Product";
 import RegisterPage from "./pages/login/RegisterPage";
 import ValidatePage from "./pages/login/ValidatePage";
 import LoginPage from "./pages/login/LoginPage";
-import Storiespage from "./pages/stories/Storiespage";
-import StoryPage from "./pages/story-page/StoryPage"
-import CreateStory from "./pages/create-story/CreateStory";
 import VerifiedPage from "./pages/login/VerifiedPage";
 import TeamPage from "./pages/team/TeamPage";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
@@ -23,8 +20,10 @@ import { store } from './redux/store';
 import Storiespage from './pages/stories/Storiespage';
 import StoryPage from "./pages/story-page/StoryPage";
 import CreateStory from "./pages/create-story/CreateStory";
+import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <Provider store={store}>
     <GlobalStyle />
