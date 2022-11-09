@@ -13,7 +13,8 @@ import LoginPage from "./pages/login/LoginPage";
 import VerifiedPage from "./pages/login/VerifiedPage";
 import TeamPage from "./pages/team/TeamPage";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
-import About from "./components/about/About";
+import AboutPage from "./pages/about/About";
+import UpdateStockPage from "./pages/updateStock/UpdateStock"
 import { Provider } from 'react-redux'
 import { store } from './redux/store';
 import Storiespage from './pages/stories/Storiespage';
@@ -25,7 +26,7 @@ root.render(<Provider store={store}>
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<About />} />
+      <Route path="/" element={<AboutPage />} />
         <Route path="/story" element={<Storiespage />} />
         <Route path="/story/:id" element={<StoryPage />} />
         <Route path="/story/create" element={<CreateStory />} />
@@ -39,6 +40,7 @@ root.render(<Provider store={store}>
         <Route path="/validate" element={<ValidatePage />} />  
         <Route path="/verified" element={<VerifiedPage />} />     
         <Route path="/team" element={<TeamPage />} /> 
+        <Route path="/updateStock" element={<UpdateStockPage />} /> 
       </Routes>
     </BrowserRouter>
 </Provider>
