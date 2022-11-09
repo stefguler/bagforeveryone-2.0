@@ -14,14 +14,17 @@ import { SiWhatsapp } from "react-icons/si"
 import styled from "styled-components";
 import Modal, { ModalProvider, BaseModalBackground } from "styled-react-modal";
 
-{/* problem with displaying modals - both at the same time */}
-
 const Footer = () => {
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [contactIsOpen, setContactIsOpen] = useState(false)
+    const [storesIsOpen, setStoresIsOpen] = useState(false)
 
-    function toggleModal(e) {
-        setIsOpen(!isOpen);
+    function toggleContact(e) {
+        setContactIsOpen(!contactIsOpen);
+      }
+
+      function openStores(e) {
+        setStoresIsOpen(!storesIsOpen);
       }
 
     return (
@@ -30,10 +33,10 @@ const Footer = () => {
             <FooterWrapperDiv>
                 <TabsContainerDiv>
                     <TabsDiv>
-                        <text onClick={toggleModal}>Find Us</text>
+                        <text onClick={openStores}>Find Us</text>
                         <StyledStoreModal
-                        isOpen={isOpen}
-                        onBackgroundClick={toggleModal}
+                        isOpen={storesIsOpen}
+                        onBackgroundClick={openStores}
                         allowScroll = {false}
                         >
                         <h1>Stores</h1>
@@ -47,10 +50,10 @@ const Footer = () => {
                 </StyledStoreModal>
                     </TabsDiv>
                     <TabsDiv>
-                        <text onClick={toggleModal}>Contact Us</text>
+                        <text onClick={toggleContact}>Contact Us</text>
                         <StyledContactModal
-                        isOpen={isOpen}
-                        onBackgroundClick={toggleModal}
+                        isOpen={contactIsOpen}
+                        onBackgroundClick={toggleContact}
                         allowScroll = {false}
                         >
                         <h1>Contact</h1>
