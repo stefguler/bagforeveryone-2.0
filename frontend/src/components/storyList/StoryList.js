@@ -1,126 +1,56 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { StoryListWrapper, StoryPageWrapper } from './StoryList.styles'
+import { StoryListWrapper, StoryPageWrapper } from './StoryList.styles';
 import StoryCard from '../storyCard/StoryCard';
-import StoryData from '../Utilities/helper_files/StoryData';
 import { SlMagnifier } from 'react-icons/sl';
 import SearchBar from '../Utilities/Filters/SearchBar/SearchBar';
-import { StoryWrapper, UserHeader, ContentWrapper } from '../../pages/story-page/StoryPage.styles';
 import { PageButton } from '../../styles/global.styles';
-import { FormWrapper } from '../../pages/create-product/CreateProduct.styles';
+
 
 const StoryList = () => {
 
-  const[inputModal, setInputModal] = useState('none');
-  const [storyImage, setStoryImage] = useState(null);
-  const [created, setCreated] = useState(false);
-  const [storyData, setStoryData] = useState(
-      {
-      title: "",
-      content: ""
-      }
-  )
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDY4NTc5LCJpYXQiOjE2Njc5MTMzNzksImp0aSI6ImI0MzVmZTJmMmE4NTQyYWE4NDYwY2YyOTRjZjk3YTJjIiwidXNlcl9pZCI6MX0.ppZOLHl3QOhKULkLS-4LfG7jgDKHHjSkCVMc_l_AxiM";
+  const [stories, setStories] = useState([]);
+
+  // fetch all stories:
+  useEffect(() => {
+        const config = {
+          method: "GET",
+          headers: new Headers ({
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          })
+        };
+      fetch("https://bag-for-everyone.propulsion-learn.ch/backend/api/post/", config).then(response => {
+        return response.json();
+        
+      }).then(data => {
+        setStories(data)});
+  }, []);
+
   const navigate = useNavigate();
-  const allStories = StoryData.map((story, index) => <StoryCard key={index} story={story} />)
-
-  const handleStoryChange = e => {
-    setStoryData(prevFormData => {
-        return {
-            ...prevFormData,
-            [e.target.name]: e.target.value
-        }
-    })
-  }
-
-    const handleImageUpload = e => {
-        const imageUrl = e.target.files;
-        // console.log(e.target.files)
-        setStoryImage(imageUrl[0]);
-      }
+  const allStories = stories.map((story, index) => <StoryCard key={index} story={story} />)
 
   // post button click:
   const handlePostClick = e => {
-    setInputModal('flex');
+    navigate('/story/create')
   }
 
-  const CreateStory = e => {
-    e.preventDefault();
-    setCreated(true);
-    setTimeout(() => {
-                navigate('/');
-                setInputModal('none');
-                setCreated(false);
-                document.getElementById('title').value='';
-                document.getElementById('story').value='';
-                setStoryData({
-                  title: "",
-                  content: ""
-                  })
-                }, 2000)
-    const formData = new FormData();
-
-    // formData.append("title", storyData.title);
-    formData.append("content", storyData.content);
-    formData.append("image", storyImage);
-    // const url = "https://bags.propulsion-learn.ch/backend/api/products/new/"
-    // const config = {
-    //     method: "POST",
-    //     headers: {           
-    //         // "Authorization": `Bearer ${localToken}`
-    //     },
-    //     body: formData,
-    // }
-    // fetch(url, config)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         setTimeout(() => navigate('/home'), 2000)
-    //         return data.response
-    //     })
-    //     .catch(error => console.log(error))
-}
 
   return (
     <StoryPageWrapper>
       <div className='search'>
-        <div>
-        <SearchBar />
+        <div className='search-form'>
+          <div className='search-field'>
+            <SearchBar />
+          </div>
+          <SlMagnifier />
         </div>
-        <SlMagnifier />
         <PageButton onClick={handlePostClick}>POST</PageButton>
       </div>
       <StoryListWrapper>
-          {allStories}
+          {stories && allStories}
       </StoryListWrapper>
-
-      {/* Create a story MODAL:  */}
-      <StoryWrapper style={{display: inputModal}}>
-        <PageButton onClick={() => setInputModal('none')}>X</PageButton>
-        <div className='modal-story-wrapper'>
-          <UserHeader>
-            <div className='user-info-wrapper'>
-              <img src='./assets/images/user/user.png' alt='user avatar'></img>
-              <span>user12345</span>
-            </div>
-          </UserHeader>
-          <ContentWrapper>
-            <FormWrapper>
-              <label>
-              Your title *
-              </label>
-              <input id="title" type="text" name="title" onChange = {handleStoryChange} required></input>
-              <label>
-              Your story *
-              </label>
-              <textarea id="story" name="content" onChange = {handleStoryChange} required></textarea>
-              <label htmlFor="select">Upload image:</label>
-              <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
-              <PageButton type={"submit"} onClick={CreateStory}>{created ? 'SUCCESS!' : 'Create'}</PageButton>
-            </ FormWrapper>
-          </ContentWrapper>
-        </div>
-      </StoryWrapper>
-      {/* Create a story MODAL:  */}
     </StoryPageWrapper>
   )
 }

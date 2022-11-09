@@ -6,15 +6,15 @@ from comment.models import Comment
 User = get_user_model()
 
 
-class CommentsSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = "__all__"
 
 
-class CreateCommentsSerializer(serializers.ModelSerializer):
-    author = serializers.SlugRelatedField(read_only=True, slug_field='username')
-    review = serializers.SlugRelatedField(read_only=True, slug_field='id')
+class CreateCommentSerializer(serializers.ModelSerializer):
+    commenter = serializers.SlugRelatedField(read_only=True, slug_field='id')
+    post = serializers.SlugRelatedField(read_only=True, slug_field='id')
     class Meta:
         model = Comment
         fields = "__all__"

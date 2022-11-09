@@ -78,8 +78,8 @@ const Footer = () => {
                 </StyledContactModal>
                     </TabsDiv>
                     <TabsDiv>
-                        <text>Follow Us</text>
-                        <div>
+                        <p>FOLLOW</p>
+                        <div className='social'>
                         <a href="https://www.instagram.com/bag.foreveryone/">
                             <SlSocialInstagram />     
                         </a>  
@@ -89,8 +89,8 @@ const Footer = () => {
                         </div>
                     </TabsDiv>
                     <TabsDiv>
-                        <text>Share Us</text>
-                        <div>
+                        <p>SHARE</p>
+                        <div className='social'>
                         <a href="">  {  /* how do i share page on social media? */ }
                             <SlSocialInstagram />     
                         </a>
@@ -227,6 +227,7 @@ const AddressesDiv = styled.div`
 
     @media only screen and (max-width: 450px) {
         flex-direction: column;
+    }
 `;
 
 export default Footer

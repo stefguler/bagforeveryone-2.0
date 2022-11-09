@@ -2,50 +2,92 @@ import styled from "styled-components";
 // import "@fontsource/montserrat";
 
 export const FooterWrapperDiv = styled.div`
-    display: flex;
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 113px;
-    align-items: center;
     border: 1px solid #DDD8C4;
     background: rgba(255, 255, 255, 1);
-    flex-direction: column;
-    margin-top: auto;
+    font-size: .8em;
+    position: fixed;
+    bottom: 4em;
+    left: 1em;
+
+    svg, a {
+        margin: .1em;
+        font-size: 1em;
+    }
+
+    p {
+        margin: 0;
+        width: fit-content;
+    }
+
+    div.social {
+        margin: 0;
+    }
+
+    @media (min-width: 480px) {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        svg, a {
+        font-size: 1.3em;
+        }
+	}
 `;
 export const TabsContainerDiv = styled.div`
+    border-bottom: 1px solid #DDD8C4;
     display: flex;
-    width: 700px;
-    height: 70px;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 2em;
+    margin: 1em 0;
+
     *{
     cursor: pointer;
     color: #1E1E1E;
-    font-size: 24px;
     font-family: 'Montserrat', sans-serif; 
     }
+
+    @media (min-width: 480px) {
+        flex-direction: row;
+	}
+
+    @media (min-width: 800px) {
+        justify-content: center;
+        gap: 6em;
+	}
 `;
 export const TabsDiv = styled.div`
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     *{
         margin-right: 10px;
     }
-    
     text {
             :hover{
             color: #DABC39;
+            }
         }
-        }
+
+    @media (min-width: 480px) {
+        width: 25%;
+	}
+
+    @media (min-width: 800px) {
+       width: auto;
+	}
+
 `;
 export const Signature = styled.div`
-    margin: auto auto 0 0;
-    display:flex;
-    align-items:center;
+    /* border: 1px solid magenta; */
     color: black;
-    font-size:12px;
+    font-size: .6em;
+    padding: .2em;
+
+    @media (min-width: 480px) {
+        font-size: 1em;
+	}
+
 `;

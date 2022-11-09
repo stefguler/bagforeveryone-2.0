@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-// mobile designs first (370px width and less):
+// mobile designs first (480px width and less):
 export const StoryPageWrapper = styled.section `
     /* border: 2px solid red; */
     margin-top: 3em;
@@ -12,12 +12,25 @@ export const StoryPageWrapper = styled.section `
     padding: .5em;
     border-radius: 7px;
     
-    // searchbar with magnifier and post button:
+    // whole searchbar with magnifier and post button:
     .search {
         display: flex;
         justify-content: space-around;
         gap: 1em;
         margin: .5em 0;
+    }
+
+    // search from with magnifier:
+    .search-form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 70%;
+    }
+
+    // search-form:
+    .search-field {
+        width: 75%;
     }
 
     // image set for responsiveness:
@@ -27,40 +40,42 @@ export const StoryPageWrapper = styled.section `
         margin: 0 auto;
     }
 
-    /* @media only screen and (max-width: 800px) {
-        align-self: flex-start;
-        margin-top: 1rem;
-    } */
+    @media (min-width: 480px) {
+            // new distance due to change of header:
+            margin-top: 5em;
+        }
+    
+    .search-form {
+        justify-content: space-around;
+    }
+
+    @media (min-width: 800px) {
+        // new distance due to change of header:
+            margin-top: 7em;
+        }
+    
+    .search-form {
+        justify-content: space-around;
+    }
 `
 // wrapper around stories (excluding searchbar and post button). It
 // will change to grid and adjust column numbers:
 export const StoryListWrapper = styled.div `
-    /* border: 5px solid red; */
-    /* align-self: center;
-    width: fit-content;
-    padding: .5em;
-    display: grid;
-    justify-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1em 1em;
-    border-radius: 5px; */
 
-    /* img {
-        max-width: 400px;
-    } */
+    @media (min-width: 420px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: .5em;
+            padding: .5em;
+        }
 
-    /* @media only screen and (max-width: 1400px) {
-        flex-direction: column;
-        grid-template-columns: 1fr 1fr;
-        padding-left: 1em; 
-        align-items: center;
-    } */
-
-    /* @media only screen and (max-width: 900px) {
-        display: flex;
-        flex-direction: column;
-        margin: .5em;
+    @media (min-width: 865px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: .5em;
         padding: .5em;
-        align-items: center;
-    } */
+    }
+    
  `
+
+    

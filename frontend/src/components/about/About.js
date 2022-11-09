@@ -12,7 +12,7 @@ import About1 from './About1.2'
 const LandingPage = () => {
 
     return (
-        <> 
+        <>
         <LandingPageContainerDiv>
             <PictureContainerDiv>
                 <ContentConteinerDiv>
