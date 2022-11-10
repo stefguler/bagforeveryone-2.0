@@ -49,7 +49,6 @@ urlpatterns = [
     path('backend/api/order/', include("order.urls")),
     path('backend/api/auth/', include("registration.urls")),
 
-
 ]
 
 if settings.DEBUG:
