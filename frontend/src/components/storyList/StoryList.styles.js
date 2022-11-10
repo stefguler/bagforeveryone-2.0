@@ -3,7 +3,7 @@ import styled from "styled-components";
 // mobile designs first (480px width and less):
 export const StoryPageWrapper = styled.section `
     /* border: 2px solid red; */
-    margin-top: 3em;
+    margin-top: 3em;  
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -31,22 +31,17 @@ export const StoryPageWrapper = styled.section `
     // search-form:
     .search-field {
         width: 75%;
-    }
-
-    // image set for responsiveness:
-    img {
-        display: block;
-        max-width: 100%;
-        margin: 0 auto;
+        max-width: 400px;
     }
 
     @media (min-width: 480px) {
-            // new distance due to change of header:
-            margin-top: 5em;
+            // new distance due to change of header and footer:
+            margin: 5em 0;
+
         }
     
     .search-form {
-        justify-content: space-around;
+        justify-content: center;
     }
 
     @media (min-width: 800px) {
@@ -55,7 +50,7 @@ export const StoryPageWrapper = styled.section `
         }
     
     .search-form {
-        justify-content: space-around;
+        justify-content: center;
     }
 `
 // wrapper around stories (excluding searchbar and post button). It
