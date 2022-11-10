@@ -11,6 +11,12 @@ export const PageWrapper = styled.div `
     padding: .5em;
     flex-direction: column;
     align-items: center;
+
+    @media (min-width: 1000px) {
+        margin-top: 4em;
+        margin-bottom: 5em;
+    }
+    
 `
 // background covering dark div for readability:
 export const Dark = styled.div `

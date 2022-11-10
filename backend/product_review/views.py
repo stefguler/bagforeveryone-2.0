@@ -6,14 +6,13 @@ from rest_framework.response import Response
 
 from product_review.models import ProductReview
 from product_review.permissions import ReadOnly, IsAuthor
-from product_review.serializer import RestaurantsReviewsSerializer, CreateRestaurantsReviewsSerializer
+from product_review.serializer import ProductReviewSerializer, CreateProductReviewSerializer
 
 User = get_user_model()
 
 
 class ListCreateRestaurantsReviewsView(ListCreateAPIView):
-    serializer_class = CreateRestaurantsReviewsSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = CreateProductReviewSerializer
     queryset = ProductReview.objects.all()
 
 
@@ -21,23 +20,21 @@ class ListCreateRestaurantsReviewsView(ListCreateAPIView):
         serializer.save(reviewer=self.request.user)
 
 
-class CreateRestaurantsReviewsView(CreateAPIView):
-    serializer_class = CreateRestaurantsReviewsSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+class CreateProductReviewView(CreateAPIView):
+    serializer_class = CreateProductReviewSerializer
     queryset = ProductReview.objects.all()
-    lookup_url_kwarg = 'restaurant_id'
+    lookup_url_kwarg = 'product_id'
 
     def perform_create(self, serializer):
-        serializer.save(product_id=self.kwargs['restaurant_id'])
+        serializer.save(product_id=self.kwargs['product_id'])
 
 
-class ListReviewsRestaurantsView(ListAPIView):
-    serializer_class = RestaurantsReviewsSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    lookup_url_kwarg = 'restaurant_id'
+class ListReviewProductView(ListAPIView):
+    serializer_class = ProductReviewSerializer
+    lookup_url_kwarg = 'product_id'
 
     def get_queryset(self, **kwargs):
-        queryset = ProductReview.objects.filter(product_id=self.kwargs['restaurant_id'])
+        queryset = ProductReview.objects.filter(product_id=self.kwargs['product_id'])
         return queryset
 
 

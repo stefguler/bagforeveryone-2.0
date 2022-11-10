@@ -169,7 +169,7 @@ export const CartContainer = styled.div`
 `
 
 export const AmountInCartInput = styled.input`
-    max-width: 10%;
+    max-width: 20%;
     padding: 0.5rem;
     text-align: center;
     font-size: 20px;

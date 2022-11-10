@@ -4,20 +4,18 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 
 from comment.models import Comment
 from comment.permissions import IsAuthor, ReadOnly
-from comment.serializer import CommentsSerializer, CreateCommentsSerializer
+from comment.serializer import CommentSerializer, CreateCommentSerializer
 
 User = get_user_model()
 
 
-class ListCommentsView(ListAPIView):
-    serializer_class = CommentsSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+class ListCommentView(ListAPIView):
+    serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-    lookup_url_kwarg = 'user_id'
 
 
-class CreateCommentsView(CreateAPIView):
-    serializer_class = CreateCommentsSerializer
+class CreateCommentView(CreateAPIView):
+    serializer_class = CreateCommentSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
     lookup_url_kwarg = 'post_id'
@@ -28,8 +26,8 @@ class CreateCommentsView(CreateAPIView):
 
 
 
-class ListCommentsUserView(ListAPIView):
-    serializer_class = CommentsSerializer
+class ListCommentUserView(ListAPIView):
+    serializer_class = CommentSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     lookup_url_kwarg = 'user_id'
 
@@ -39,7 +37,7 @@ class ListCommentsUserView(ListAPIView):
 
 
 class RetrieveUpdateDeleteCommentView(RetrieveUpdateDestroyAPIView):
-    serializer_class = CreateCommentsSerializer
+    serializer_class = CreateCommentSerializer
     queryset = Comment.objects.all()
     permission_classes = [IsAuthor | IsAdminUser | ReadOnly]
     lookup_url_kwarg = 'comment_id'

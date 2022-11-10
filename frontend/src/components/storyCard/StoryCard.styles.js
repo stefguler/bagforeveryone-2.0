@@ -3,12 +3,6 @@ import styled from "styled-components";
 // single story wrapping container:
 export const StoryWrapper = styled.section `
     margin-bottom: 1em;
-    // this will make the modal stick to the story in the mobile 
-    // design because you scroll down as you go through the stories
-    // otherwise the relative parent would be the whole section and the
-    // modal would usually appear out of sight. Position fixed is not
-    // suitable as it makes it unscrollable! Remove this for desktop 
-    // version:
     position: relative;
 
     // title display:
@@ -16,6 +10,7 @@ export const StoryWrapper = styled.section `
         position: absolute;
         text-align: center;
         opacity: 1;
+        font-size: 1em;
         color: white;
         text-shadow: 2px 2px 2px black;
         width: 100%;
@@ -25,8 +20,28 @@ export const StoryWrapper = styled.section `
     }
     // to activate show on hover, set opacity
     // of h3 to 0 and use this code:
-    /* h3:hover{
-        opacity: 1;
-    } */
+    @media (min-width: 480px) {
+
+            h3 {
+                opacity: 0;
+            }
+
+            h3:hover{
+                opacity: 1;
+            }
+	}
+
+    // set image for responsiveness and equal size:
+    img {
+        display: block;
+        max-width: 100%;
+        margin: 0 auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+
+        @media (min-width: 1300px) {
+            max-width: 360px;
+        }
+    } 
 `
 

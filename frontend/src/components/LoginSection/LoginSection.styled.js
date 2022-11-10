@@ -41,7 +41,6 @@ height: 80px;
 export const StyledLoginSectionContainer = styled.div`
     background-color: #FAF5E1;
     height: 100vh;
-    width:100vh;
 `;
 
 export const StyledTitle = styled.div`
