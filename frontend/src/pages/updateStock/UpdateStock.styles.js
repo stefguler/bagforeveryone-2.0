@@ -10,7 +10,7 @@ export const PageWrapper = styled.div`
     margin-top: 90px;
 `;
 
-export const FormWrapper = styled.div`
+export const Form = styled.form`
     border: 1px solid lightgray;
     background-color: #FFFFFF;
     display: flex;
