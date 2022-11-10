@@ -21,28 +21,95 @@ import {
   OrderButton,
   Price,
 } from "./Checkout.styled.js";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { GoDiffAdded, GoDiffRemoved } from "react-icons/go";
+import { IconContext } from "react-icons";
 
 
 export default function Checkout() {
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
   const navigate = useNavigate();
-  //form states
-  const [checkOutData, setCheckoutData] = useState({
-    email: "",
-    first_name: "",
-    last_name: "",
-    street: "",
-    street_number: "",
-    zip: "",
-    region: "",
-    city: "",
-    country: "",
-    phone: "",
-    shippingnotes: "",
-    orderItems: [],
-  });
+// // form states
+//   const [checkOutData, setCheckoutData] = useState(
+//     {
+//       email: "",
+//       first_name: "",
+//       last_name: "",
+//       street: "",
+//       street_number: "",
+//       zip: "",
+//       region: "",
+//       city: "",
+//       country: "",
+//       phone: "",
+//       shippingnotes: "",
+//       orderItems: [
+//         {
+//           img: "../assets/images/product/product_olive_backbag.jpg",
+//           title: "Shopper Olive",
+//           price: 100,
+//           amount_in_cart: 2,
+//         },
+//       ],
+//     }
+//   )
+
+// Manu's Logic -----------------------------------------
+
+    // creating local states to control the input fields
+    const [userData, setUserData] = useState("")
+
+    const [buyer, setBuyer] = useState("")
+    const [products, setProducts] = useState("")
+    const [email, setEmail] = useState("")
+    const [first_name, setFirst] = useState("")
+    const [last_name, setLast] = useState("")
+    const [city, setCity] = useState("")
+    const [zip, setZip] = useState("")
+    const [street, setStreet] = useState("")
+    const [street_number, setNumber] = useState("")
+    const [country, setCountry] = useState("")
+    const [phone, setPhone] = useState("")
+    const [note, setNote] = useState("")
+
+    // handle inputs
+    const handleBuyerChange = (e) => {
+        setBuyer(e.target.value)
+    }
+    const handleProductsChange = (e) => {
+        setProducts(e.target.value)
+    }
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
+    }
+    const handleFirstChange = (e) => {
+        setFirst(e.target.value)
+    }
+    const handleLastChange = (e) => {
+        setLast(e.target.value)
+    }
+    const handleCityChange = (e) => {
+        setCity(e.target.value)
+    }
+    const handleZipChange = (e) => {
+        setZip(e.target.value)
+    }
+    const handleStreetChange = (e) => {
+        setStreet(e.target.value)
+    }
+    const handleNumberChange = (e) => {
+        setNumber(e.target.value)
+    }
+    const handleCountryChange = (e) => {
+        setCountry(e.target.value)
+    }
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value)
+    }
+    const handleNoteChange = (e) => {
+        setNote(e.target.value)
+    }
 
   useEffect(() => {
     localCart = JSON.parse(localCart);
@@ -59,75 +126,154 @@ export default function Checkout() {
     });
     console.log(checkOutData);
   };
-
-  const handleOrderSubmit = (e) => {
-    e.preventDefault();
-
-    setCheckoutData((prev) => {
-      return {
-        ...prev,
-        orderItems: cart,
-      };
-    });
-    console.log("order submitted");
-    console.log(checkOutData)
-    localStorage.removeItem("cart")
-    // navigate("/orderconfirmed");
+  const product1 = {
+    img: "../assets/images/product/product_olive_backbag.jpg",
+    title: "Shopper Olive",
+    price: 100,
+    amount_in_cart: 1,
   };
 
-  const handleAddToCart = (e, product) => {
-    e.preventDefault();
-    let cartCopy = [...cart];
-    cartCopy.push(product);
-
-    setCart(cartCopy);
-    let stringCart = JSON.stringify(cartCopy);
-    localStorage.setItem("cart", stringCart);
+  const product2 = {
+    img: "../assets/images/product/product_red_backbag.jpg",
+    title: "Shopper red",
+    price: 100,
+    amount_in_cart: 2,
   };
 
-  const handleRemoveFromCart = (e, product) => {
-    e.preventDefault();
-    let cartCopy = [...cart];
-    const index = cartCopy.map((object) => object.id).indexOf(product.id);
-    console.log(index);
-    cartCopy.splice(index, 1);
-
-    setCart(cartCopy);
-    let stringCart = JSON.stringify(cartCopy);
-    localStorage.setItem("cart", stringCart);
+  const product3 = {
+    img: "../assets/images/product/product_red_backbag.jpg",
+    title: "Shopper red",
+    price: 100,
+    amount_in_cart: 1,
   };
 
-  const handleClearCart = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("cart")
-  };
+//   let products = [product1, product2];
+
+
+const handleOrderSubmit = (e) => {
+    e.preventDefault()
+    console.log("submited")
+    const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/order/"
+    const formData= new FormData()
+    formData.append("buyer", buyer)
+    formData.append("products", products)
+    formData.append("email", email)
+    formData.append("first_name", first_name)
+    formData.append("last_name", last_name)
+    formData.append("street", street)
+    formData.append("street_number", street_number)
+    formData.append("zip", zip)
+    formData.append("city", city)
+    formData.append("country", country)
+    formData.append("phone", phone)
+    formData.append("shopping_note", note)
+
+    const config = {
+        method: "POST",
+        headers: new Headers({
+            "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDc5MDExLCJpYXQiOjE2Njc5MjM4MTEsImp0aSI6ImVlYWVkOGIwYWI3YjQyOWNhMDQ0YWFmODdiZGQ4ZGNhIiwidXNlcl9pZCI6MX0.Y7KK4Ajr-eJo-ewpiRjzZyGmhpADWtky8pmdlhXJg_U`
+
+        }),
+        body: formData
+    }
+
+    fetch(url, config)
+    .then((response) => {
+        if (response.status === 200) {
+            console.log(response)
+        }
+        else {
+            console.log(response.json())
+        }
+    })
+}
+
+useEffect(() => {
+
+    const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/user/me/"
+
+    const config = {
+        method: "GET",
+        headers: new Headers({
+            "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDc5MDExLCJpYXQiOjE2Njc5MjM4MTEsImp0aSI6ImVlYWVkOGIwYWI3YjQyOWNhMDQ0YWFmODdiZGQ4ZGNhIiwidXNlcl9pZCI6MX0.Y7KK4Ajr-eJo-ewpiRjzZyGmhpADWtky8pmdlhXJg_U`
+        })
+    }
+
+    fetch(url, config)
+        .then(response=>response.json())
+        .then(data=>setUserData(data), console.log(userData))
+  }, []);
+
+    // Put the following content into the useEffect
+    const handleAutoFill = (e) => {
+
+        // if true should be "if userdata"
+        if (true) {
+            setFirst(userData[0].first_name)
+            setLast(userData[0].last_name)
+            setBuyer(userData[0].id)
+            setEmail(userData[0].email)
+            setStreet(userData[0].street)
+            setNumber(userData[0].street_number)
+            setZip(userData[0].zip)
+            setCity(userData[0].city)
+            setCountry(userData[0].country)
+        }
+    }
+
+//   const handleAddItem = (e) => {
+//     e.preventDefault();
+//     console.log("add item");
+//     console.log(e.target.name)
+//     checkOutData.orderItems.forEach(item => {
+//       console.log(item)
+//       if (item.title === e.target.name) {
+//         console.log("Add + 1")
+//       }
+//     })
+//   }
+
+//   const handleRemoveItem = (e) => {
+//     e.preventDefault();
+//     console.log("remove item")
+//     console.log(e.target.name)
+//     checkOutData.orderItems.forEach(item => {
+//       console.log(item)
+//       if (item.title === e.target.name && item.amount_in_cart < 2) {
+//         console.log("need to remove from cart")
+
+//       }
+//       else if (item.title === e.target.name && item.amount_in_cart > 1) {
+//         console.log("need to remove 1")
+//       }
+//     }
+//     )
+//   }
+
+//   const handleClearCart = (e) => {
+//     e.preventDefault();
+//     console.log("clear Cart")
+//     setCheckoutData(prev => {
+//       return {
+//         ...prev, [e.target.name]: []
+//       }
+//     })
+//     console.log(checkOutData)
+//   }
+
 
   return (
     <>
-      <CheckoutContainer>
+      <CheckoutContainer >
+      <OrderButton onClick={handleAutoFill}>Auto Fill</OrderButton>
         <CheckoutHeader>Checkout</CheckoutHeader>
         <CheckoutForm onSubmit={(e) => handleOrderSubmit(e)}>
           <LeftSide>
             <FormTitle>1. Shipping</FormTitle>
             <ShippingForm>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email adress"
-                onChange={(e) => handleChange(e)}
-              ></input>
-              <input
-                type="text"
-                name="first_name"
-                placeholder="First Name"
-                onChange={(e) => handleChange(e)}
-              ></input>
-              <input
-                type="text"
-                name="last_name"
-                placeholder="Last Name"
-                onChange={(e) => handleChange(e)}
-              ></input>
+              <input type="email" name="email" value={email} placeholder="Email adress" onChange={handleEmailChange}></input>
+              <input type="text" name="first_name" value={first_name} placeholder="First Name" onChange={handleFirstChange}></input>
+              <input type="text" name="last_name" value={last_name} placeholder="Last Name" onChange={handleLastChange}></input>
               <AdressFormContainer>
                 <input
                   type="text"
@@ -136,47 +282,23 @@ export default function Checkout() {
                   onChange={(e) => handleChange(e)}
                 ></input>
 
-                <input
-                  type="number"
-                  name="street_number"
-                  placeholder="Street Number"
-                  onChange={(e) => handleChange(e)}
-                ></input>
+                <input type="text" name="street" value={street} placeholder="Street" onChange={handleStreetChange}></input>
 
-                <input
-                  type="number"
-                  name="zip"
-                  placeholder="ZIP"
-                  onChange={(e) => handleChange(e)}
-                ></input>
+                <input type="number" name="street_number" value={street_number} placeholder="Street Number" onChange={handleNumberChange}></input>
 
-                <input
-                  type="text"
-                  name="city"
-                  placeholder="City"
-                  onChange={(e) => handleChange(e)}
-                ></input>
+                <input type="number" name="zip" value={zip} placeholder="ZIP" onChange={handleZipChange}></input>
 
-                <input
-                  type="text"
-                  name="region"
-                  placeholder="Canton / Region"
-                  onChange={(e) => handleChange(e)}
-                ></input>
+                <input type="text" name="city" value={city} placeholder="City" onChange={handleCityChange}></input>
 
-                <input
-                  type="text"
-                  name="country"
-                  placeholder="Country"
-                  onChange={(e) => handleChange(e)}
-                ></input>
+                <input type="text" name="country" value={country} placeholder="Country" onChange={handleCountryChange}></input>
+
+                {/* These two will be feed from the cart or user fetch */}
+                <input type="number" name="buyer" value={buyer} placeholder="Buyer" onChange={handleBuyerChange}></input>
+                <input type="number" name="product" value={products} placeholder="Product ID" onChange={handleProductsChange}></input>
+
+
               </AdressFormContainer>
-              <input
-                type="phone"
-                name="phone"
-                placeholder="Phone"
-                onChange={(e) => handleChange(e)}
-              ></input>
+              <input type="phone" name="phone" value={phone} placeholder="Phone" onChange={handlePhoneChange}></input>
             </ShippingForm>
             <FormTitle>2. Delivery Information</FormTitle>
             <p>
@@ -196,11 +318,9 @@ export default function Checkout() {
               fulfill your wishes.
             </p>
             <DeliveryInfoForm>
-              <textarea
-                name="shippingnotes"
-                placeholder="Share your additional requests and comments... "
-                onChange={(e) => handleChange(e)}
-              ></textarea>
+              <textarea name="shippingnotes" value={note} placeholder="Share your additional requests and comments... " onChange={handleNoteChange}>
+
+              </textarea>
             </DeliveryInfoForm>
 
             <FormTitle>4. Payment</FormTitle>
@@ -218,58 +338,10 @@ export default function Checkout() {
           </LeftSide>
           <RightSide>
             <ShoppingCart>
-              <span style={{ fontWeight: "bold", fontSize: "24px" }}>
-                Order Summary
-              </span>
-              <Content>
-                {
-                cart.filter((value, index, self) =>
-                index === self.findIndex((t) => (
-                  t?.place === value?.place && t?.name === value?.name
-                ))
-                ).map((product, idx) => {
-                  return (
-                    <>
-                      <ProductContainer key={idx}>
-                        <div style={{ display: "flex" }}>
-                          <img src={product.image} alt="product in cart"></img>
-                          <CartItemControl>
-                            <button
-                              typeof="button"
-                              name={product.name}
-                              onClick={(e) => handleAddToCart(e,product)}
-                            >
-                              +
-                            </button>
-                            <button
-                              typeof="button"
-                              name={product.title}
-                              onClick={(e) => handleRemoveFromCart(e, product)}
-                            >
-                              -
-                            </button>
-                          </CartItemControl>
-                        </div>
-                        <ProductDetails>
-                          <div>{product.name}</div>
-                          <div>Qty: {cart?.filter(item => item?.id === product?.id).length}</div>
-                        </ProductDetails>
-                        <Price>
-                          Price {cart?.filter(item => item?.id === product?.id)[0].price}
-                        </Price>
-                      </ProductContainer>
-                    </>
-                  );
-                })}
-              </Content>
+              <span style={{ fontWeight: "bold", fontSize: "24px" }}>Order Summary</span>
+              
 
-              <button
-                type="button"
-                name="orderItems"
-                onClick={(e) => handleClearCart(e)}
-              >
-                Clear Cart
-              </button>
+              <button type="button" name="orderItems">Clear Cart</button>
 
               <TotalsContainer>
                 <Separator></Separator>
@@ -280,10 +352,8 @@ export default function Checkout() {
               </TotalsContainer>
             </ShoppingCart>
 
-            <OrderButton type="submit" onClick={handleOrderSubmit}>
-              {" "}
-              Place Order
-            </OrderButton>
+            <OrderButton type="submit" onClick={handleOrderSubmit}>Place Order</OrderButton>
+
           </RightSide>
         </CheckoutForm>
       </CheckoutContainer>
