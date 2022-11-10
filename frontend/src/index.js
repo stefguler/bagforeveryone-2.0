@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "./styles/global.styles";
 import ShopPage from "./pages/shop/ShopPage.js";
-import CheckouPage from "./pages/checkout/CheckoutPage.js";
+import CheckoutPage from "./pages/checkout/CheckoutPage.js";
 import Homepage from '../src/pages/homepage/Homepage'
 import CreateProduct from '../src/pages/create-product/CreateProduct'
 import Product from "./pages/product/Product";
@@ -24,7 +24,7 @@ root.render(<>
         <Route path="/create" element={<CreateProduct />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:id" element={<Product />} />
-        <Route path="/checkout" element={<CheckouPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/orderconfirmed" element={<OrderConfirmationPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
