@@ -38,7 +38,7 @@ root.render(<Provider store={store}>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/validate" element={<ValidatePage />} />  
         <Route path="/verified" element={<VerifiedPage />} />     
-        <Route path="/team" element={<TeamPage />} /> 
+        <Route path="/team" element={<TeamPage />} />
       </Routes>
     </BrowserRouter>
 </Provider>
