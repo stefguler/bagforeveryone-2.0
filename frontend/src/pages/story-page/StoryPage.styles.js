@@ -6,8 +6,9 @@ export const CloseButton = styled(PageButton) `
     align-self: flex-start;
 `
 export const DarkBackground = styled.div `
-    position: absolute;
+    position: fixed;
     display: inline-block;
+    overflow-y: scroll;
     top: 0;
     left: 0;
     width: 100%;
@@ -16,24 +17,22 @@ export const DarkBackground = styled.div `
 `
 
 export const StoryWrapper = styled.section `
+    margin: 1em auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
-    color: black;
 
+    @media (min-width: 800px) {
+        max-width: 75%;
+    }
+    
     .modal-story-wrapper {
+        display: flex;
+        flex-direction: column;
         font-size: .8em;
         padding: 1em;
-        overflow-y: scroll;
-        border: 1px solid lightgray;
         border-radius: 5px;
-    }
-
-    img {
-        display: block;
-        max-width: 100%;
-        margin: 0 auto;
     }
 
     // story text:
@@ -54,7 +53,11 @@ export const StoryWrapper = styled.section `
 `
 
 export const ContentWrapper = styled.div `
-    // story wrapper (below user header)
+    border: 1px solid lightgray;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 `
 
 export const UserHeader = styled.div `
@@ -94,6 +97,13 @@ export const UserButton = styled.div `
         border: 1px solid lightgray;
         border-radius: 10px;
         padding: .1rem;
+        width: 20px;
+        height: 20px;
+
+        @media (min-width: 780px) {
+            width: 25px;
+            height: 25px;
+	    }
     }
 `
 
@@ -107,12 +117,20 @@ export const OptionsMenu = styled.div `
 `
 
 export const StoryImages = styled.section `
-    
+    img {
+        display: block;
+        max-width: 200px;
+        margin: 1em auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+    }
 `
 
 export const FullImageModal = styled.div `
     display: flex;
     position: fixed;
+    top: 0;
+    left: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -122,7 +140,9 @@ export const FullImageModal = styled.div `
 `
 
 export const Image = styled.img `
-    // full image displayed upon click on story images.
+        display: block;
+        max-width: 100%;
+        margin: 0 auto;
 `
 
 export const CloseModalButton = styled(PageButton) `

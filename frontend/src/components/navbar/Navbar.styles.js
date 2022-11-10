@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const NavbarWrapper = styled.nav`
     border: 1px solid #DDD8C4;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.7);
     font-size: 0.8em;
     display: flex;
     flex-direction: column;
@@ -11,6 +11,8 @@ export const NavbarWrapper = styled.nav`
     z-index: 1;
     top: 4em;
     left: 1em;
+    padding: .5em;
+    gap: 1em;
 
     ul {
         /* border: 1px solid red; */
@@ -22,6 +24,7 @@ export const NavbarWrapper = styled.nav`
         justify-content: center;
         margin: 0;
         padding: 0;
+        gap: 1em;
     }
 
     a {
@@ -40,6 +43,25 @@ export const NavbarWrapper = styled.nav`
     @media (min-width: 780px) {
         font-size: 1em;
 	}
+
+    #donate {
+        border: 1px solid #DABC39;
+        border-radius: 5px;
+
+        @media (min-width: 900px) {
+            padding: .5em;
+            border-radius: 10px;
+	    }
+    }
+
+    #login {
+        border-left: 1px solid #DABC39;
+        padding-left: .1em;
+
+        @media (min-width: 900px) {
+            padding-left: 1em;
+	    }
+    }
 `
 
 export const GroupLeft = styled.div`
@@ -61,7 +83,14 @@ export const GroupLeft = styled.div`
 
         @media (min-width: 800px) {
             justify-content: flex-start;
-            gap: 2em;
+            gap: 3em;
+            margin-left: 2em;
+	    }
+
+        @media (min-width: 1000px) {
+            justify-content: flex-start;
+            gap: 5em;
+            margin-left: 3em;
 	    }
     }
 `
@@ -76,13 +105,16 @@ export const GroupRight = styled.div`
 
 ul {
     @media (min-width: 480px) {
-        /* border: 1px solid green; */
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         gap: 2em;
         padding-right: 1em;
+    }
+    @media (min-width: 1000px) {
+        gap: 5em;
+        padding-right: 2em; 
     }
 }
 `
@@ -97,7 +129,12 @@ export const Logo = styled.img`
 
     @media (min-width: 800px) {
         width: 120px;
-        font-size: 1em;
+        padding: 1em;
+	}
+
+    @media (min-width: 1000px) {
+        width: 180px;
+        padding: 1.5em;
 	}
 `
 
@@ -207,5 +244,6 @@ export const Logo = styled.img`
 //         }
 //         }
 // `;
+
 
 

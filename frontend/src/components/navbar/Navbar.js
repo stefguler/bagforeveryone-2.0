@@ -49,19 +49,18 @@ const Navbar = () => {
         <GroupRight>
           <ul>
             <li>
-              <NavLink to="/donate" className={({ isActive }) => isActive ? activeClassName : undefined}
+              <NavLink id="donate" to="/donate" className={({ isActive }) => isActive ? activeClassName : undefined}
               >
                 DONATE
               </NavLink>
             </li>
             {(!authSlice.accessToken || authSlice.accessToken.length < 1) &&
             <li>
-            <NavLink to="/login" className={({ isActive }) => isActive ? activeClassName : undefined}
-            >
-              LOGIN
-            </NavLink>
-          </li>
-          
+              <NavLink id="login" to="/login" className={({ isActive }) => isActive ? activeClassName : undefined}
+              >
+                LOGIN
+              </NavLink>
+            </li>
             }
           </ul>
         </GroupRight>

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 // import "@fontsource/montserrat";
 
-
 export const FooterWrapperDiv = styled.div`
     border: 1px solid #DDD8C4;
     background: rgba(255, 255, 255, 1);
@@ -34,11 +33,12 @@ export const FooterWrapperDiv = styled.div`
         }
 	}
 `;
-
 export const TabsContainerDiv = styled.div`
     border-bottom: 1px solid #DDD8C4;
     display: flex;
     flex-direction: column;
+    gap: 2em;
+    margin: 1em 0;
 
     *{
     cursor: pointer;
@@ -55,7 +55,6 @@ export const TabsContainerDiv = styled.div`
         gap: 6em;
 	}
 `;
-
 export const TabsDiv = styled.div`
     width: 100%;
     display: flex;
@@ -66,7 +65,6 @@ export const TabsDiv = styled.div`
     *{
         margin-right: 10px;
     }
-
     text {
             :hover{
             color: #DABC39;
@@ -82,7 +80,6 @@ export const TabsDiv = styled.div`
 	}
 
 `;
-
 export const Signature = styled.div`
     /* border: 1px solid magenta; */
     color: black;
