@@ -4,7 +4,6 @@ import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Sidebar from "react-sidebar";
 import { useEffect } from "react";
-import Cart from "../Cart/Cart"
 import {
   PageSection,
   StickyCartContainer,
@@ -25,54 +24,72 @@ export default function ProductPageSidebar() {
   const navigate = useNavigate();
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
+  let [amountInlocalCart, setAmountInlocalCart] = useState(JSON.parse(localStorage.getItem("cart")).length);
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDY2MDk0LCJpYXQiOjE2Njc5MTA4OTQsImp0aSI6IjlmNDIzYThhMmRlODQyNGViYzljZDRkNmRlZTlhNmEzIiwidXNlcl9pZCI6MX0.DFOLGAOVNAg6udQZbwdSe12tNofJSlj0y3KJ9-tp3og";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
 
 
-    useEffect(() => {
-    
-      localCart = JSON.parse(localCart);
-      if (localCart) setCart(localCart);
+  useEffect(() => {
 
-      const config = {
+    localCart = JSON.parse(localCart);
+    if (localCart) setCart(localCart);
+
+    total()
+
+    const config = {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       }),
     };
-    fetch("http://localhost:8001/backend/api/product/", config)
+    fetch("https://bag-for-everyone.propulsion-learn.ch/backend/api/product/", config)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setProducts(data);
       });
-  }, []);
+  }, [JSON.parse(localCart)?.length]);
+
+
+  const total = () => {
+    const stringified = JSON.stringify(localCart)
+    setAmountInlocalCart(JSON.parse(stringified)?.length)
+  }
+
+  console.log(amountInlocalCart)
+
 
   const handleAddToCart = (product) => {
 
+    const amountInCart = cart?.filter(item => item?.id === product?.id).length
+      
+    if (product.stock > amountInCart) {
     let cartCopy = [...cart];
-    cartCopy.push(product);
+      cartCopy.push(product);
+
+      setCart(cartCopy);
+      let stringCart = JSON.stringify(cartCopy);
+      localStorage.setItem("cart", stringCart);
+    } else {
+      alert("This would exceed the available quantity")
+    }
+
+  };
+
+  const handleRemoveFromCart = (product) => {
+
+    let cartCopy = [...cart];
+    const index = cartCopy.map(object => object.id).indexOf(product.id)
+    console.log(index)
+    cartCopy.splice(index, 1)
+
 
     setCart(cartCopy);
     let stringCart = JSON.stringify(cartCopy);
     localStorage.setItem("cart", stringCart);
-  };
-
-const handleRemoveFromCart = (product) => {
-
-  let cartCopy = [...cart];
-  const index = cartCopy.map(object => object.id).indexOf(product.id)
-  console.log(index)
-  cartCopy.splice(index, 1)
-
-
-  setCart(cartCopy);
-  let stringCart = JSON.stringify(cartCopy);
-  localStorage.setItem("cart", stringCart);
-
-}
+  }
 
 
 
@@ -97,37 +114,36 @@ const handleRemoveFromCart = (product) => {
               </SidebarHeader>
               <Content>
                 <>
-                {/* <Cart/> */}
-                {
-                cart.filter((value, index, self) =>
-                index === self.findIndex((t) => (
-                  t?.place === value?.place && t?.name === value?.name
-                ))
-                ).map((product, idx) => {
-                  return (
-                    <>
-                      <ProductContainer key = {idx}>
-                        <img src={product?.image} alt="product in cart"></img>
-                        <div>
-                          <span>{product?.name}</span>
-                          <span>CHF {product?.price}</span>
-                          <AddRemoveContainer>
-                            <div onClick={() => handleAddToCart(product)}>+</div>
-                            {cart?.filter(item => item?.id === product?.id).length}
-                            <div onClick={() => handleRemoveFromCart(product)}>-</div>
-                          </AddRemoveContainer>
-                        </div>
-                      </ProductContainer>
-                    </>
-                  );
-                })}
+                  {
+                    cart?.filter((value, index, self) =>
+                      index === self.findIndex((t) => (
+                        t?.place === value?.place && t?.name === value?.name
+                      ))
+                    ).map((product, idx) => {
+                      return (
+                        <>
+                          <ProductContainer key={idx}>
+                            <img src={product?.image} alt="product in cart"></img>
+                            <div>
+                              <span>{product?.name}</span>
+                              <span>CHF {product?.price}</span>
+                              <AddRemoveContainer >
+                                <div onClick={() => handleAddToCart(product)}>+</div>
+                                {cart?.filter(item => item?.id === product?.id).length}
+                                <div onClick={() => handleRemoveFromCart(product)}>-</div>
+                              </AddRemoveContainer>
+                            </div>
+                          </ProductContainer>
+                        </>
+                      );
+                    })}
                 </>
-             </Content>
+              </Content>
               <SidebarFooter>
                 <SubTotalContainer>
                   <span>Subtotal</span>
                   <span style={{ fontWeight: "bold" }}>
-                    CHF {cart?.reduce((prev, curr) => prev + curr.price, 0)}
+                    CHF {cart?.reduce((prev, curr) => prev + curr?.price, 0)}
                   </span>
                 </SubTotalContainer>
                 <CheckoutContainer onClick={() => navigate("/checkout")}>
@@ -157,14 +173,15 @@ const handleRemoveFromCart = (product) => {
             </IconContext.Provider>
             <div>
               {
-              JSON.parse(localCart)?.length != undefined ?
-              JSON.parse(localCart)?.length : 0
+                JSON.parse(localCart)?.length != undefined ?
+                JSON.parse(localCart)?.length : 0
               }
-              </div>
+            </div>
           </StickyCartContainer>
           <ProductPage products={products} />
         </Sidebar>
       </PageSection>
     </>
   );
+
 }

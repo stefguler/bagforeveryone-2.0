@@ -135,7 +135,7 @@ export const Price = styled.span`
 `
 
 export const DetailTitle = styled.div`
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
 
 `
 
@@ -162,6 +162,13 @@ export const Colors = styled.div`
         }
     }
 `
+
+export const SpecialColors = styled.p`
+    font-size: 16px;
+    font-style: italic;
+    margin: 0;
+`
+
 export const CartContainer = styled.div`
     display: flex;
     flex-direction: column;

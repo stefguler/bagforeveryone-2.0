@@ -23,6 +23,7 @@ import {
   DetailDiv,
   DetailTitle,
   ToCartButton,
+  SpecialColors
 } from "./ProductPage.styled";
 
 import { IoShareSocialSharp } from "react-icons/io5";
@@ -67,7 +68,7 @@ function ProductPage(props) {
     setProducts(props.products);
 
     if (id === "1") {
-      newProd = props.products?.filter((elem) => elem.id === 1);
+      newProd = props.products?.filter((elem) => elem.name === "Shopper Gold");
       setSelectedProduct(newProd);
       setAvatar(newProd[0]?.image);
     } else if (id === "2") {
@@ -75,7 +76,7 @@ function ProductPage(props) {
       setSelectedProduct(newProd);
       setAvatar(newProd[0]?.image);
     }
-  }, [props.products, ]);
+  }, [props.products]);
 
 
 
@@ -139,19 +140,39 @@ function ProductPage(props) {
   };
 
   const handleAddToCart = (product) => {
-    console.log("selectedProduct:", product);
-    console.log("amount to add to cart:", amountToCart);
-    let cartCopy = [...cart];
-    for (let index = 0; index < amountToCart; index++) {
-      cartCopy.push(product);
+
+    const amountInCart = cart?.filter(item => item?.id === product?.id).length
+
+    if (product.stock === 0) {
+      alert("Product currently out of Stock") 
     }
 
-    setCart(cartCopy);
-    let stringCart = JSON.stringify(cartCopy);
-    localStorage.setItem("cart", stringCart);
+    else if (parseInt(amountToCart) > product.stock) {
+      alert("The desired order quantity exceeds the available quantity")
+    }
+    
+    else {
+      
+      let cartCopy = [...cart];
 
-    setAmountToCart("1");
+      for (let index = 0; index < amountToCart; index++) {
+        
+        if (product.stock > amountInCart) { 
+          cartCopy.push(product);
+        } else {
+          alert("This would exceed the available quantity")
+          return;
+        }
+      }
 
+      setCart(cartCopy);
+      let stringCart = JSON.stringify(cartCopy);
+      localStorage.setItem("cart", stringCart);
+
+    }      
+
+    setAmountToCart(1);
+  
   };
 
   return (
@@ -172,23 +193,23 @@ function ProductPage(props) {
             <ImageGallery>
               {id === "1"
                 ? imageGalleryBag.map((img, idx) => {
-                    return (
-                      <GalleryItem
-                        key={idx}
-                        src={img}
-                        onClick={() => handleChangeAvatar(img)}
-                      ></GalleryItem>
-                    );
-                  })
+                  return (
+                    <GalleryItem
+                      key={idx}
+                      src={img}
+                      onClick={() => handleChangeAvatar(img)}
+                    ></GalleryItem>
+                  );
+                })
                 : imageGalleryPouch.map((img, idx) => {
-                    return (
-                      <GalleryItem
-                        key={idx}
-                        src={img}
-                        onClick={() => handleChangeAvatar(img)}
-                      ></GalleryItem>
-                    );
-                  })}
+                  return (
+                    <GalleryItem
+                      key={idx}
+                      src={img}
+                      onClick={() => handleChangeAvatar(img)}
+                    ></GalleryItem>
+                  );
+                })}
             </ImageGallery>
           </MediaContainer>
           <Details>
@@ -216,19 +237,20 @@ function ProductPage(props) {
             </DetailDiv>
 
             <DetailDiv style={{ paddingBottom: "1rem" }}>
-              <DetailTitle>Colors</DetailTitle>
+              <DetailTitle>Colors</DetailTitle>   
               <Colors>
                 {id === "1"
                   ? colors.map((color, idx) => {
-                      return (
-                        <div
-                          key={idx}
-                          style={{ background: color }}
-                          onClick={() => handleChangeProduct(color)}
-                        />
-                      );
-                    })
-                  : null}
+                    return (
+                      <div
+                        key={idx}
+                        style={{ background: color }}
+                        onClick={() => handleChangeProduct(color)}
+                      />
+                    );
+                  })
+                  : 
+                  <SpecialColors>Essential Bags are created with surplus materials. The color is random. If you have specific color request, please tell us in the shipping form (checkout) in the extra field</SpecialColors>}
               </Colors>
             </DetailDiv>
 

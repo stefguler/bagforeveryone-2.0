@@ -39,12 +39,18 @@ export default function Shop() {
 
   const handleAddToCart = (product) => {
 
+    const amountInCart = cart?.filter(item => item?.id === product?.id).length
+      
+    if (product.stock > amountInCart) {
     let cartCopy = [...cart];
-    cartCopy.push(product);
+      cartCopy.push(product);
 
-    setCart(cartCopy);
-    let stringCart = JSON.stringify(cartCopy);
-    localStorage.setItem("cart", stringCart);
+      setCart(cartCopy);
+      let stringCart = JSON.stringify(cartCopy);
+      localStorage.setItem("cart", stringCart);
+    } else {
+      alert("This would exceed the available quantity")
+    }
   };
 
 const handleRemoveFromCart = (product) => {
