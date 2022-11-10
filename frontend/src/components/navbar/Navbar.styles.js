@@ -133,8 +133,8 @@ export const Logo = styled.img`
 	}
 
     @media (min-width: 1000px) {
-        width: 180px;
-        padding: 1.5em;
+        width: 150px;
+        padding: 1em;
 	}
 `
 

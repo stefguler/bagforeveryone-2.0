@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "registration",
     "post",
     "order",
+
 ]
 
 MIDDLEWARE = [
@@ -166,6 +167,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
 
 # JWT
 SIMPLE_JWT = {

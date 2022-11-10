@@ -36,12 +36,9 @@ export const StoryWrapper = styled.section `
         display: block;
         max-width: 100%;
         margin: 0 auto;
-        object-fit: cover;
-        aspect-ratio: 1/1;
-
-        @media (min-width: 1300px) {
-            max-width: 360px;
-        }
-    } 
+        width: 360px; 
+        aspect-ratio: 1 / 1;
+        object-fit: cover; 
+        object-position: 100% 0;
+    }
 `
-
