@@ -126,7 +126,6 @@ export default function Checkout() {
     console.log("submited")
     const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/order/"
     const formData = new FormData()
-    formData.append("buyer", buyer)
     formData.append("products", apiCart)
     formData.append("email", email)
     formData.append("first_name", first_name)
@@ -147,10 +146,6 @@ export default function Checkout() {
 
     const config = {
       method: "POST",
-      headers: new Headers({
-        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDc5MDExLCJpYXQiOjE2Njc5MjM4MTEsImp0aSI6ImVlYWVkOGIwYWI3YjQyOWNhMDQ0YWFmODdiZGQ4ZGNhIiwidXNlcl9pZCI6MX0.Y7KK4Ajr-eJo-ewpiRjzZyGmhpADWtky8pmdlhXJg_U`
-
-      }),
       body: formData
     }
 
@@ -166,6 +161,9 @@ export default function Checkout() {
   }
 
   useEffect(() => {
+
+    if (localStorage.getItem("bagsAuth")) {
+   
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
 
@@ -174,20 +172,24 @@ export default function Checkout() {
     const config = {
       method: "GET",
       headers: new Headers({
-        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NDc5MDExLCJpYXQiOjE2Njc5MjM4MTEsImp0aSI6ImVlYWVkOGIwYWI3YjQyOWNhMDQ0YWFmODdiZGQ4ZGNhIiwidXNlcl9pZCI6MX0.Y7KK4Ajr-eJo-ewpiRjzZyGmhpADWtky8pmdlhXJg_U`
+        "Authorization": `Bearer ${JSON.parse(localStorage.getItem("bagsAuth")).bagsToken}`
       })
     }
 
     fetch(url, config)
       .then(response => response.json())
-      .then(data => setUserData(data), console.log(userData))
+      .then(data => setUserData(data))
+}
   }, []);
 
-  // Put the following content into the useEffect
+  // If the user is logged in... autofill his information
+    useEffect(() => {
+        if (userData) {handleAutoFill()}
+        console.log(userData)
+    }, [userData]);
+
   const handleAutoFill = (e) => {
 
-    // if true should be "if userdata"
-    if (true) {
       setFirst(userData[0].first_name)
       setLast(userData[0].last_name)
       setBuyer(userData[0].id)
@@ -197,7 +199,7 @@ export default function Checkout() {
       setZip(userData[0].zip)
       setCity(userData[0].city)
       setCountry(userData[0].country)
-    }
+  
   }
 
   const handleAddToCart = (product) => {
@@ -243,7 +245,6 @@ export default function Checkout() {
   return (
     <>
       <CheckoutContainer >
-        <OrderButton onClick={handleAutoFill}>Auto Fill</OrderButton>
         <CheckoutHeader>Checkout</CheckoutHeader>
         <CheckoutForm onSubmit={(e) => handleOrderSubmit(e)}>
           <LeftSide>

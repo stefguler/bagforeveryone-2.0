@@ -127,7 +127,7 @@ function ProductPage(props) {
   };
 
   const handleShareLink = (link) => {
-    navigator.clipboard.writeText(link);
+    navigator.clipboard.writeText(window.location.href);
   };
 
   const handleChangeAvatar = (img) => {
