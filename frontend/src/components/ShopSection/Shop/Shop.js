@@ -5,7 +5,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Sidebar from "react-sidebar";
 import { useEffect } from "react";
-import Cart from  "../Cart/Cart"
+import { useParams } from "react-router-dom";
 import {
   PageSection,
   StickyCartContainer,
@@ -24,14 +24,34 @@ export default function Shop() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
+  const [products, setProducts] = useState([])
   const navigate = useNavigate();
-
+  const {id} = useParams();
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
 
   useEffect(() => {
+
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
-  }, [])
-  
+
+   const config = {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    fetch("https://bag-for-everyone.propulsion-learn.ch/backend/api/product/", config)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(data);
+      });
+  }, [JSON.parse(localCart)?.length]);
+
+   
 
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
@@ -146,7 +166,7 @@ return (
               }
               </div>
           </StickyCartContainer>
-          <Catalog />
+          <Catalog page={id} products={products}/>
         </Sidebar>
       </PageSection>
     </>

@@ -1,23 +1,11 @@
 import ProductCard from "../ProductCard/ProductCard.js";
 import { CatalogGrid, PageHeader } from "./Catalog.styled.js";
+import { useState } from 'react';
 
 
-function Catalog() {
-  const backbag = {
-    id: 1,
-    img: "../assets/images/product/product_olive_backbag.jpg",
-    title: "Shopper Bag",
-    price: 100,
-  };
+function Catalog(props) {
 
-  const essential_bag = {
-    id: 2,
-    img: "../assets/images/product/product_pouch.jpg",
-    title: "Essentials Bag",
-    price: 27.0,
-  };
-
-  const products = [backbag, essential_bag];
+  const [products, setProducts] = useState(props.products)
 
   return (
     <>

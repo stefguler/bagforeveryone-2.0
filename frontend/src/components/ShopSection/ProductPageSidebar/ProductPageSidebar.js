@@ -18,25 +18,21 @@ import {
 import { useNavigate } from "react-router-dom";
 import ProductPage from "../ProductPage/ProductPage.js";
 
-export default function ProductPageSidebar() {
+export default function ProductPageSidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(props.products);
   const navigate = useNavigate();
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
-  // let [amountInlocalCart, setAmountInlocalCart] = useState(JSON.parse(localStorage.getItem("cart")).length);
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
 
   useEffect(() => {
 
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
 
-    // total()
-
-    const config = {
+   const config = {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -52,13 +48,6 @@ export default function ProductPageSidebar() {
       });
   }, [JSON.parse(localCart)?.length]);
 
-
-  // const total = () => {
-  //   const stringified = JSON.stringify(localCart)
-  //   setAmountInlocalCart(JSON.parse(stringified)?.length)
-  // }
-
-  // console.log(amountInlocalCart)
 
 
   const handleAddToCart = (product) => {
