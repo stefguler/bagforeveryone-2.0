@@ -135,7 +135,7 @@ export const Price = styled.span`
 `
 
 export const DetailTitle = styled.div`
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
 
 `
 
@@ -162,6 +162,13 @@ export const Colors = styled.div`
         }
     }
 `
+
+export const SpecialColors = styled.p`
+    font-size: 16px;
+    font-style: italic;
+    margin: 0;
+`
+
 export const CartContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -169,7 +176,7 @@ export const CartContainer = styled.div`
 `
 
 export const AmountInCartInput = styled.input`
-    max-width: 10%;
+    max-width: 20%;
     padding: 0.5rem;
     text-align: center;
     font-size: 20px;
