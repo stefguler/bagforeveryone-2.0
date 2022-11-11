@@ -24,7 +24,7 @@ export default function ProductPageSidebar() {
   const navigate = useNavigate();
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
-  let [amountInlocalCart, setAmountInlocalCart] = useState(JSON.parse(localStorage.getItem("cart")).length);
+  // let [amountInlocalCart, setAmountInlocalCart] = useState(JSON.parse(localStorage.getItem("cart")).length);
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
 
@@ -34,7 +34,7 @@ export default function ProductPageSidebar() {
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
 
-    total()
+    // total()
 
     const config = {
       method: "GET",
@@ -53,12 +53,12 @@ export default function ProductPageSidebar() {
   }, [JSON.parse(localCart)?.length]);
 
 
-  const total = () => {
-    const stringified = JSON.stringify(localCart)
-    setAmountInlocalCart(JSON.parse(stringified)?.length)
-  }
+  // const total = () => {
+  //   const stringified = JSON.stringify(localCart)
+  //   setAmountInlocalCart(JSON.parse(stringified)?.length)
+  // }
 
-  console.log(amountInlocalCart)
+  // console.log(amountInlocalCart)
 
 
   const handleAddToCart = (product) => {
