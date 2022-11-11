@@ -142,7 +142,7 @@ export default function Checkout() {
     console.log("cart: ", cart)
     console.log("formData: ", formData)
     for (var pair of formData.entries()) {
-      console.log("item in formdata", pair[0]+ ', ' + pair[1]); 
+      console.log("item in formdata", pair[0]+ ', ' + pair[1]);
   }
 
     const config = {
@@ -203,7 +203,7 @@ export default function Checkout() {
   const handleAddToCart = (product) => {
 
     const amountInCart = cart?.filter(item => item?.id === product?.id).length
-      
+
     if (product.stock > amountInCart) {
     let cartCopy = [...cart];
       cartCopy.push(product);
@@ -358,4 +358,5 @@ export default function Checkout() {
     </>
   );
 }
+
 
