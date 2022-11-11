@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setRefreshToken, setAccessToken } from '../../../redux/slices/Auth';
 
 import {
     StyledButton,
     StyledInput,
     StyledLoginSectionContainer,
     StyledText,
-    ErrorContainer
 } from '../LoginSection.styled';
 
 import {
@@ -21,59 +18,59 @@ import {
 
 const Login = () => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const dispatch = useDispatch();
-    const authSlice = useSelector((state) => state.auth)
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [token, setToken] = useState("")
+
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (authSlice.accessToken && authSlice.accessToken.length > 0) {
-            navigate('/shop')
-        }
-    }, [authSlice.accessToken])
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/auth/token/"
 
-    const onSubmit = (args) => {
-        args.preventDefault();
-    
-        if (email.length < 1) {
-            setError('Please enter your email.');
-            return;
+        const jsBody = {
+            "email": email,
+            "password": password,
         }
-        if (password.length < 1) {
-            setError('Please enter your password.');
-            return;
-        }     
-        setError('');
 
-        fetch('https://bag-for-everyone.propulsion-learn.ch/backend/api/auth/token/', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email, 
-                password: password
-            })
-          })
-          .then((response) => {
-            return response.json();
-          })
-          .then((json) => {
-            if (json.detail) {
-                setError(json.detail);
-                return;
+        const config = {
+            method: "POST",
+            headers: new Headers({
+                "Content-Type": "application/json",
+            }),
+            body: JSON.stringify(jsBody)
+        }
+
+        fetch(url, config)
+        .then((response) => {
+            console.log(response)
+            if (response.status === 200) {
+                const json = response.json();
+                return json
             }
-            dispatch(setAccessToken(json.access));
-            dispatch(setRefreshToken(json.refresh));
-          });    
+            else {
+                console.log(response.json())
+            }
+        })
+        .then(data => { setToken(data.access) });
+    }
+    useEffect(() => {
+
+        if (token) {
+
+            const jsObject = {
+                bagsToken: token
+            }
+
+            localStorage.setItem("bagsAuth", JSON.stringify(jsObject));
+            console.log("the token was stored to local storage");
+            navigate("/")
         }
+      }, [token]);
 
     return (
         <StyledLoginSectionContainer>
-            <StyledLoginContainer onSubmit={onSubmit}>
+            <StyledLoginContainer onSubmit={handleSubmit}>
                 <StyledInput type="email" placeholder="Email" value={email} onChange={(args) => setEmail(args.target.value)}/>
                 <StyledInput type="password" placeholder="Password" value={password} onChange={(args) => setPassword(args.target.value)} />
                 <StyledButton  type='submit'>LOG IN</StyledButton>
@@ -81,12 +78,6 @@ const Login = () => {
                 <StyledText>
                     Not signed up yet? <NavLink to="/register">Sign up</NavLink>
                 </StyledText>
-                {
-                    error.length > 0 &&
-                    <ErrorContainer>
-                        {error}
-                    </ErrorContainer>
-                }
             </StyledLoginContainer>
         </StyledLoginSectionContainer>
     )
