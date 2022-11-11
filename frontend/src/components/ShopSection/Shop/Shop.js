@@ -26,12 +26,12 @@ export default function Shop() {
   let localCart = localStorage.getItem("cart");
   const [products, setProducts] = useState([])
   const navigate = useNavigate();
-  const {id} = useParams();
+  const {page} = useParams();
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
 
   useEffect(() => {
-
+    console.log(page)
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
 
@@ -49,9 +49,8 @@ export default function Shop() {
       .then((data) => {
         setProducts(data);
       });
-  }, [JSON.parse(localCart)?.length]);
-
-   
+    
+  }, [JSON.parse(localCart)?.length, page]);
 
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
@@ -166,7 +165,7 @@ return (
               }
               </div>
           </StickyCartContainer>
-          <Catalog page={id} products={products}/>
+          <Catalog page={page}/>
         </Sidebar>
       </PageSection>
     </>

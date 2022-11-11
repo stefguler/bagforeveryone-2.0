@@ -20,12 +20,14 @@ import ProductPage from "../ProductPage/ProductPage.js";
 
 export default function ProductPageSidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [products, setProducts] = useState(props.products);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
   const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
+
+  console.log("category in sidebar, ", props.category)
 
   useEffect(() => {
 
@@ -47,7 +49,6 @@ export default function ProductPageSidebar(props) {
         setProducts(data);
       });
   }, [JSON.parse(localCart)?.length]);
-
 
 
   const handleAddToCart = (product) => {
@@ -79,8 +80,6 @@ export default function ProductPageSidebar(props) {
     let stringCart = JSON.stringify(cartCopy);
     localStorage.setItem("cart", stringCart);
   }
-
-
 
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
@@ -167,7 +166,7 @@ export default function ProductPageSidebar(props) {
               }
             </div>
           </StickyCartContainer>
-          <ProductPage products={products} />
+          <ProductPage products={products} category={props.category}/>
         </Sidebar>
       </PageSection>
     </>

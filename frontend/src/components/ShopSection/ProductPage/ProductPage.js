@@ -31,12 +31,12 @@ import { BsArrowLeft } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
 function ProductPage(props) {
-  const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState({});
   const [products, setProducts] = useState([]);
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
   const [avatar, setAvatar] = useState("");
+  const [category, setCategory] = useState(props.category)
   const navigate = useNavigate();
   const emoji = require("emoji-dictionary");
   const [amountToCart, setAmountToCart] = useState(1);
@@ -64,15 +64,24 @@ function ProductPage(props) {
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
 
+    console.log("category in product page", category)
+    console.log(props)
+
     let newProd;
     setProducts(props.products);
 
-    if (id === "1") {
+    if (category === "SH") {
       newProd = props.products?.filter((elem) => elem.name === "Shopper Gold");
+      console.log("New Prod: ", newProd)
       setSelectedProduct(newProd);
       setAvatar(newProd[0]?.image);
-    } else if (id === "2") {
+    } else if (category === "PO") {
       newProd = props.products?.filter((elem) => elem.name === "Essential Bag");
+      setSelectedProduct(newProd);
+      setAvatar(newProd[0]?.image);
+    }
+    else if (category === "DO") {
+      newProd = props.products?.filter((elem) => elem.name === props.name);
       setSelectedProduct(newProd);
       setAvatar(newProd[0]?.image);
     }
@@ -191,7 +200,7 @@ function ProductPage(props) {
           <MediaContainer>
             <Avatar src={avatar}></Avatar>
             <ImageGallery>
-              {id === "1"
+              {category === "SH"
                 ? imageGalleryBag.map((img, idx) => {
                   return (
                     <GalleryItem
@@ -239,7 +248,7 @@ function ProductPage(props) {
             <DetailDiv style={{ paddingBottom: "1rem" }}>
               <DetailTitle>Colors</DetailTitle>   
               <Colors>
-                {id === "1"
+                {category === "SH"
                   ? colors.map((color, idx) => {
                     return (
                       <div

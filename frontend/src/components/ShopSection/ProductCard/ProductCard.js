@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import {
   CardContainer,
-  Overlay,
-  Avatar,
   Title,
   Price,
   AvatarContainer,
@@ -12,17 +10,17 @@ function ProductCard(props) {
   const navigate = useNavigate();
 
   const handleNavigateToProduct = () => {
-    navigate(`/shop/${props.product.id}`);
+      navigate(`/shop/${props.product.category}`);
   };
 
   return (
     <>
       <CardContainer onClick={handleNavigateToProduct}>
         <AvatarContainer>
-          <img className="preview" src={props.product.img} alt="product image - bag"></img>
+          <img className="preview" src={props.product.image} alt="product image - bag"></img>
           <div className="hide">Show more!</div>
         </AvatarContainer>
-        <Title>{props.product.title}</Title>
+        <Title>{props.product.name}</Title>
         <Price>CHF {props.product.price}</Price>
       </CardContainer>
     </>
