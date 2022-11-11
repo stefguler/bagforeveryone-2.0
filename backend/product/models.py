@@ -32,7 +32,7 @@ class Product(models.Model):
 
     name = models.CharField(max_length=250, unique=True)
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES)
-    description = models.CharField(max_length=250)
+    description = models.CharField(max_length=500)
     material = models.CharField(max_length=250)
     dimensions = models.CharField(max_length=250)
     stock = models.IntegerField()
