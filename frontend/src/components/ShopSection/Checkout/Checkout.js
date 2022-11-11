@@ -23,11 +23,47 @@ import {
 import { useEffect, useState } from "react";
 import { GoDiffAdded, GoDiffRemoved } from "react-icons/go";
 import { IconContext } from "react-icons";
+import { loadStripe } from "@stripe/stripe-js"
 
 
 export default function Checkout() {
   let [cart, setCart] = useState([]);
   let [localCart, setLocalCart] = useState(localStorage.getItem("cart"));
+  // STRIPE
+  const [stripeError, setStripeError] = useState(null);
+  if (stripeError) alert(stripeError);
+  const [loading, setLoading] = useState(false);
+  let stripePromise;
+
+  const checkoutOptions = {
+    // this array takes all items in cart, each product is reduced 
+    // to { price: 'price_id', quantity: ... }
+    lineItems: cart,
+    mode: "payment",
+    successUrl: `${window.location.origin}/success`,
+    cancelUrl: `${window.location.origin}/cancel`
+  }
+
+  const redirectToCheckout = async () => {
+    setLoading(true);
+    console.log("redirecting to checkout");
+
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    console.log("Stripe checkout error", error)
+
+    if (error) setStripeError(error.message);
+    setLoading(false);
+  }
+
+  const getStripe = () => {
+      if (!stripePromise) {
+          stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+      }
+      return stripePromise;
+  }
+  // STRIPE
+
   const navigate = useNavigate();
   // // form states
   //   const [checkOutData, setCheckoutData] = useState(
@@ -239,7 +275,6 @@ export default function Checkout() {
       localStorage.setItem("cart", stringCart);
    }
 
-
   return (
     <>
       <CheckoutContainer >
@@ -350,7 +385,8 @@ export default function Checkout() {
               </TotalsContainer>
             </ShoppingCart>
 
-            <OrderButton type="submit" onClick={handleOrderSubmit}>Place Order</OrderButton>
+            <OrderButton onClick={ redirectToCheckout } disabled={loading}>
+                {loading ? 'Processing' : 'Place Order'}</OrderButton>
 
           </RightSide>
         </CheckoutForm>
