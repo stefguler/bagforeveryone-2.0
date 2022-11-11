@@ -18,32 +18,32 @@ export const AvatarContainer = styled.div`
   position: relative;
 
   .preview {
-    max-width: 500px;
+    max-width: 100%;
+    object-fit: cover;
   }
 
   div {
    display: flex;
-   align-items: flex-stat;
    justify-content: center;
    font-size: 36px;
    padding-top: 1rem;
    opacity: 0;
    color: white;
-   /* text-shadow: 2px 2px 2px black; */
-   width: 100%;
-   height: 97%;
+   min-width: 100%;
+   object-fit: cover;
+   height: 99.5%;
    position: absolute;
    top: 0;
    left: 0;
    background: black;
-    /* padding: 2rem; */
+
   }
       div:hover {
          opacity: 0.2;
    }
 
   img {
-    width: 500px;
+    width: 400px;
   }
 `;
 

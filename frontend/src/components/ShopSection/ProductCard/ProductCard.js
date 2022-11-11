@@ -19,7 +19,7 @@ function ProductCard(props) {
     <>
       <CardContainer onClick={handleNavigateToProduct}>
         <AvatarContainer>
-          <img class="preview" src={props.product.img} alt="product image - bag"></img>
+          <img className="preview" src={props.product.img} alt="product image - bag"></img>
           <div className="hide">Show more!</div>
         </AvatarContainer>
         <Title>{props.product.title}</Title>
