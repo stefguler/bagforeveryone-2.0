@@ -3,7 +3,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Sidebar from "react-sidebar";
-
+import { useEffect } from "react";
 import {
   PageSection,
   StickyCartContainer,
@@ -13,43 +13,90 @@ import {
   AddRemoveContainer,
   SidebarFooter,
   SubTotalContainer,
-  CheckoutContainer
-
+  CheckoutContainer,
 } from "./ProductPageSidebar.styled";
 import { useNavigate } from "react-router-dom";
 import ProductPage from "../ProductPage/ProductPage.js";
 
-const product1 = {
-  img: "../assets/images/product/product_olive_backbag.jpg",
-  title: "Shopper Olive",
-  price: 100,
-};
-
-const product2 = {
-  img: "../assets/images/product/product_red_backbag.jpg",
-  title: "Shopper red",
-  price: 100,
-};
-
-const product3 = {
-  img: "../assets/images/product/product_red_backbag.jpg",
-  title: "Shopper red",
-  price: 100,
-};
-
-let products = [product1, product2, product3, product3];
-
-export default function Shop() {
+export default function ProductPageSidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  let [cart, setCart] = useState([]);
+  let localCart = localStorage.getItem("cart");
+  // let [amountInlocalCart, setAmountInlocalCart] = useState(JSON.parse(localStorage.getItem("cart")).length);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
+
+
+  useEffect(() => {
+
+    localCart = JSON.parse(localCart);
+    if (localCart) setCart(localCart);
+
+    // total()
+
+    const config = {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    fetch("https://bag-for-everyone.propulsion-learn.ch/backend/api/product/", config)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(data);
+      });
+  }, [JSON.parse(localCart)?.length]);
+
+
+  // const total = () => {
+  //   const stringified = JSON.stringify(localCart)
+  //   setAmountInlocalCart(JSON.parse(stringified)?.length)
+  // }
+
+  // console.log(amountInlocalCart)
+
+
+  const handleAddToCart = (product) => {
+
+    const amountInCart = cart?.filter(item => item?.id === product?.id).length
+      
+    if (product.stock > amountInCart) {
+    let cartCopy = [...cart];
+      cartCopy.push(product);
+
+      setCart(cartCopy);
+      let stringCart = JSON.stringify(cartCopy);
+      localStorage.setItem("cart", stringCart);
+    } else {
+      alert("This would exceed the available quantity")
+    }
+
+  };
+
+  const handleRemoveFromCart = (product) => {
+
+    let cartCopy = [...cart];
+    const index = cartCopy.map(object => object.id).indexOf(product.id)
+    console.log(index)
+    cartCopy.splice(index, 1)
+
+
+    setCart(cartCopy);
+    let stringCart = JSON.stringify(cartCopy);
+    localStorage.setItem("cart", stringCart);
+  }
+
+
 
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
   };
 
-  const handleNavigateToCheckout = () => {
-    navigate("/checkout")
-  }
 
   return (
     <>
@@ -58,40 +105,50 @@ export default function Shop() {
           sidebar={
             <>
               <SidebarHeader>
-                <IconContext.Provider value={{ size: "50px", className: "arrow"}}>
+                <IconContext.Provider
+                  value={{ size: "50px", className: "arrow" }}
+                >
                   <BsArrowRight onClick={() => onSetSidebarOpen(false)} />
                 </IconContext.Provider>
                 <p>Cart</p>
               </SidebarHeader>
               <Content>
-                {products.map((product, idx) => {
-                  return (
-                    <>
-                      <ProductContainer key = {idx}>
-                        <img src={product.img} alt="product in cart"></img>
-                        <div>
-                          <span>{product.title}</span>
-                          <span>CHF {product.price}</span>
-                          <AddRemoveContainer>
-                            <div>+</div>
-                            1
-                            <div>-</div>
-                          </AddRemoveContainer>
-                        </div>
-                      </ProductContainer>
-                    </>
-                  );
-                })}
+                <>
+                  {
+                    cart?.filter((value, index, self) =>
+                      index === self.findIndex((t) => (
+                        t?.place === value?.place && t?.name === value?.name
+                      ))
+                    ).map((product, idx) => {
+                      return (
+                        <>
+                          <ProductContainer key={idx}>
+                            <img src={product?.image} alt="product in cart"></img>
+                            <div>
+                              <span>{product?.name}</span>
+                              <span>CHF {product?.price}</span>
+                              <AddRemoveContainer >
+                                <div onClick={() => handleAddToCart(product)}>+</div>
+                                {cart?.filter(item => item?.id === product?.id).length}
+                                <div onClick={() => handleRemoveFromCart(product)}>-</div>
+                              </AddRemoveContainer>
+                            </div>
+                          </ProductContainer>
+                        </>
+                      );
+                    })}
+                </>
               </Content>
               <SidebarFooter>
                 <SubTotalContainer>
                   <span>Subtotal</span>
-                  <span style={{fontWeight:"bold"}}>
-                  CHF {" "}
-                    {products.reduce((prev, curr) => prev + curr.price, 0)}                   
-                    </span>
+                  <span style={{ fontWeight: "bold" }}>
+                    CHF {cart?.reduce((prev, curr) => prev + curr?.price, 0)}
+                  </span>
                 </SubTotalContainer>
-                <CheckoutContainer onClick={handleNavigateToCheckout}>Checkout</CheckoutContainer>
+                <CheckoutContainer onClick={() => navigate("/checkout")}>
+                  Checkout
+                </CheckoutContainer>
               </SidebarFooter>
             </>
           }
@@ -114,11 +171,17 @@ export default function Shop() {
             <IconContext.Provider value={{ size: "100px" }}>
               <HiOutlineShoppingBag />
             </IconContext.Provider>
-            <div>5</div>
+            <div>
+              {
+                JSON.parse(localCart)?.length != undefined ?
+                JSON.parse(localCart)?.length : 0
+              }
+            </div>
           </StickyCartContainer>
-          <ProductPage />
+          <ProductPage products={products} />
         </Sidebar>
       </PageSection>
     </>
   );
+
 }
