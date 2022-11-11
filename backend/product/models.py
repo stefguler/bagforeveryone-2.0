@@ -43,4 +43,4 @@ class Product(models.Model):
     sub_image_1 = models.ImageField(blank=True, upload_to=product_sub_image_1_path)
     sub_image_2 = models.ImageField(blank=True, upload_to=product_sub_image_2_path)
     sub_image_3 = models.ImageField(blank=True, upload_to=product_sub_image_3_path)
-    stripe_price = models.CharField(max_length=75, blank=True)
+    stripe_price = models.CharField(max_length=75, Blank=True)
