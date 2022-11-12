@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { BaseModalBackground, ModalProvider } from "styled-react-modal";
+import Modal from "styled-react-modal";
 
 // mobile designs first (480px width and less):
 export const StoryPageWrapper = styled.section `
@@ -70,7 +72,28 @@ export const StoryListWrapper = styled.div `
         grid-gap: .5em;
         padding: .5em;
     }
-    
  `
 
+export const FadingBackground = styled(BaseModalBackground)`
+    display: flex;
+    color: #DABC39;
+    .warning {
+        background-color: white;
+        border-radius: 20px;
+        width: 20em;
+        height: 20em;
+        display: flex;
+        gap: 2em;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+`;
+
+export const LoginWarningModal = styled(Modal)`
+
+`;
+
+export const WarningModalProvider = styled(ModalProvider)`
+`;
     
