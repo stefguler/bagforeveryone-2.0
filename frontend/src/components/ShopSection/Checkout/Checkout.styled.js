@@ -89,10 +89,8 @@ export const DeliveryInfoForm = styled.div`
 `
 export const RightSide = styled.div`
     display: flex;
-    position: fixed;
-    right: 10%;
     flex-direction: column;
-    min-width: 25%;
+    min-width: 50%;
     padding: 1rem;
     gap: 1rem;
 
@@ -126,6 +124,13 @@ export const ShoppingCart = styled.div`
   padding: 1rem;
   border: 1px solid #DABC39;
 `
+
+export const ProductGrid = styled.div`
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 1rem;
+ 
+ `
 
 export const Price = styled.div`
 

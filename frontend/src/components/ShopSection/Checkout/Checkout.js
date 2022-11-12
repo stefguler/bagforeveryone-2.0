@@ -19,6 +19,7 @@ import {
   Subtotal,
   OrderButton,
   Price,
+  ProductGrid,
 } from "./Checkout.styled.js";
 import { useEffect, useState } from "react";
 import { GoDiffAdded, GoDiffRemoved } from "react-icons/go";
@@ -317,6 +318,7 @@ export default function Checkout() {
           <RightSide>
             <ShoppingCart>
               <span style={{ fontWeight: "bold", fontSize: "24px" }}>Order Summary</span>
+              <ProductGrid>
               {cart.filter((value, index, self) =>
                 index === self.findIndex((t) => (
                   t?.place === value?.place && t?.name === value?.name
@@ -339,6 +341,7 @@ export default function Checkout() {
                   </>
                 );
               })}
+              </ProductGrid>
               <button type="button" name="orderItems" onClick={handleClearCart}>Clear Cart</button>
 
               <TotalsContainer>

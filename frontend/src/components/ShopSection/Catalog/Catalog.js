@@ -30,8 +30,6 @@ function Catalog(props) {
         setProducts(data);
       });
      
-
-
   }, [props.page] );
 
   useEffect(() => {
@@ -41,7 +39,9 @@ function Catalog(props) {
           let limitProducts = products?.filter(product => {
             return (product.category === "DO")
           })
-          setAfter(limitProducts)
+          let sortLimitedProducts = limitProducts?.sort((firstItem, secondItem) => 
+            firstItem.id - secondItem.id)
+          setAfter(sortLimitedProducts)
 
         }
         else {
@@ -65,10 +65,19 @@ function Catalog(props) {
   return (
     <>
       <PageHeader>
+        {
+        props.page === "shop" ?
         <p>
           Welcome to the online shop of{" "}
           <span style={{ fontWeight: "bold" }}>bagforeveryone</span>
-        </p>
+        </p> : 
+      <p>
+      Would you like to support our project without purchasing an article? No problem, just pick your desired way of 
+      {" "}
+      <span style={{ fontWeight: "bold" }}>donating</span>
+      {" "} below
+    </p>
+    }
       </PageHeader>
         <CatalogGrid>
           {after.map((product, idx) => {
