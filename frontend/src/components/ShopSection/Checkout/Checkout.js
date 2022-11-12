@@ -29,26 +29,42 @@ import { loadStripe } from "@stripe/stripe-js"
 export default function Checkout() {
   let [cart, setCart] = useState([]);
   let [localCart, setLocalCart] = useState(localStorage.getItem("cart"));
-  // STRIPE
+
+  // STRIPE START
+  const handleOrderClick = () => {
+      let stripeCart = [];
+      const stripeCounter = {};
+      cart.forEach(elem => {
+        if (!stripeCounter.hasOwnProperty(elem.stripe_price)) {
+          stripeCounter[elem.stripe_price] = 1;
+        } else {
+          stripeCounter[elem.stripe_price] += 1;
+        }
+      })
+        let stripeList = Object.entries(stripeCounter);
+        stripeList.forEach(elem => {
+          stripeCart.push({price: elem[0], quantity: elem[1]})
+        })
+        redirectToCheckout(stripeCart)
+  }
+
   const [stripeError, setStripeError] = useState(null);
   if (stripeError) alert(stripeError);
   const [loading, setLoading] = useState(false);
   let stripePromise;
 
-  const checkoutOptions = {
-    // this array takes all items in cart, each product is reduced 
-    // to { price: 'price_id', quantity: ... }
-    lineItems: cart,
-    mode: "payment",
-    successUrl: `${window.location.origin}/success`,
-    cancelUrl: `${window.location.origin}/cancel`
-  }
-
-  const redirectToCheckout = async () => {
+  const redirectToCheckout = async (list) => {
+    const checkoutOptions = {
+      lineItems: list,
+      mode: "payment",
+      successUrl: `${window.location.origin}/orderconfirmed`,
+      cancelUrl: `${window.location.origin}/cancel`
+    }
     setLoading(true);
-    console.log("redirecting to checkout");
+    // console.log("redirecting to checkout");
 
     const stripe = await getStripe();
+
     const { error } = await stripe.redirectToCheckout(checkoutOptions);
     console.log("Stripe checkout error", error)
 
@@ -62,7 +78,7 @@ export default function Checkout() {
       }
       return stripePromise;
   }
-  // STRIPE
+  // STRIPE COMPLETE
 
   const navigate = useNavigate();
   // // form states
@@ -159,7 +175,7 @@ export default function Checkout() {
   const handleOrderSubmit = (e) => {
     e.preventDefault()
     let apiCart = JSON.stringify(cart);
-    console.log("submited")
+    // console.log("submited")
     const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/order/"
     const formData = new FormData()
     formData.append("buyer", buyer)
@@ -175,8 +191,8 @@ export default function Checkout() {
     formData.append("phone", phone)
     formData.append("shopping_note", note)
 
-    console.log("cart: ", cart)
-    console.log("formData: ", formData)
+    // console.log("cart: ", cart)
+    // console.log("formData: ", formData)
     for (var pair of formData.entries()) {
       console.log("item in formdata", pair[0]+ ', ' + pair[1]);
   }
@@ -385,7 +401,7 @@ export default function Checkout() {
               </TotalsContainer>
             </ShoppingCart>
 
-            <OrderButton onClick={ redirectToCheckout } disabled={loading}>
+            <OrderButton onClick={ handleOrderClick } disabled={loading}>
                 {loading ? 'Processing' : 'Place Order'}</OrderButton>
 
           </RightSide>
