@@ -140,9 +140,10 @@ export const FullImageModal = styled.div `
 `
 
 export const Image = styled.img `
-        display: block;
-        max-width: 100%;
-        margin: 0 auto;
+    max-height: 95%;
+    max-width: 95%;
+    display: block;
+    margin: 0 auto;   
 `
 
 export const CloseModalButton = styled(PageButton) `

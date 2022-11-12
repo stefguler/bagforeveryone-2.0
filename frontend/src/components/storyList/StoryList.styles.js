@@ -75,7 +75,6 @@ export const StoryListWrapper = styled.div `
  `
 
 export const FadingBackground = styled(BaseModalBackground)`
-    display: flex;
     color: #DABC39;
     .warning {
         background-color: white;
