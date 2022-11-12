@@ -1,5 +1,5 @@
 // import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Collapsible from "react-collapsible";
@@ -36,6 +36,7 @@ function ProductPage(props) {
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
   const [avatar, setAvatar] = useState("");
+  const {id} = useParams()
   const [category, setCategory] = useState(props.category)
   const navigate = useNavigate();
   const emoji = require("emoji-dictionary");
@@ -60,6 +61,9 @@ function ProductPage(props) {
     "../assets/images/product/product_view1_backbag.jpg",
   ]);
 
+  console.log("product id: ", id)
+  console.log(typeof id)
+
   useEffect(() => {
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
@@ -81,13 +85,12 @@ function ProductPage(props) {
       setAvatar(newProd[0]?.image);
     }
     else if (category === "DO") {
-      newProd = props.products?.filter((elem) => elem.name === props.name);
+      newProd = props.products?.filter((elem) => elem.id === parseInt(id));
+      console.log("newProd DO: ", newProd)
       setSelectedProduct(newProd);
       setAvatar(newProd[0]?.image);
     }
   }, [props.products]);
-
-
 
   const handleChangeProduct = async (color) => {
     console.log("change gallery to color: ", color);
@@ -98,7 +101,7 @@ function ProductPage(props) {
         newProd = products?.filter((elem) => elem.name === "Shopper Sandgrey");
         setSelectedProduct(newProd);
         setAvatar(newProd[0]?.image);
-        setAmountToCart(1);
+        setAmountToCart(1);        
         break;
       case "#A51919":
         newProd = products?.filter((elem) => elem.name === "Shopper Red");
@@ -198,14 +201,15 @@ function ProductPage(props) {
 
         <ProductContainer>
           <MediaContainer>
-            <Avatar src={avatar}></Avatar>
+            <Avatar src={avatar}></Avatar>               
             <ImageGallery>
               {category === "SH"
                 ? imageGalleryBag.map((img, idx) => {
+                  console.log("img: ", img)
                   return (
                     <GalleryItem
                       key={idx}
-                      src={img}
+                      src={`../${img}`}
                       onClick={() => handleChangeAvatar(img)}
                     ></GalleryItem>
                   );
@@ -214,7 +218,7 @@ function ProductPage(props) {
                   return (
                     <GalleryItem
                       key={idx}
-                      src={img}
+                      src={`../${img}`}
                       onClick={() => handleChangeAvatar(img)}
                     ></GalleryItem>
                   );

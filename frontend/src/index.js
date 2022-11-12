@@ -37,7 +37,7 @@ root.render(
         <Route path="/story/create" element={<CreateStory />} />
         <Route path="/create" element={<CreateProduct />} />
         <Route path="/:page" element={<ShopPage />} />
-        <Route path="/shop/:category" element={<Product />} />
+        <Route path="/shop/:category/:id" element={<Product />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/orderconfirmed" element={<OrderConfirmationPage />} />
         <Route path="/login" element={<LoginPage />} />

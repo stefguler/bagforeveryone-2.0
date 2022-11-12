@@ -10,7 +10,7 @@ function ProductCard(props) {
   const navigate = useNavigate();
 
   const handleNavigateToProduct = () => {
-      navigate(`/shop/${props.product.category}`);
+      navigate(`/shop/${props.product.category}/${props.product.id}`);
   };
 
   return (
