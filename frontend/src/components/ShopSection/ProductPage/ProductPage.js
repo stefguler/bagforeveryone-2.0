@@ -50,15 +50,15 @@ function ProductPage(props) {
     "#4B5C19",
   ]);
   const [imageGalleryPouch, setImageGalleryPouch] = useState([
-    "../assets/images/product/product_pouch_2.jpg",
-    "../assets/images/product/product_pouch_3.jpg",
-    "../assets/images/product/product_pouch_4.jpg",
-    "../assets/images/product/product_pouch.jpg",
+    "../../assets/images/product/product_pouch_2.jpg",
+    "../../assets/images/product/product_pouch_3.jpg",
+    "../../assets/images/product/product_pouch_4.jpg",
+    "../../assets/images/product/product_pouch.jpg",
   ]);
   const [imageGalleryBag, setImageGalleryBag] = useState([
-    "../assets/images/product/product_all_backbag_stand.jpg",
-    "../assets/images/product/product_all2_backbag.jpg",
-    "../assets/images/product/product_view1_backbag.jpg",
+    "../../assets/images/product/product_all_backbag_stand.jpg",
+    "../../assets/images/product/product_all2_backbag.jpg",
+    "../../assets/images/product/product_view1_backbag.jpg",
   ]);
 
   console.log("product id: ", id)
@@ -209,7 +209,7 @@ function ProductPage(props) {
                   return (
                     <GalleryItem
                       key={idx}
-                      src={`../${img}`}
+                      src={{img}}
                       onClick={() => handleChangeAvatar(img)}
                     ></GalleryItem>
                   );
@@ -218,7 +218,7 @@ function ProductPage(props) {
                   return (
                     <GalleryItem
                       key={idx}
-                      src={`../${img}`}
+                      src={img}
                       onClick={() => handleChangeAvatar(img)}
                     ></GalleryItem>
                   );
