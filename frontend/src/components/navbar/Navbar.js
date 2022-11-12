@@ -1,73 +1,33 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { NavbarWrapper, Logo, GroupLeft, GroupRight } from './Navbar.styles';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import NavbarLinks from '../navbar-links/NavbarLinks';
+import Media from 'react-media';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Navbar = () => {
   // This styling will be applied to a <NavLink> when the
   // route that it links to is currently selected.
-  let activeStyle = {
-    textDecoration: "underline"
-  };
-  let activeClassName = "underline";
+  const [showNavbar, setShowNavbar] = useState(false);
 
-  const navigate = useNavigate();
-  const authSlice = useSelector((state) => state.auth)
+  const handleHamburgerClick = () => {
+    setShowNavbar(!showNavbar);
+  }
 
   return (
-      <NavbarWrapper>
-        <GroupLeft>
-          <Logo onClick={() => navigate('/')} src='../assets/images/logo/logo.png'></Logo>
-          <ul>
-            <li>
-              <NavLink to="/" style={({ isActive }) => isActive ? activeStyle : undefined}
-              >
-              ABOUT
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/story" className={({ isActive }) => isActive ? activeClassName : undefined}
-              >
-                STORY
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/team" className={({ isActive }) => isActive ? activeClassName : undefined}
-              >
-                TEAM
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/shop" className={({ isActive }) => isActive ? activeClassName : undefined}
-              >
-                BUY
-              </NavLink>
-            </li>
-          </ul>
-        </GroupLeft>
-        <GroupRight>
-          <ul>
-            <li>
-              <NavLink id="donate" to="/donate" className={({ isActive }) => isActive ? activeClassName : undefined}
-              >
-                DONATE
-              </NavLink>
-            </li>
-            {(!authSlice.accessToken || authSlice.accessToken.length < 1) &&
-            <li>
-              <NavLink id="login" to="/login" className={({ isActive }) => isActive ? activeClassName : undefined}
-              >
-                LOGIN
-              </NavLink>
-            </li>
-            }
-          </ul>
-        </GroupRight>
-      </NavbarWrapper>
-    )
-}
-  
+    <>
+    {showNavbar && <NavbarLinks />}
+      <Media queries={{ small: { minWidth: 480 } }}>
+          {matches =>
+            matches.small ? (
+              <NavbarLinks />
+              ) : (
+                <GiHamburgerMenu className='hamburger' onClick={handleHamburgerClick} />
+              )
+          }
+      </Media>
+    </>
+  )
+}   
+
   export default Navbar
 
   // ALINA/ backup:
