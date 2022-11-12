@@ -24,31 +24,18 @@ export default function Shop() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
-  const [products, setProducts] = useState([])
   const navigate = useNavigate();
   const {page} = useParams();
+  const [pageRouting, setPageRouting] = useState()
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
 
   useEffect(() => {
-    console.log(page)
+
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
 
-   const config = {
-      method: "GET",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      }),
-    };
-    fetch("https://bag-for-everyone.propulsion-learn.ch/backend/api/product/", config)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-      });
+      setPageRouting(page)
     
   }, [JSON.parse(localCart)?.length, page]);
 
@@ -76,9 +63,7 @@ const handleRemoveFromCart = (product) => {
 
   let cartCopy = [...cart];
   const index = cartCopy.map(object => object.id).indexOf(product.id)
-  console.log(index)
   cartCopy.splice(index, 1)
-
 
   setCart(cartCopy);
   let stringCart = JSON.stringify(cartCopy);
@@ -165,7 +150,7 @@ return (
               }
               </div>
           </StickyCartContainer>
-          <Catalog page={page}/>
+          <Catalog page={pageRouting}/>
         </Sidebar>
       </PageSection>
     </>
