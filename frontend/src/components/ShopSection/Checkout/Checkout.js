@@ -28,8 +28,9 @@ import { IconContext } from "react-icons";
 
 export default function Checkout() {
   let [cart, setCart] = useState([]);
-  let [localCart, setLocalCart] = useState(localStorage.getItem("cart"));
-  const navigate = useNavigate();
+  let localCart = localStorage.getItem("cart");
+
+
   // // form states
   //   const [checkOutData, setCheckoutData] = useState(
   //     {
@@ -71,7 +72,6 @@ export default function Checkout() {
   const [country, setCountry] = useState("")
   const [phone, setPhone] = useState("")
   const [note, setNote] = useState("")
-  const [rerenderPage, setRerender] = useState(false)
 
   // handle inputs
   const handleBuyerChange = (e) => {
@@ -121,6 +121,8 @@ export default function Checkout() {
 
   }
 
+  console.log("cart from checkout, ", cart)
+
   const handleOrderSubmit = (e) => {
     e.preventDefault()
     let apiCart = JSON.stringify(cart);
@@ -163,10 +165,10 @@ export default function Checkout() {
 
   useEffect(() => {
 
-    if (localStorage.getItem("bagsAuth")) {
-   
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
+
+     if (localStorage.getItem("bagsAuth")) {
 
     const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/user/me/"
 
@@ -181,10 +183,11 @@ export default function Checkout() {
       .then(response => response.json())
       .then(data => setUserData(data))
 }
-  }, []);
+  }, [JSON.parse(localCart)?.length]);
 
   // If the user is logged in... autofill his information
     useEffect(() => {
+
         if (userData) {handleAutoFill()}
         console.log(userData)
     }, [userData]);
@@ -320,7 +323,7 @@ export default function Checkout() {
             <ShoppingCart>
               <span style={{ fontWeight: "bold", fontSize: "24px" }}>Order Summary</span>
               <ProductGrid>
-              {cart.filter((value, index, self) =>
+              {cart?.filter((value, index, self) =>
                 index === self.findIndex((t) => (
                   t?.place === value?.place && t?.name === value?.name
                 ))
