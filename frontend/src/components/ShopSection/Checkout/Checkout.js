@@ -20,10 +20,11 @@ import {
   OrderButton,
   Price,
   ProductGrid,
+  FadingBackground
 } from "./Checkout.styled.js";
 import { useEffect, useState } from "react";
-import { GoDiffAdded, GoDiffRemoved } from "react-icons/go";
-import { IconContext } from "react-icons";
+import { ModalProvider } from "styled-react-modal";
+import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
 
 
 export default function Checkout() {
@@ -72,6 +73,9 @@ export default function Checkout() {
   const [country, setCountry] = useState("")
   const [phone, setPhone] = useState("")
   const [note, setNote] = useState("")
+  const [isOpen, setIsOpen] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+  const [scenario, setScenario] = useState();
 
   // handle inputs
   const handleBuyerChange = (e) => {
@@ -218,7 +222,9 @@ export default function Checkout() {
       let stringCart = JSON.stringify(cartCopy);
       localStorage.setItem("cart", stringCart);
     } else {
-      alert("This would exceed the available quantity")
+      setScenario("low stock")
+      toggleModal()
+      // alert("This would exceed the available quantity")
     }
   };
 
@@ -245,9 +251,19 @@ export default function Checkout() {
       localStorage.setItem("cart", stringCart);
    }
 
+   function toggleModal(e) {
+    setOpacity(0);
+    setIsOpen(!isOpen);
+  }
+
+  const resetIsOpen = () => {
+    setIsOpen(false)
+  } 
+
 
   return (
     <>
+     <ModalProvider backgroundComponent={FadingBackground}>
       <CheckoutContainer >
         <CheckoutHeader>Checkout</CheckoutHeader>
         <CheckoutForm onSubmit={(e) => handleOrderSubmit(e)}>
@@ -361,7 +377,9 @@ export default function Checkout() {
 
           </RightSide>
         </CheckoutForm>
+        <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </CheckoutContainer>
+      </ModalProvider>
     </>
   );
 }

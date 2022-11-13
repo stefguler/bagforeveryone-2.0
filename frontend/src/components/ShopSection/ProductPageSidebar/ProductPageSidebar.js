@@ -14,9 +14,12 @@ import {
   SidebarFooter,
   SubTotalContainer,
   CheckoutContainer,
+  FadingBackground
 } from "./ProductPageSidebar.styled";
 import { useNavigate } from "react-router-dom";
 import ProductPage from "../ProductPage/ProductPage.js";
+import { ModalProvider } from "styled-react-modal";
+import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
 
 export default function ProductPageSidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -26,8 +29,10 @@ export default function ProductPageSidebar(props) {
   let localCart = localStorage.getItem("cart");
   const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
+  const [isOpen, setIsOpen] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+  const [scenario, setScenario] = useState();
 
-  console.log("category in sidebar, ", props.category)
 
   useEffect(() => {
 
@@ -63,7 +68,9 @@ export default function ProductPageSidebar(props) {
       let stringCart = JSON.stringify(cartCopy);
       localStorage.setItem("cart", stringCart);
     } else {
-      alert("This would exceed the available quantity")
+      setScenario("low stock")
+      toggleModal()
+      // alert("This would exceed the available quantity")
     }
 
   };
@@ -85,9 +92,21 @@ export default function ProductPageSidebar(props) {
     setSidebarOpen(open);
   };
 
+  function toggleModal(e) {
+    console.log("toggled")
+    setOpacity(0);
+    setIsOpen(!isOpen);
+    console.log(isOpen)
+  }
+
+  const resetIsOpen = () => {
+    setIsOpen(false)
+  }
+
 
   return (
     <>
+    <ModalProvider backgroundComponent={FadingBackground}>
       <PageSection>
         <Sidebar
           sidebar={
@@ -168,7 +187,9 @@ export default function ProductPageSidebar(props) {
           </StickyCartContainer>
           <ProductPage products={products} category={props.category}/>
         </Sidebar>
+        <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </PageSection>
+      </ModalProvider>
     </>
   );
 

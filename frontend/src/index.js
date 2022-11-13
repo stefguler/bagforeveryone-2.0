@@ -22,6 +22,8 @@ import Storiespage from './pages/stories/Storiespage';
 import StoryPage from "./pages/story-page/StoryPage";
 import CreateStory from "./pages/create-story/CreateStory";
 import { CookiesProvider } from "react-cookie";
+import CreateProductPage from "./pages/createProductPage/createProductPage";
+import UpdateProductStockPage from "./pages/udpateProductStockPage/UpdateProductStockPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -45,7 +47,9 @@ root.render(
         <Route path="/validate" element={<ValidatePage />} />  
         <Route path="/verified" element={<VerifiedPage />} />     
         <Route path="/team" element={<TeamPage />} /> 
-        <Route path="/updateStock" element={<UpdateStockPage />} /> 
+        <Route path="/updateStockII" element={<UpdateStockPage />} /> 
+        <Route path="/createproduct" element={<CreateProductPage />} /> 
+        <Route path="/updatestock" element={<UpdateProductStockPage />} /> 
       </Routes>
     </BrowserRouter>
     </CookiesProvider>

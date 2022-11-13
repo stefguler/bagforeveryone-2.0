@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BaseModalBackground } from "styled-react-modal";
 
 export const PageSection = styled.section`
     display: flex;
@@ -160,5 +161,11 @@ export const CheckoutContainer = styled.div`
   }
 
 `
+
+export const FadingBackground = styled(BaseModalBackground)`
+opacity: ${(props) => props.opacity};
+transition: all 0.3s ease-in-out;
+`;
+
 
 
