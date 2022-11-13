@@ -137,50 +137,50 @@ export const Price = styled.div`
 
 `
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+// export const Content = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 1rem;
         
-  span{
-    font-size: 20px;
-  }
+//   span{
+//     font-size: 20px;
+//   }
 
-`
+// `
 
-export const ProductContainer = styled.div`
+// export const ProductContainer = styled.div`
 
-    display: flex;
-    width: 100%;
-    gap: 1rem;
-    justify-content: space-between;
+//     display: flex;
+//     width: 100%;
+//     gap: 1rem;
+//     justify-content: space-between;
 
-  img {
-    width: 100px;
-    height: 100px;
-    object-fit: scale-down;
-  }
+//   img {
+//     width: 100px;
+//     height: 100px;
+//     object-fit: scale-down;
+//   }
 
-  div {
-      font-size: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+//   div {
+//       font-size: 20px;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: flex-start;
 
-    }
+//     }
 
-    button {
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 1rem;
-      border: 1px solid black;
-      background: none;
-      font-size: 24px;
-      font-weight: bold;
-    }
-`
+//     button {
+//       padding: 0;
+//       margin: 0;
+//       width: 100%;
+//       height: 100%;
+//       border-radius: 1rem;
+//       border: 1px solid black;
+//       background: none;
+//       font-size: 24px;
+//       font-weight: bold;
+//     }
+// `
 export const CartItemControl = styled.div`
   display: flex;
   flex-direction: row !important;
@@ -229,12 +229,8 @@ export const Subtotal = styled.div`
   margin-top: 1rem;
   justify-content: space-between;
   font-weight: bold;
-  font-size: 24px
-
+  font-size: 24px;
 `
-
-
-
 
 export const OrderButton = styled.button`
 
@@ -252,3 +248,44 @@ font-family: 'Montserrat', sans-serif;
   }
 
 `
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  `
+
+export const ProductContainer = styled.div`
+
+    display: flex;
+    gap: 1rem;
+
+  img {
+    width: 100px;
+  }
+
+  div {
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+    }
+`
+
+export const AddRemoveContainer = styled.div`
+        flex-direction: row !important;
+        gap: 1.5rem !important;
+        border: 1px solid #DABC39;
+
+        div {
+          padding: 0.5rem;
+          cursor: pointer;
+          
+          :hover {
+            color: #DABC39;
+            
+          }
+
+        }`

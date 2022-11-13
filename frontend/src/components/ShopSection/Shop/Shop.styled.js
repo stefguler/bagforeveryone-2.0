@@ -25,6 +25,8 @@ export const StickyCartContainer = styled.div`
   
   div {
     display: flex;
+    font-size: 24px;
+    font-weight: bold;
     align-items: center;
     justify-content: center;
     background: #DABC39;

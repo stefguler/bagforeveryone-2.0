@@ -3,6 +3,7 @@ import {
 } from './Team.styled'
 
 const Team = () => {
+
     return (
         <StyledTeamContainer>
             {/* Team Lesvos */}

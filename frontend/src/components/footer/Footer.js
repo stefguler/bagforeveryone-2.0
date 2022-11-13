@@ -33,7 +33,7 @@ const Footer = () => {
             <FooterWrapperDiv>
                 <TabsContainerDiv>
                     <TabsDiv>
-                        <text onClick={openStores}>Find Us</text>
+                        <p onClick={openStores}>Find Us</p>
                         <StyledStoreModal
                         isOpen={storesIsOpen}
                         onBackgroundClick={openStores}
@@ -50,7 +50,7 @@ const Footer = () => {
                 </StyledStoreModal>
                     </TabsDiv>
                     <TabsDiv>
-                        <text onClick={toggleContact}>Contact Us</text>
+                        <p onClick={toggleContact}>Contact Us</p>
                         <StyledContactModal
                         isOpen={contactIsOpen}
                         onBackgroundClick={toggleContact}
