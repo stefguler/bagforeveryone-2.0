@@ -250,12 +250,12 @@ function ProductPage(props) {
 
                   selectedProduct[0]?.stock > 5 ? (
                     <StockAmount style={{ color: "green" }}>
-                      {selectedProduct[0]?.stock} on Stock!{" "}
+                      {selectedProduct[0]?.stock} in Stock!{" "}
                       {emoji.getUnicode("blush")}
                     </StockAmount>
                   ) : selectedProduct[0]?.stock > 0 ? (
                     <StockAmount style={{ color: "orange" }}>
-                      {selectedProduct[0]?.stock} on Stock!{" "}
+                      {selectedProduct[0]?.stock} in Stock!{" "}
                       {emoji.getUnicode("cold_sweat")}
                     </StockAmount>
                   ) : (
@@ -284,7 +284,7 @@ function ProductPage(props) {
                           );
                         })
                         : category === "PO" ?
-                          <SpecialColors>Essential Bags are created with surplus materials. The color is random. If you have specific color request, please tell us in the shipping form (checkout) in the extra field</SpecialColors>
+                          <SpecialColors>Essential Bags are created with surplus materials. The color is random. If you have specific color request, please tell us in the shipping form (checkout) in the extra field.</SpecialColors>
                           : null
                     }
                   </Colors>
