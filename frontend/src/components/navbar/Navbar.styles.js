@@ -149,8 +149,8 @@ export const NavWrapper = styled.nav`
     height: 70px;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid #DDD8C4;
     background-color: rgba(255, 255, 255, 1);
+    overflow: hidden;
 `;
 
 export const NavbarLogoContainerDiv = styled.img`
@@ -200,7 +200,7 @@ export const NavbarLeftTabsDiv = styled.span`
         font-weight: 400;
     }
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 900px) {
         *{
             font-size: 10px;
         }
@@ -253,7 +253,7 @@ export const NavbarRightTabsDiv = styled.div`
         }
     }
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width:900px) {
         *{
             font-size: 10px;
         }

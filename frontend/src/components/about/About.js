@@ -3,24 +3,25 @@ import {
     ImageSliderDiv,
 } from './About.styles'
 
+
 const ImageSlider = ({slides}) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const slideStyles = {
-        maxWidth: '100vw',
-        height: '100vh',
-        backgroundImagePosition: 'center',
+        width: '100%',
+        height: '500px',
+        borderRadius: '15px',
         backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundImage: `url(${slides[currentIndex].url})`
+        backgroundPosition: 'center',
+        backgroundImage: `url(${slides[currentIndex].url})`,
     }
 
     const leftArrowStyles = {
         position: 'absolute',
         top: '50%',
         transform: 'translate(0, -50%)',
-        left: '32px',
+        left: '20vw',
         fontSize: '45px',
         color: '#fff',
         zIndex: 1, 
@@ -31,7 +32,7 @@ const ImageSlider = ({slides}) => {
         position: 'absolute',
         top: '50%',
         transform: 'translate(0, -50%)',
-        right: '32px',
+        right: '20vw',
         fontSize: '45px',
         color: '#fff',
         zIndex: 1, 
@@ -50,12 +51,12 @@ const ImageSlider = ({slides}) => {
         setCurrentIndex(newIndex);
     }
 
-
     return (
         <ImageSliderDiv>
-            <div style={leftArrowStyles} onclick={goToPrevious}>←</div>
-            <div style={rightArrowStyles} onclick={goToNext}>→</div>
-            <div style={slideStyles}></div>
+            <div style={slideStyles}>
+                <div style={leftArrowStyles} onClick={goToPrevious}>←</div>
+                <div style={rightArrowStyles} onClick={goToNext}>→</div>
+            </div>
         </ImageSliderDiv>
     )
 }

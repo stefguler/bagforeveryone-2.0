@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { 
     AboutContainerDiv,
     TextBoxDiv,
@@ -6,7 +7,14 @@ import {
 } from './About.styles'
 import ImageSlider from './About'
 
+
 const About1 = () => {
+
+    const navigate = useNavigate();
+
+      const handleNavigateTo = (destination) => {
+        navigate(`/${destination}`)
+      }
 
     const slides = [
         {url: '../assets/images/about/3.jpg', title: 'Slide1'},
@@ -15,8 +23,9 @@ const About1 = () => {
     ];
 
     const ImageSliderContainerDiv = {
-        width: '100vw',
-        height: 'auto',
+        width: '60vw',
+        aspectRatio: '5/2',
+        margin: '10px auto',
     };
 
     return (
@@ -31,7 +40,7 @@ const About1 = () => {
                 <img src="../assets/images/about/stats.png" />
             </TextBoxDiv>
             <StickyButtonDiv>
-                <button>Stories</button>
+                <button onClick={() => handleNavigateTo("story")}>Story</button>
             </StickyButtonDiv> 
         </AboutContainerDiv>
         </>

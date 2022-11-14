@@ -13,12 +13,12 @@ export const AboutContainerDiv = styled.div`
 `;
 
 export const ImageSliderDiv = styled.div` 
-    height: 100vh;
-    width: 100vw;
-    position: relative;
+    height: 100%;
 
-    @media only screen and (max-width: 450px) {
-        height: auto;
+    @media only screen and (max-width: 900px) {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0;
     }
 `;
 
@@ -62,16 +62,19 @@ export const TextBoxDiv = styled.div`
         color: #DABC39;
         font-family: 'Montserrat', sans-serif;
         font-size: 30px;
+        margin-bottom: 0;
+        align-self: center;
     }
 
     p {
         color: #000000;
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
+        
     }
 
     img {
-        width: 70vw;
+        width: 60vw;
         align-self: center;
     }
 

@@ -9,10 +9,9 @@ export const FooterWrapperDiv = styled.div`
     max-height: 70px;
     width: 100vw;
     align-items: center;
-    border: 1px solid #DDD8C4;
     background: rgba(255, 255, 255, 1);
     position: fixed;
-    overflow: hidden
+    overflow: hidden;
 `;
 
 export const TabsContainerDiv = styled.div`
@@ -30,8 +29,8 @@ export const TabsContainerDiv = styled.div`
     line-height: 0.5;
     }
 
-    @media screen and (max-width: 480px) {
-        width: 80vw;
+    @media screen and (max-width: 900px) {
+        width: 90vw;
         margin-left: 10vw;
         *{ 
         font-size: 10px;
