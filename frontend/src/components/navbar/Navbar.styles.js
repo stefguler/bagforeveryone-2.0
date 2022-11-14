@@ -228,7 +228,7 @@ export const NavbarRightTabsDiv = styled.div`
     &:first-child{
         background-color: rgba(255, 255, 255, 1);
         border: 2px solid #DABC39;
-        border-radius: 15px;
+        border-radius: 10px;
         font-weight: 400;
         width: 90px;
         height: 40px;

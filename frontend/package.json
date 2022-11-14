@@ -24,6 +24,7 @@
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.8",
     "react-sidebar": "^3.0.2",
+    "react-slideshow-image": "^4.0.5",
     "styled-components": "^5.3.6",
     "styled-react-modal": "^3.0.1",
     "web-vitals": "^2.1.4"

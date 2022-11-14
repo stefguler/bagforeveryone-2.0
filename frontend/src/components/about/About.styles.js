@@ -1,83 +1,41 @@
-import styled from "styled-components";
+import styled from "styled-components"
 // import "@fontsource/montserrat";
 
 
-export const LandingPageContainerDiv = styled.div`
+export const AboutContainerDiv = styled.div`
+    background: #fff;
+    display: flex;
+    justify-content: space-evenly;
     width: 100vw;
-    height: auto;
-    display: flex;
+    margin-top: 70px;
+    margin-bottom: 70px;
     flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 113px;
 `;
 
-export const PictureContainerDiv = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    background: url('../assets/images/about/AboutMain.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position-y: center;
-    background-size: cover;
-    max-width: 100vw;
-    height: 75vh;
-`;
-
-export const ContentConteinerDiv = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    max-width: 600px;
-    height: auto;
-    padding-right: 5vw;
-    padding-bottom: 5vh;
-    
-    *{
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    p{
-        text-align: right; 
-        color: #FFFFFF;
-        font-weight: 600;
-        font-size: 32px;
-    }
-
-    button {
-        background: #E1C23B;
-        border: none;
-        border-radius: 15px;
-        width: 150px;
-        height: 60px;
-        font-size: 24px;
-        align-self: flex-end;
-    }
+export const ImageSliderDiv = styled.div` 
+    height: 100vh;
+    width: 100vw;
+    position: relative;
 
     @media only screen and (max-width: 450px) {
-        p {
-            font-size: 18px;
-        }
-
-        button {
-            width: 100px;
-            height: 40px;
-            font-size: 16px;
-        }
+        height: auto;
     }
 `;
 
 export const StickyButtonDiv = styled.div`
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     left: 0;
-    height: 100px;
-    width: 50px;
-    font-size: 20px;
+    height: 70px;
+    width: 30px;
     color: white;
     border-radius: 0 5px 5px 0;
-    top: 65vh;
     background-color: rgba(225, 194, 59, 0.44);
+    top: 80vh;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     :hover{
      background-color: #DABC39;
     }
@@ -88,44 +46,8 @@ export const StickyButtonDiv = styled.div`
         background: none;
         transform: rotate(-90deg);
         font-family: 'Montserrat', sans-serif;
-        font-size: 26px;
+        font-size: 15px;
     }
-`;
-
-{ /* cant center it :/ */}
-export const Link = styled.div`
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-left: 100px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    cursor: pointer;
-    
-
-`;
-
-export const AboutContainerDiv = styled.div`
-    background: #FAF5E1;
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-    height: auto;
-    margin-top: 122px;
-    margin-bottom: 113px;
-`;
-
-export const ContentBoxDiv = styled.div` 
-    display: flex;
-    justify-content: space-evenly;
-    max-width: 80vw;
-    margin: auto;
-    padding: 20px;
-    background: #FFFFFF;
-    border: 1px solid #DDD8C4;
-    flex-direction: column;
 `;
 
 export const TextBoxDiv = styled.div`
@@ -133,51 +55,43 @@ export const TextBoxDiv = styled.div`
     justify-content: flex-start;
     align-self: center;
     flex-direction: column;
-    max-width: 70vw;
+    max-width: 80vw;
     overflow: hidden;
     
     h1 {
         color: #DABC39;
         font-family: 'Montserrat', sans-serif;
-        font-size: 48px;
-        text-align: left;
-        padding-left: 20px;
+        font-size: 30px;
     }
 
     p {
         color: #000000;
         font-family: 'Montserrat', sans-serif;
-        font-size: 18px;
-        text-align: right;
+        font-size: 16px;
     }
 
     img {
-        float: right;
-        width: 20vw;
-        max-height: 28vh;
-        border-radius: 15px;
-        margin-left: 50px;
+        width: 70vw;
+        align-self: center;
     }
 
  @media only screen and (max-width: 450px) {
         justify-content: space-evenly;
+        max-width: 100vw;
+        padding: 10px;
         
         h1 {
-            font-size: 18px;
-            margin: 0;
+            font-size: 14px;
         }
 
         p {
-            font-size: 12px;
+            font-size: 10px;
             margin: 5px;
         }
 
         img {
-            float: right;
-            width: 40vw;
-            max-height: 30vh;
-            border-radius: 15px;
-            margin-left: 5px;
+            width: 100vw;
         }
     }
 `;  
+

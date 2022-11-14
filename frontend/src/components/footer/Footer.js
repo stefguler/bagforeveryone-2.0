@@ -134,7 +134,7 @@ const FadingBackground = styled(BaseModalBackground)`
 
 const StyledStoreModal = Modal.styled`
   width: 60vw;
-  height: 55vh;
+  height: 65vh;
   display: flex;
   align-items: left;
   flex-direction: column;
@@ -149,24 +149,27 @@ const StyledStoreModal = Modal.styled`
     font-size: 30px;
     color:#DABC39;
     margin-bottom: 0;
+    margin-top: 5px;
   }
   
   h3 {
     font-size: 20px;
     color: #DABC39;
     margin-bottom: 0;
+    margin-top: 5px;
   }
 
     p {
      font-size: 14px;
-     margin-top:0;
+     margin-top: 0;
+     
      color: #000000;
     }
 
     @media only screen and (max-width: 450px) {
         height: 65vh;
         width: 70vw;
-        margin-top: 100px;
+        margin-top: 5vh;
         padding: 0 10px 0 15px;
         h1 {
             font-size: 18px;

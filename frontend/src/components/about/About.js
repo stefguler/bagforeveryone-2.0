@@ -1,45 +1,64 @@
-import React from 'react'
-import { Link, animateScroll as scroll } from "react-scroll";
+import React, { useState } from 'react'
 import { 
-    LandingPageContainerDiv,
-    PictureContainerDiv,
-    ContentConteinerDiv,
-    StickyButtonDiv,
+    ImageSliderDiv,
 } from './About.styles'
-import About1 from './About1.2'
-import { useNavigate } from 'react-router-dom';
+
+const ImageSlider = ({slides}) => {
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const slideStyles = {
+        maxWidth: '100vw',
+        height: '100vh',
+        backgroundImagePosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundImage: `url(${slides[currentIndex].url})`
+    }
+
+    const leftArrowStyles = {
+        position: 'absolute',
+        top: '50%',
+        transform: 'translate(0, -50%)',
+        left: '32px',
+        fontSize: '45px',
+        color: '#fff',
+        zIndex: 1, 
+        cursor: 'pointer',
+    }
+    
+    const rightArrowStyles = {
+        position: 'absolute',
+        top: '50%',
+        transform: 'translate(0, -50%)',
+        right: '32px',
+        fontSize: '45px',
+        color: '#fff',
+        zIndex: 1, 
+        cursor: 'pointer',
+    }
+
+    const goToPrevious = () => {
+        const isFirstSlide = currentIndex === 0;
+        const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+        setCurrentIndex(newIndex);
+    }
+
+    const goToNext = () => {
+        const isLastSlide = currentIndex === slides.length - 1;
+        const newIndex = isLastSlide ? 0 : currentIndex + 1;
+        setCurrentIndex(newIndex);
+    }
 
 
-const LandingPage = () => {
-    const navigate = useNavigate()
     return (
-        <>
-        <LandingPageContainerDiv>
-            <PictureContainerDiv>
-                <ContentConteinerDiv>
-                    <p>The bagforeveryone project aims to bring together the strengths, experiences, and talents of people by teaching the transferable skill of sewing.</p>
-                    <button onClick={() => navigate("/donate")}>DONATE</button>
-                </ContentConteinerDiv>
-            </PictureContainerDiv>
-            <StickyButtonDiv>
-                <button>Stories</button>
-            </StickyButtonDiv> 
-            <Link
-            activeClass="active"
-            to="about"
-            spy={true}
-            smooth={true}
-            offset={-122}
-            duration={500}
-            ignoreCancelEvents={true}
-            >
-            Click to read more
-            </Link>
-            <About1 />
-        </LandingPageContainerDiv>
-        </>
+        <ImageSliderDiv>
+            <div style={leftArrowStyles} onclick={goToPrevious}>←</div>
+            <div style={rightArrowStyles} onclick={goToNext}>→</div>
+            <div style={slideStyles}></div>
+        </ImageSliderDiv>
     )
 }
 
-export default LandingPage
+export default ImageSlider;
 
