@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from order.models import Order
 
 User = get_user_model()
 
@@ -44,3 +45,7 @@ class Product(models.Model):
     sub_image_2 = models.ImageField(blank=True, upload_to=product_sub_image_2_path)
     sub_image_3 = models.ImageField(blank=True, upload_to=product_sub_image_3_path)
     stripe_price = models.CharField(max_length=75, blank=True)
+
+class ProductType(models.Model):
+    type = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
