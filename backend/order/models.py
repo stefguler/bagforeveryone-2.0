@@ -21,7 +21,7 @@ class Order(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=OPEN)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    products = models.ManyToManyField(to=Product, through="ProductType", related_name='order', blank=True)
+    products = models.ManyToManyField(to=Product, related_name='order', blank=True)
     # Infos that can come from the User or the Frontend Form:
     email = models.EmailField(max_length=30, blank=True)
     first_name = models.TextField(max_length=30, blank=True)

@@ -22,7 +22,7 @@ class OrderSerializer(serializers.ModelSerializer):
 class NewOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        exclude = ["status", "content"]
+        exclude = ["status"]
 
 
 class ChangeOrderStatusSerializer(serializers.ModelSerializer):
