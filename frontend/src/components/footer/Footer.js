@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
     FooterWrapperDiv,
     TabsContainerDiv,
@@ -27,12 +28,22 @@ const Footer = () => {
         setStoresIsOpen(!storesIsOpen);
       }
 
+      const navigate = useNavigate();
+
+      const handleNavigateTo = (destination) => {
+        navigate(`/${destination}`)
+      }
+    
+
     return (
         <> 
         <ModalProvider backgroundComponent={FadingBackground}>
             <FooterWrapperDiv>
             
                 <TabsContainerDiv>
+                    <TabsDiv>
+                    <p onClick={() => handleNavigateTo("team")}>Team</p>
+                    </TabsDiv>
                     <TabsDiv>
                         <p onClick={openStores}>Find Us</p>
                         <StyledStoreModal
