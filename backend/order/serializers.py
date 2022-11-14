@@ -33,7 +33,14 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = ["id", "status", "content", "buyer", "created", "updated", "email", "first_name", "last_name", "street", "street_number", "zip", "city", "country", "phone", "shipping_note", "products"]
 
-
+    def create(self, validated_data):
+        products = []
+        if 'producttype_set' in validated_data:
+            products = validated_data.pop('producttype_set')
+        order = Order.objects.create(**validated_data)
+        for product_data in products:
+            ProductType.objects.create(orderid=order, type=product_data['type'])
+        return order
 
 
 class NewOrderSerializer(serializers.ModelSerializer):
