@@ -7,17 +7,18 @@ import {
     StickyButtonDiv,
 } from './About.styles'
 import About1 from './About1.2'
+import { useNavigate } from 'react-router-dom';
 
 
 const LandingPage = () => {
-
+    const navigate = useNavigate()
     return (
         <>
         <LandingPageContainerDiv>
             <PictureContainerDiv>
                 <ContentConteinerDiv>
                     <p>The bagforeveryone project aims to bring together the strengths, experiences, and talents of people by teaching the transferable skill of sewing.</p>
-                    <button>DONATE</button>
+                    <button onClick={() => navigate("/donate")}>DONATE</button>
                 </ContentConteinerDiv>
             </PictureContainerDiv>
             <StickyButtonDiv>

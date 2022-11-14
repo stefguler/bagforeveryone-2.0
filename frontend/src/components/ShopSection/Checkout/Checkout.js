@@ -19,16 +19,19 @@ import {
   Subtotal,
   OrderButton,
   Price,
+  ProductGrid,
+  FadingBackground
 } from "./Checkout.styled.js";
 import { useEffect, useState } from "react";
-import { GoDiffAdded, GoDiffRemoved } from "react-icons/go";
-import { IconContext } from "react-icons";
+import { ModalProvider } from "styled-react-modal";
+import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
 
 
 export default function Checkout() {
   let [cart, setCart] = useState([]);
-  let [localCart, setLocalCart] = useState(localStorage.getItem("cart"));
-  const navigate = useNavigate();
+  let localCart = localStorage.getItem("cart");
+
+
   // // form states
   //   const [checkOutData, setCheckoutData] = useState(
   //     {
@@ -70,7 +73,9 @@ export default function Checkout() {
   const [country, setCountry] = useState("")
   const [phone, setPhone] = useState("")
   const [note, setNote] = useState("")
-  const [rerenderPage, setRerender] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+  const [scenario, setScenario] = useState();
 
   // handle inputs
   const handleBuyerChange = (e) => {
@@ -120,6 +125,8 @@ export default function Checkout() {
 
   }
 
+  console.log("cart from checkout, ", cart)
+
   const handleOrderSubmit = (e) => {
     e.preventDefault()
     let apiCart = JSON.stringify(cart);
@@ -162,10 +169,10 @@ export default function Checkout() {
 
   useEffect(() => {
 
-    if (localStorage.getItem("bagsAuth")) {
-   
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
+
+     if (localStorage.getItem("bagsAuth")) {
 
     const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/user/me/"
 
@@ -180,10 +187,11 @@ export default function Checkout() {
       .then(response => response.json())
       .then(data => setUserData(data))
 }
-  }, []);
+  }, [JSON.parse(localCart)?.length]);
 
   // If the user is logged in... autofill his information
     useEffect(() => {
+
         if (userData) {handleAutoFill()}
         console.log(userData)
     }, [userData]);
@@ -214,7 +222,9 @@ export default function Checkout() {
       let stringCart = JSON.stringify(cartCopy);
       localStorage.setItem("cart", stringCart);
     } else {
-      alert("This would exceed the available quantity")
+      setScenario("low stock")
+      toggleModal()
+      // alert("This would exceed the available quantity")
     }
   };
 
@@ -241,9 +251,19 @@ export default function Checkout() {
       localStorage.setItem("cart", stringCart);
    }
 
+   function toggleModal(e) {
+    setOpacity(0);
+    setIsOpen(!isOpen);
+  }
+
+  const resetIsOpen = () => {
+    setIsOpen(false)
+  } 
+
 
   return (
     <>
+     <ModalProvider backgroundComponent={FadingBackground}>
       <CheckoutContainer >
         <CheckoutHeader>Checkout</CheckoutHeader>
         <CheckoutForm onSubmit={(e) => handleOrderSubmit(e)}>
@@ -318,7 +338,8 @@ export default function Checkout() {
           <RightSide>
             <ShoppingCart>
               <span style={{ fontWeight: "bold", fontSize: "24px" }}>Order Summary</span>
-              {cart.filter((value, index, self) =>
+              <ProductGrid>
+              {cart?.filter((value, index, self) =>
                 index === self.findIndex((t) => (
                   t?.place === value?.place && t?.name === value?.name
                 ))
@@ -340,6 +361,7 @@ export default function Checkout() {
                   </>
                 );
               })}
+              </ProductGrid>
               <button type="button" name="orderItems" onClick={handleClearCart}>Clear Cart</button>
 
               <TotalsContainer>
@@ -355,7 +377,9 @@ export default function Checkout() {
 
           </RightSide>
         </CheckoutForm>
+        <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </CheckoutContainer>
+      </ModalProvider>
     </>
   );
 }

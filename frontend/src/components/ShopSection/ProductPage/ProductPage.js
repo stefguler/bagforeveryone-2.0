@@ -23,65 +23,68 @@ import {
   DetailDiv,
   DetailTitle,
   ToCartButton,
-  SpecialColors
+  SpecialColors,
+  FadingBackground
 } from "./ProductPage.styled";
 
 import { IoShareSocialSharp } from "react-icons/io5";
 import { BsArrowLeft } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import { ModalProvider } from "styled-react-modal";
+import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
 
 function ProductPage(props) {
-  const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState({});
   const [products, setProducts] = useState([]);
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
   const [avatar, setAvatar] = useState("");
+  const [imageGallery, setImageGallery] = useState([]);
+  const { id } = useParams()
+  const [category, setCategory] = useState()
   const navigate = useNavigate();
   const emoji = require("emoji-dictionary");
   const [amountToCart, setAmountToCart] = useState(1);
-  const [colors, setColors] = useState([
-    "#B2AFA0",
-    "#A51919",
-    "#36658F",
-    "#654A30",
-    "#AA8A39",
-    "#4B5C19",
-  ]);
-  const [imageGalleryPouch, setImageGalleryPouch] = useState([
-    "../assets/images/product/product_pouch_2.jpg",
-    "../assets/images/product/product_pouch_3.jpg",
-    "../assets/images/product/product_pouch_4.jpg",
-    "../assets/images/product/product_pouch.jpg",
-  ]);
-  const [imageGalleryBag, setImageGalleryBag] = useState([
-    "../assets/images/product/product_all_backbag_stand.jpg",
-    "../assets/images/product/product_all2_backbag.jpg",
-    "../assets/images/product/product_view1_backbag.jpg",
-  ]);
+  const [colors, setColors] = useState();
+  const [isOpen, setIsOpen] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+  const [scenario, setScenario] = useState();
+
 
   useEffect(() => {
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
+    setCategory(props.category)
+    setColors(["#B2AFA0", "#A51919", "#36658F", "#654A30", "#AA8A39", "#4B5C19"])
 
     let newProd;
     setProducts(props.products);
 
-    if (id === "1") {
+    if (category === "SH") {
       newProd = props.products?.filter((elem) => elem.name === "Shopper Gold");
       setSelectedProduct(newProd);
       setAvatar(newProd[0]?.image);
-    } else if (id === "2") {
+      changeImageGallery(newProd[0])
+
+    } else if (category === "PO") {
       newProd = props.products?.filter((elem) => elem.name === "Essential Bag");
       setSelectedProduct(newProd);
       setAvatar(newProd[0]?.image);
+      changeImageGallery(newProd[0])
+    }
+    else if (category === "DO") {
+      newProd = props.products?.filter((elem) => elem.id === parseInt(id));
+      setSelectedProduct(newProd);
+      setAvatar(newProd[0]?.image);
+      changeImageGallery(newProd[0])
     }
   }, [props.products]);
 
-
+  const changeImageGallery = (product) => {
+    setImageGallery([product?.sub_image_1, product?.sub_image_2, product?.sub_image_3, product?.image])
+  }
 
   const handleChangeProduct = async (color) => {
-    console.log("change gallery to color: ", color);
     // set product according to color
     let newProd;
     switch (color) {
@@ -89,36 +92,42 @@ function ProductPage(props) {
         newProd = products?.filter((elem) => elem.name === "Shopper Sandgrey");
         setSelectedProduct(newProd);
         setAvatar(newProd[0]?.image);
+        changeImageGallery(newProd[0])
         setAmountToCart(1);
         break;
       case "#A51919":
         newProd = products?.filter((elem) => elem.name === "Shopper Red");
         setSelectedProduct(newProd);
         setAvatar(newProd[0]?.image);
+        changeImageGallery(newProd[0])
         setAmountToCart(1);
         break;
       case "#36658F":
         newProd = products?.filter((elem) => elem.name === "Shopper Blue");
         setSelectedProduct(newProd);
         setAvatar(newProd[0]?.image);
+        changeImageGallery(newProd[0])
         setAmountToCart(1);
         break;
       case "#654A30":
         newProd = products?.filter((elem) => elem.name === "Shopper Brown");
         setSelectedProduct(newProd);
         setAvatar(newProd[0]?.image);
+        changeImageGallery(newProd[0])
         setAmountToCart(1);
         break;
       case "#AA8A39":
         newProd = products?.filter((elem) => elem.name === "Shopper Gold");
         setSelectedProduct(newProd);
         setAvatar(newProd[0]?.image);
+        changeImageGallery(newProd[0])
         setAmountToCart(1);
         break;
       case "#4B5C19":
         newProd = products?.filter((elem) => elem.name === "Shopper Olive");
         setSelectedProduct(newProd);
         setAvatar(newProd[0]?.image);
+        changeImageGallery(newProd[0])
         setAmountToCart(1);
         break;
       default:
@@ -126,7 +135,7 @@ function ProductPage(props) {
     }
   };
 
-  const handleShareLink = (link) => {
+  const handleShareLink = () => {
     navigator.clipboard.writeText(window.location.href);
   };
 
@@ -136,7 +145,6 @@ function ProductPage(props) {
 
   const handleChangeAmountToCart = (e) => {
     setAmountToCart(e.target.value);
-    console.log(amountToCart);
   };
 
   const handleAddToCart = (product) => {
@@ -144,23 +152,29 @@ function ProductPage(props) {
     const amountInCart = cart?.filter(item => item?.id === product?.id).length
 
     if (product.stock === 0) {
-      alert("Product currently out of Stock") 
+      setScenario("out of stock")
+      toggleModal()
+      // alert("Product currently out of Stock")
     }
 
     else if (parseInt(amountToCart) > product.stock) {
-      alert("The desired order quantity exceeds the available quantity")
+      setScenario("low stock")
+      toggleModal()
+      // alert("The desired order quantity exceeds the available quantity")
     }
-    
+
     else {
-      
+
       let cartCopy = [...cart];
 
       for (let index = 0; index < amountToCart; index++) {
-        
-        if (product.stock > amountInCart) { 
+
+        if (product.stock > amountInCart) {
           cartCopy.push(product);
         } else {
-          alert("This would exceed the available quantity")
+          setScenario("low stock")
+          toggleModal()
+          // alert("This would exceed the available quantity")
           return;
         }
       }
@@ -169,48 +183,60 @@ function ProductPage(props) {
       let stringCart = JSON.stringify(cartCopy);
       localStorage.setItem("cart", stringCart);
 
-    }      
+    }
 
     setAmountToCart(1);
-  
+
   };
+
+  const navigateToShopOrDonate = () => {
+    category !== "DO" ? navigate("/shop") : navigate("/donate")
+  }
+
+  function toggleModal(e) {
+    setOpacity(0);
+    setIsOpen(!isOpen);
+  }
+
+  const resetIsOpen = () => {
+    setIsOpen(false)
+  }
 
   return (
     <>
+     <ModalProvider backgroundComponent={FadingBackground}>
       <PageContainer>
         <NavigateContainer>
-          <BackToCatalogContainer onClick={() => navigate("/shop")}>
+          <BackToCatalogContainer onClick={() => navigateToShopOrDonate()}>
             <IconContext.Provider value={{ size: "50px" }}>
               <BsArrowLeft />
             </IconContext.Provider>
-            Back To Product Overview
+            {
+              category !== "DO" ?
+                <span>Back To Product Overview</span> :
+                <span>Back To Donation Overview</span>
+            }
           </BackToCatalogContainer>
         </NavigateContainer>
 
         <ProductContainer>
           <MediaContainer>
             <Avatar src={avatar}></Avatar>
-            <ImageGallery>
-              {id === "1"
-                ? imageGalleryBag.map((img, idx) => {
-                  return (
-                    <GalleryItem
-                      key={idx}
-                      src={img}
-                      onClick={() => handleChangeAvatar(img)}
-                    ></GalleryItem>
-                  );
-                })
-                : imageGalleryPouch.map((img, idx) => {
-                  return (
-                    <GalleryItem
-                      key={idx}
-                      src={img}
-                      onClick={() => handleChangeAvatar(img)}
-                    ></GalleryItem>
-                  );
-                })}
-            </ImageGallery>
+            {category !== "DO" ?
+              <ImageGallery>
+                {
+                  imageGallery.map((img, idx) => {
+                    return (
+                      <GalleryItem
+                        key={idx}
+                        src={img}
+                        onClick={() => handleChangeAvatar(img)}
+                      ></GalleryItem>
+                    );
+                  })
+                }
+              </ImageGallery> : null
+            }
           </MediaContainer>
           <Details>
             <DetailDiv>
@@ -219,39 +245,56 @@ function ProductPage(props) {
             </DetailDiv>
 
             <DetailDiv style={{ paddingBottom: "1rem" }}>
-              {selectedProduct[0]?.stock > 5 ? (
-                <StockAmount style={{ color: "green" }}>
-                  {selectedProduct[0]?.stock} on Stock!{" "}
-                  {emoji.getUnicode("blush")}
-                </StockAmount>
-              ) : selectedProduct[0]?.stock > 0 ? (
-                <StockAmount style={{ color: "orange" }}>
-                  {selectedProduct[0]?.stock} on Stock!{" "}
-                  {emoji.getUnicode("cold_sweat")}
-                </StockAmount>
-              ) : (
-                <StockAmount style={{ color: "red" }}>
-                  currently out of stock {emoji.getUnicode("sob")}
-                </StockAmount>
-              )}
+              {
+                category === "SH" ?
+
+                  selectedProduct[0]?.stock > 5 ? (
+                    <StockAmount style={{ color: "green" }}>
+                      {selectedProduct[0]?.stock} in Stock!{" "}
+                      {emoji.getUnicode("blush")}
+                    </StockAmount>
+                  ) : selectedProduct[0]?.stock > 0 ? (
+                    <StockAmount style={{ color: "orange" }}>
+                      {selectedProduct[0]?.stock} in Stock!{" "}
+                      {emoji.getUnicode("cold_sweat")}
+                    </StockAmount>
+                  ) : (
+                    <StockAmount style={{ color: "red" }}>
+                      currently out of stock {emoji.getUnicode("sob")}
+                    </StockAmount>
+                  ) : null
+              }
             </DetailDiv>
 
             <DetailDiv style={{ paddingBottom: "1rem" }}>
-              <DetailTitle>Colors</DetailTitle>   
-              <Colors>
-                {id === "1"
-                  ? colors.map((color, idx) => {
-                    return (
-                      <div
-                        key={idx}
-                        style={{ background: color }}
-                        onClick={() => handleChangeProduct(color)}
-                      />
-                    );
-                  })
-                  : 
-                  <SpecialColors>Essential Bags are created with surplus materials. The color is random. If you have specific color request, please tell us in the shipping form (checkout) in the extra field</SpecialColors>}
-              </Colors>
+
+              {category !== "DO" ?
+                <>
+                  <DetailTitle>Colors</DetailTitle>
+                  <Colors>
+                    {
+                      category === "SH" ?
+                        colors.map((color, idx) => {
+                          return (
+                            <div
+                              key={idx}
+                              style={{ background: color }}
+                              onClick={() => handleChangeProduct(color)}
+                            />
+                          );
+                        })
+                        : category === "PO" ?
+                          <SpecialColors>Essential Bags are created with surplus materials. The color is random. If you have specific color request, please tell us in the shipping form (checkout) in the extra field.</SpecialColors>
+                          : null
+                    }
+                  </Colors>
+                </> :
+                <DetailDiv style={{ paddingBottom: "0", fontSize: "16px" }}>
+
+                  <span>{selectedProduct[0]?.description}</span>
+
+                </DetailDiv>
+              }
             </DetailDiv>
 
             <DetailDiv style={{ paddingBottom: "1rem" }}>
@@ -272,21 +315,25 @@ function ProductPage(props) {
               </CartContainer>
             </DetailDiv>
 
-            <DetailDiv style={{ paddingBottom: "0" }}>
-              <Collapsible trigger="Material & measurements +">
-                <span>{selectedProduct[0]?.material}</span>
-                <span>{selectedProduct[0]?.dimensions}</span>
-              </Collapsible>
-            </DetailDiv>
-
-            <DetailDiv style={{ paddingBottom: "0" }}>
-              <Collapsible trigger="Description +">
-                <span>{selectedProduct[0]?.description}</span>
-              </Collapsible>
-            </DetailDiv>
+            {
+              category !== "DO" ?
+                <>
+                  <DetailDiv style={{ paddingBottom: "0" }}>
+                    <Collapsible trigger="Material & measurements +">
+                      <span>{selectedProduct[0]?.material}</span>
+                      <span>{selectedProduct[0]?.dimensions}</span>
+                    </Collapsible>
+                  </DetailDiv>
+                  <DetailDiv style={{ paddingBottom: "0" }}>
+                    <Collapsible trigger="Description +">
+                      <span>{selectedProduct[0]?.description}</span>
+                    </Collapsible>
+                  </DetailDiv>
+                </> : null
+            }
 
             <ShareContainer
-              onClick={() => handleShareLink(selectedProduct[0]?.share_link)}
+              onClick={() => handleShareLink()}
             >
               <IconContext.Provider value={{ size: "30px" }}>
                 <IoShareSocialSharp />
@@ -295,7 +342,9 @@ function ProductPage(props) {
             </ShareContainer>
           </Details>
         </ProductContainer>
+        <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </PageContainer>
+      </ModalProvider>
     </>
   );
 }
