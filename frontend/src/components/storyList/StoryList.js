@@ -6,12 +6,12 @@ import StoryCard from '../storyCard/StoryCard';
 import { SlMagnifier } from 'react-icons/sl';
 import SearchBar from '../Utilities/Filters/SearchBar/SearchBar';
 import { PageButton } from '../../styles/global.styles';
-import {  } from "styled-react-modal";
 
 const StoryList = () => {
 
   const [stories, setStories] = useState([]);
-  const localToken = `${JSON.parse(localStorage.getItem("auth"))}`;
+  // check for token in local storage:
+  const localToken = localStorage.getItem("bagsAuth");
   const navigate = useNavigate();
 
   //MODAL SETTINGS
@@ -32,7 +32,7 @@ const StoryList = () => {
   // post button click:
   const handlePostClick = () => {
     // check if logged in:
-    if (localToken === "null") {
+    if (localToken === null) {
       toggleModal();
     } else {
       navigate('/story/create');
@@ -44,11 +44,10 @@ const StoryList = () => {
       navigate('/login');
   }
 
-
   return (
     <>
       <WarningModalProvider backgroundComponent={FadingBackground}>
-        <LoginWarningModal 
+        <LoginWarningModal
           isOpen={isOpen}
           onBackgroundClick={toggleModal}
           allowScroll = {false}

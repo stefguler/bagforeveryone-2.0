@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StoryWrapper } from "../story-page/StoryPage.styles";
+import { StoryWrapper } from "../../pages/story-page/StoryPage.styles";
 
 export const CreateStoryWrapper = styled.section `
     position: fixed;

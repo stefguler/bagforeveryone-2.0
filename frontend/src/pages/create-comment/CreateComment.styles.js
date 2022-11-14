@@ -23,22 +23,12 @@ export const CreateStoryWrapper = styled.section `
         }
     }
 
-    .modal-story-button {
+    .close-comment {
         align-self: flex-start;
         margin-top: 1em;
         margin-left: 1em;
     }
 
-    .user-info-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-        margin: 1em 0;
-    }
-
-    .file-field {
-        margin: 0 auto;
-    }
 `
 
 export const FormWrapper = styled(StoryWrapper)`

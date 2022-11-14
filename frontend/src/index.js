@@ -20,6 +20,7 @@ import { store } from './redux/store';
 import Storiespage from './pages/stories/Storiespage';
 import StoryPage from "./pages/story-page/StoryPage";
 import CreateStory from "./pages/create-story/CreateStory";
+import CreateComment from './pages/create-comment/CreateComment'
 import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -30,10 +31,11 @@ root.render(
     <CookiesProvider>
     <BrowserRouter>
       <Routes>
-      <Route path="/about" element={<AboutPage />} />
+      <Route path="/" element={<AboutPage />} />
         <Route path="/story" element={<Storiespage />} />
         <Route path="/story/:id" element={<StoryPage />} />
         <Route path="/story/create" element={<CreateStory />} />
+        <Route path="/comment/create/:id" element={<CreateComment />} />
         <Route path="/create" element={<CreateProduct />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:id" element={<Product />} />
