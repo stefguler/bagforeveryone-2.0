@@ -12,7 +12,7 @@ const StyledModal = Modal.styled`
   justify-content: flex-start;
   align-items: left;
   color: #DABC39;
-  background-color: 'rgba(30, 30, 30, 0.95)';
+  background-color: rgba(255, 255, 255, 0.0);
   transition : all 0.3s ease-in-out;
   font-family: 'Montserrat', sans-serif;
   
@@ -61,7 +61,7 @@ const MissionModal = () => {
 }
 
 const FadingBackground = styled(BaseModalBackground)`
-  background-color: rgba(30, 30, 30, 0.95);
+  background-color: rgba(255, 255, 255, 0.92);
 `; 
 
 export default MissionModal
