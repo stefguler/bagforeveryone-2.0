@@ -23,7 +23,7 @@ class ListCreateOrderView(ListCreateAPIView):
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
-            return NewOrderSerializer
+            return OrderSerializer
         return OrderSerializer
 
     def get_queryset(self):
