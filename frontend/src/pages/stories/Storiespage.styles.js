@@ -7,14 +7,15 @@ export const PageWrapper = styled.div `
     margin: 0 auto;
     display: flex;
     width: 90%;
+    height: calc(100vh - 140px);
     gap: .5em;
     padding: .5em;
     flex-direction: column;
     align-items: center;
 
     @media (min-width: 1000px) {
-        margin-top: 4em;
-        margin-bottom: 5em;
+        margin-top: 70px;
+        margin-bottom: 70px;
     }
     
 `
