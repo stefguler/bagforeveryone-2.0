@@ -43,6 +43,8 @@ class RetrieveUpdateDeleteProductView(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     lookup_url_kwarg = 'id'
 
+    permission_classes = []
+
 
 class ListCategoryView(ListAPIView):
     serializer_class = CategorySerializer
