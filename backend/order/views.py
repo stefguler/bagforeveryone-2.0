@@ -96,27 +96,24 @@ class RetrieveUpdateDestroyOrderView(RetrieveUpdateDestroyAPIView):
     # class RetrieveUpdateDestroyPostView(RetrieveUpdateDestroyAPIView):
     #     """
     #        get:
-    #        Get a specific post by id
+    #        Get a specific order by id
     #
-    #        Get the content of one post by passing the post-id as a parameter into the URL.
+    #        Get the content of one order by passing the order-id as a parameter into the URL.
     #
     #        put:
-    #        Update a specific post by id
+    #        Update a specific order by id
     #
-    #        Update the entire content of a specific post. The entire data is required and will be overwritten.
-    #        Only allowed if user is owner of the post or staff.
+    #        Update the entire content of a specific order. The entire data is required and will be overwritten.
     #
     #        patch:
-    #        Update parts of a specific post by id
+    #        Update parts of a specific order by id
     #
-    #        Update partial data of a specific post.
-    #        Only allowed if user is owner of the post or staff.
+    #        Update partial data of a specific order.
     #
     #        delete:
-    #        Delete a post by id
+    #        Delete an order by id
     #
-    #        Delete a post by passing the post-id as a parameter into the URL.
-    #        Only allowed if user is owner of the post or staff.
+    #        Delete an order by passing the order-id as a parameter into the URL.
     #     """
 
     send_mail(
