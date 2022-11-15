@@ -4,7 +4,6 @@ import Modal from "styled-react-modal";
 
 // mobile designs first (480px width and less):
 export const StoryPageWrapper = styled.section `
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 

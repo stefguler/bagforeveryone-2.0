@@ -33,12 +33,6 @@ const NavbarLinks = () => {
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/team" className={({ isActive }) => isActive ? activeClassName : undefined}
-                    >
-                        TEAM
-                    </NavLink>
-                    </li>
-                    <li>
                     <NavLink to="/shop" className={({ isActive }) => isActive ? activeClassName : undefined}
                     >
                         BUY
