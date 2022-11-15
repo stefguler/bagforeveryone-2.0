@@ -33,16 +33,9 @@ const Storiespage = () => {
         </Media>
         {showNavbar && <Navbar />}
         <StoryList />
-        <Media queries={{ small: { minWidth: 480 } }}>
-          {matches =>
-            matches.small ? (
-              <Footer />
-            ) : (
-              <GiHamburgerMenu className='hamburger-footer' onClick={handleFooterClick} />
-            )
-          }
-        </Media>
-        {showFooter && <Footer />}
+        <Footer />
+          
+      
     </PageWrapper>
   )
 }

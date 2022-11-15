@@ -5,13 +5,17 @@ export const CreateStoryWrapper = styled.section `
     position: fixed;
     top: 0;
     left: 0;
-    background-color: black;
+    background-color: rgba(33, 33, 33, 0.7);
     width: 100%;
     height: 100%;
 
+
     .modal-story-wrapper {
-        margin: 1em;
         background-color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
 
         @media (min-width: 480px) {
             width: 50%;
@@ -27,9 +31,8 @@ export const CreateStoryWrapper = styled.section `
 
     .user-info-wrapper {
         display: flex;
-        align-items: center;
-        gap: 1em;
-        margin: 1em 0;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     .file-field {
