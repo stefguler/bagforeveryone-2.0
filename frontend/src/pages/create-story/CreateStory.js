@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CreateStoryWrapper } from './CreateStory.styles';
+import { CreateStoryWrapper, FormWrapper } from './CreateStory.styles';
 import { PageButton } from '../../styles/global.styles';
 import { UserHeader } from '../story-page/StoryPage.styles';
-import { FormWrapper } from './CreateStory.styles';
+import { PostButton } from './CreateStory.styles';
 
 const CreateStory = () => {
 
@@ -108,7 +108,7 @@ const CreateStory = () => {
                 <div className='modal-story-wrapper'>
                     <UserHeader>
                     <div className='user-info-wrapper'>
-                        <img src='../assets/images/user/user.png' alt='user avatar'></img>
+                        <img src='../assets/images/user/avatar.png' alt='user avatar'></img>
                         <span>{loggedInUser ? loggedInUser[0].username : loggedInUser}</span>
                     </div>
                     </UserHeader>
@@ -125,10 +125,10 @@ const CreateStory = () => {
                         <div className='file-field'>
                             <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
                         </div>
-                        <PageButton type={"submit"} 
+                        <PostButton type={"submit"} 
                                     onClick={CreateStory}
-                        >{created ? 'CREATED!' : 'Post'}
-                        </PageButton> 
+                        >{created ? 'CREATED!' : 'POST'}
+                        </PostButton> 
                     </ FormWrapper>
                 </div>
         </CreateStoryWrapper>

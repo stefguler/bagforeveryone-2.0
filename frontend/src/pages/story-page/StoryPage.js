@@ -111,7 +111,7 @@ const StoryPage = () => {
               <div className='modal-story-wrapper'>
                 <UserHeader>
                     <div className='user-display'>
-                      <img src={'../assets/images/user/user.png'} alt='user avatar'></img>
+                      <img src={'../assets/images/user/avatar.png'} alt='user avatar'></img>
                       <div className='user-info'>
                         <span>Author: {story.author}</span>
                         <span>Created on: {story ? story.created.substring(0, 10) : ''}

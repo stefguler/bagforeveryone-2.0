@@ -4,6 +4,7 @@ import { BaseModalBackground } from "styled-react-modal";
 
 export const Statement = styled.h1`
     font-size: 3em;
+    margin: 0 auto;
     animation-name: scale;
     animation-duration: 2s;
     text-align: center;

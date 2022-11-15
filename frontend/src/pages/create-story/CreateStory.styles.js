@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { PageButton } from "../../styles/global.styles";
 import { StoryWrapper } from "../story-page/StoryPage.styles";
 
 export const CreateStoryWrapper = styled.section `
@@ -18,7 +19,7 @@ export const CreateStoryWrapper = styled.section `
             margin: 0 auto;
         }
         @media (min-width: 650px) {
-            width: 75%;
+            max-width: 60%;
             margin: 0 auto;
         }
     }
@@ -49,4 +50,8 @@ export const FormWrapper = styled(StoryWrapper)`
         width: 95%;
         height: 10em;
     }
+`
+
+export const PostButton = styled(PageButton)`
+    padding: .5em;
 `

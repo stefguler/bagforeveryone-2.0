@@ -76,6 +76,8 @@ export const StoryPageWrapper = styled.section `
 // will change to grid and adjust column numbers:
 export const StoryListWrapper = styled.div `
 
+    margin: 0 auto;
+
     @media (min-width: 420px) {
             display: grid;
             grid-template-columns: 1fr 1fr;

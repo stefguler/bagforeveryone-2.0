@@ -81,7 +81,7 @@ const Comment = ({ id, pageId, user, created, content }) => {
         </CommenterButton>
         : ''}
         <div className='comment-header'>
-            <img src='../assets/images/user/user.png' alt='user avatar'></img>
+            <img src='../assets/images/user/avatar.png' alt='user avatar'></img>
             <div className='commenter-info'>
               <span>User: {user}</span>
               <span>Posted: {created.substring(0, 10)}</span>
