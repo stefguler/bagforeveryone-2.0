@@ -34,7 +34,7 @@ export default function Checkout() {
 
 
   // STRIPE START
-  const handleOrderClick = () => {
+  const handleOrderClick = (orderId) => {
       let stripeCart = [];
       const stripeCounter = {};
       cart.forEach(elem => {
@@ -48,7 +48,7 @@ export default function Checkout() {
         stripeList.forEach(elem => {
           stripeCart.push({price: elem[0], quantity: elem[1]})
         })
-        redirectToCheckout(stripeCart)
+        redirectToCheckout(stripeCart, orderId)
   }
 
   const [stripeError, setStripeError] = useState(null);
@@ -56,11 +56,12 @@ export default function Checkout() {
   const [loading, setLoading] = useState(false);
   let stripePromise;
 
-  const redirectToCheckout = async (list) => {
+  const redirectToCheckout = async (list, orderId) => {
+    console.log(list)
     const checkoutOptions = {
-      lineItems: list,
+      // lineItems: [{price: "price_1M2ygqIbEDX1qYr8ObgkRsnK", quantity: 1 }],
       mode: "payment",
-      successUrl: `${window.location.origin}/orderconfirmed`,
+      successUrl: `${window.location.origin}/orderconfirmed/${orderId}`,
       cancelUrl: `${window.location.origin}/cancel`
     }
     setLoading(true);
@@ -179,7 +180,7 @@ export default function Checkout() {
 
   const handleOrderSubmit = (e) => {
     // STRIPE:
-    handleOrderClick();
+    handleOrderClick(1);
 
     e.preventDefault();
     
