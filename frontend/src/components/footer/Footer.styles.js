@@ -2,92 +2,72 @@ import styled from "styled-components";
 // import "@fontsource/montserrat";
 
 export const FooterWrapperDiv = styled.div`
-    border: 1px solid #DDD8C4;
+    display: block;
+    box-sizing: border-box;
+    bottom: 0;
+    left: 0;
+    max-height: 70px;
+    width: 100vw;
+    align-items: center;
     background: rgba(255, 255, 255, 1);
-    font-size: .8em;
     position: fixed;
-    bottom: 4em;
-    left: 1em;
-
-    svg, a {
-        margin: .1em;
-        font-size: 1em;
-    }
-
-    p {
-        margin: 0;
-        width: fit-content;
-    }
-
-    div.social {
-        margin: 0;
-    }
-
-    @media (min-width: 480px) {
-        bottom: 0;
-        left: 0;
-        width: 100%;
-
-        svg, a {
-        font-size: 1.3em;
-        }
-	}
+    overflow: hidden;
 `;
+
 export const TabsContainerDiv = styled.div`
-    border-bottom: 1px solid #DDD8C4;
     display: flex;
-    flex-direction: column;
-    gap: 2em;
-    margin: 1em 0;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50vw;
+    margin-left: 25vw;
 
     *{
     cursor: pointer;
     color: #1E1E1E;
     font-family: 'Montserrat', sans-serif; 
+    font-size: 16px;
+    line-height: 0.5;
     }
 
-    @media (min-width: 480px) {
-        flex-direction: row;
-	}
-
-    @media (min-width: 800px) {
-        justify-content: center;
-        gap: 6em;
-	}
+    @media screen and (max-width: 900px) {
+        width: 90vw;
+        margin-left: 10vw;
+        *{ 
+        font-size: 10px;
+        }   
+    }
 `;
+
 export const TabsDiv = styled.div`
-    width: 100%;
-    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
+    padding: 0;
+  
     *{
-        margin-right: 10px;
+        margin-right: 5px;
     }
-    text {
-            :hover{
-            color: #DABC39;
-            }
+
+    p {
+        :hover{
+        color: #DABC39;
         }
+    }
 
-    @media (min-width: 480px) {
-        width: 25%;
-	}
 
-    @media (min-width: 800px) {
-       width: auto;
-	}
-
+    @media screen and (max-width: 480px) {
+        *{ 
+        font-size: 10px;
+        }   
+    }
 `;
+
 export const Signature = styled.div`
-    /* border: 1px solid magenta; */
+    margin: auto auto 0 0;
     color: black;
-    font-size: .6em;
-    padding: .2em;
+    font-size: 10px;
 
-    @media (min-width: 480px) {
-        font-size: 1em;
-	}
-
+    @media screen and (max-width: 480px) {
+        font-size: 4px;
+        
+    }
 `;

@@ -14,7 +14,6 @@ import VerifiedPage from "./pages/login/VerifiedPage";
 import TeamPage from "./pages/team/TeamPage";
 import OrderConfirmationPage from "./pages/orderConfirmation/OrderConfirmationPage";
 import AboutPage from "./pages/about/About";
-import UpdateStockPage from "./pages/updateStock/UpdateStock"
 import { Provider } from 'react-redux'
 import { store } from './redux/store';
 import Storiespage from './pages/stories/Storiespage';
@@ -50,7 +49,6 @@ root.render(
         <Route path="/validate" element={<ValidatePage />} />  
         <Route path="/verified" element={<VerifiedPage />} />     
         <Route path="/team" element={<TeamPage />} /> 
-        <Route path="/updateStockII" element={<UpdateStockPage />} /> 
         <Route path="/createproduct" element={<CreateProductPage />} /> 
         <Route path="/updatestock" element={<UpdateProductStockPage />} /> 
       </Routes>
