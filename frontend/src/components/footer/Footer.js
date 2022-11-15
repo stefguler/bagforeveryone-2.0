@@ -135,7 +135,7 @@ const FadingBackground = styled(BaseModalBackground)`
 
 const StyledStoreModal = Modal.styled`
   width: 60vw;
-  height: 65vh;
+  height: 60vh;
   display: flex;
   align-items: left;
   flex-direction: column;
@@ -167,8 +167,8 @@ const StyledStoreModal = Modal.styled`
      color: #000000;
     }
 
-    @media only screen and (max-width: 450px) {
-        height: 65vh;
+    @media only screen and (max-width: 900px) {
+        height: 55vh;
         width: 70vw;
         margin-top: 5vh;
         padding: 0 10px 0 15px;
@@ -189,7 +189,7 @@ const StyledStoreModal = Modal.styled`
 
 const StyledContactModal = Modal.styled`
   width: 40vw;
-  height: 40vh;
+  height: 45vh;
   display: flex;
   align-items: left;
   flex-direction: column;
@@ -219,8 +219,8 @@ const StyledContactModal = Modal.styled`
      color: #000000;
     }
 
-    @media only screen and (max-width: 450px) {
-        height: 50vh;
+    @media only screen and (max-width: 900px) {
+        height: 30vh;
         width: 70vw;
         padding: 0 10px 0 15px;
         h1 {
