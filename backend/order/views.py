@@ -113,7 +113,7 @@ class RetrieveUpdateDestroyOrderView(RetrieveUpdateDestroyAPIView):
     #        delete:
     #        Delete an order by id
     #
-    #        Delete an order by passing the order-id as a parameter into the URL.
+    #        Delete an order by passing the order-id as a parameter into the URL
     #     """
 
     send_mail(
