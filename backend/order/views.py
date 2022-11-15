@@ -1,5 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, GenericAPIView
 from rest_framework.response import Response
+from django.core.mail import send_mail
 # from rest_framework.permissions import IsAuthenticated
 
 from order.models import Order
@@ -10,12 +11,12 @@ from order.serializers import OrderSerializer, NewOrderSerializer, ChangeOrderSt
 class ListCreateOrderView(ListCreateAPIView):
     """
         get:
-        Get a List of all orders
+        Get a List of all orders.
 
         Get a List of all orders made by anyone.
 
         post:
-        Create a new order
+        Create a new order.
 
         Create a new order. The current User will be set as buyer.
         """
@@ -31,7 +32,6 @@ class ListCreateOrderView(ListCreateAPIView):
         return Order.objects.order_by("-created")
 
     permission_classes = []
-
 
 # class ListOwnOrderView(ListAPIView):
 #     """
@@ -67,34 +67,63 @@ class ListCreateOrderView(ListCreateAPIView):
 #         return Order.objects.filter(buyer=self.kwargs["userID"])
 #
 #
-# class RetrieveUpdateDestroyPostView(RetrieveUpdateDestroyAPIView):
-#     """
-#        get:
-#        Get a specific post by id
-#
-#        Get the content of one post by passing the post-id as a parameter into the URL.
-#
-#        put:
-#        Update a specific post by id
-#
-#        Update the entire content of a specific post. The entire data is required and will be overwritten.
-#        Only allowed if user is owner of the post or staff.
-#
-#        patch:
-#        Update parts of a specific post by id
-#
-#        Update partial data of a specific post.
-#        Only allowed if user is owner of the post or staff.
-#
-#        delete:
-#        Delete a post by id
-#
-#        Delete a post by passing the post-id as a parameter into the URL.
-#        Only allowed if user is owner of the post or staff.
-#     """
-#     # permission_classes = [
-#     #     XXX IsOwnerOrReadOnly
-#     # ]
-#     serializer_class = OrderSerializer
-#     queryset = Order.objects.all()
-#     lookup_field = 'id'
+class RetrieveUpdateDestroyOrderView(RetrieveUpdateDestroyAPIView):
+    """
+       get:
+       Get a specific post by id
+
+       Get the content of one post by passing the post-id as a parameter into the URL.
+
+       put:
+       Update a specific post by id
+
+       Update the entire content of a specific post. The entire data is required and will be overwritten.
+       Only allowed if user is owner of the post or staff.
+
+       patch:
+       Update parts of a specific post by id
+
+       Update partial data of a specific post.
+       Only allowed if user is owner of the post or staff.
+
+       delete:
+       Delete a post by id
+
+       Delete a post by passing the post-id as a parameter into the URL.
+       Only allowed if user is owner of the post or staff.
+    """
+
+    # class RetrieveUpdateDestroyPostView(RetrieveUpdateDestroyAPIView):
+    #     """
+    #        get:
+    #        Get a specific order by id
+    #
+    #        Get the content of one order by passing the order-id as a parameter into the URL.
+    #
+    #        put:
+    #        Update a specific order by id
+    #
+    #        Update the entire content of a specific order. The entire data is required and will be overwritten.
+    #
+    #        patch:
+    #        Update parts of a specific order by id
+    #
+    #        Update partial data of a specific order.
+    #
+    #        delete:
+    #        Delete an order by id
+    #
+    #        Delete an order by passing the order-id as a parameter into the URL.
+    #     """
+
+    send_mail(
+        'bags order',
+        'Thank you for sending your money to Vedrans stripe account. He will use the money for good things, like buying himself some nice things.',
+        'bag.for.everyone.contact@gmail.com',
+        ['manuelwinkler@bluewin.ch'],
+        fail_silently=False,
+    )
+
+    serializer_class = ChangeOrderStatusSerializer
+    queryset = Order.objects.all()
+    lookup_field = 'id'
