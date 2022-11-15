@@ -10,12 +10,12 @@ from order.serializers import OrderSerializer, NewOrderSerializer, ChangeOrderSt
 class ListCreateOrderView(ListCreateAPIView):
     """
         get:
-        Get a List of all orders
+        Get a List of all orders.
 
         Get a List of all orders made by anyone.
 
         post:
-        Create a new order
+        Create a new order.
 
         Create a new order. The current User will be set as buyer.
         """
