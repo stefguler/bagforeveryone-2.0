@@ -1,5 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, GenericAPIView
 from rest_framework.response import Response
+from django.core.mail import send_mail
 # from rest_framework.permissions import IsAuthenticated
 
 from order.models import Order
@@ -10,12 +11,12 @@ from order.serializers import OrderSerializer, NewOrderSerializer, ChangeOrderSt
 class ListCreateOrderView(ListCreateAPIView):
     """
         get:
-        Get a List of all orders
+        Get a List of all orders.
 
         Get a List of all orders made by anyone.
 
         post:
-        Create a new order
+        Create a new order.
 
         Create a new order. The current User will be set as buyer.
         """
@@ -32,6 +33,14 @@ class ListCreateOrderView(ListCreateAPIView):
 
     permission_classes = []
 
+    def perform_create(self, serializer):
+        send_mail(
+            'bags order',
+            'Thank you for sending your money to Vedrans stripe account. He will use the money for good things, like buying himself some nice things.',
+            'bag.for.everyone.contact@gmail.com',
+            ['manuelwinkler@bluewin.ch'],
+            fail_silently=False,
+        )
 
 # class ListOwnOrderView(ListAPIView):
 #     """

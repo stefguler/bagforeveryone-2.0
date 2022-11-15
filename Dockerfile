@@ -18,6 +18,7 @@ RUN chmod +x ./scripts
 
 RUN /opt/conda/bin/conda env create -f /backend/requirements.yml
 ENV PATH /opt/conda/envs/team-2/bin:$PATH
+ENV PYTHONDONTWRITEBYTECODE=1
 RUN echo "source activate team-2">~/.bashrc
 
 WORKDIR /frontend
