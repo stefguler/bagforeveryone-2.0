@@ -1,7 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, GenericAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework import filters
 from post.models import Post
 from post.permissions import IsOwnerOrReadOnly
 from post.serializers import PostSerializer, NewPostSerializer
@@ -23,6 +23,9 @@ class ListCreatePostView(ListCreateAPIView):
     permission_classes = [
         # XXX
     ]
+    # search filtering:
+    search_fields = ['content', 'title']
+    filter_backends = (filters.SearchFilter,)
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -34,7 +37,7 @@ class ListCreatePostView(ListCreateAPIView):
         return Post.objects.order_by("-created")
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(author=self.request.user)
 
 
 class ListOwnPostView(ListAPIView):
@@ -51,7 +54,7 @@ class ListOwnPostView(ListAPIView):
     serializer_class = PostSerializer
 
     def get_queryset(self):
-        return Post.objects.filter(owner=self.request.user)
+        return Post.objects.filter(author=self.request.user)
 
 
 class ListUserPostView(ListAPIView):
@@ -102,3 +105,5 @@ class RetrieveUpdateDestroyPostView(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     lookup_field = 'id'
+
+    # Search Posts (content) by keyword within content

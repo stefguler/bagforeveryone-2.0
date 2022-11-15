@@ -1,29 +1,24 @@
 import styled from "styled-components";
-import { PageButton } from "../../styles/global.styles";
-import { StoryWrapper } from "../story-page/StoryPage.styles";
+import { StoryWrapper } from "../../pages/story-page/StoryPage.styles";
 
 export const CreateStoryWrapper = styled.section `
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(33, 33, 33, 0.7);
+    background-color: black;
     width: 100%;
     height: 100%;
 
-
     .modal-story-wrapper {
+        margin: 1em;
         background-color: white;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
 
         @media (min-width: 480px) {
             width: 90%;
             margin: 0 auto;
         }
         @media (min-width: 650px) {
-            max-width: 60%;
+            width: 75%;
             margin: 0 auto;
         }
     }
@@ -36,8 +31,9 @@ export const CreateStoryWrapper = styled.section `
 
     .user-info-wrapper {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        align-items: center;
+        gap: 1em;
+        margin: 1em 0;
     }
 
     .file-field {
@@ -53,8 +49,4 @@ export const FormWrapper = styled(StoryWrapper)`
         width: 95%;
         height: 10em;
     }
-`
-
-export const PostButton = styled(PageButton)`
-    padding: .5em;
 `

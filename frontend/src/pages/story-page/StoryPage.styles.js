@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { PageButton } from "../../styles/global.styles";
+import { BaseModalBackground, ModalProvider } from "styled-react-modal";
+import Modal from "styled-react-modal";
 
 export const CloseButton = styled(PageButton) `
     margin: 1em 0 1em 1em;
     align-self: flex-start;
 `
+
 export const DarkBackground = styled.div `
     position: fixed;
     display: inline-block;
@@ -33,6 +36,7 @@ export const StoryWrapper = styled.section `
         font-size: .8em;
         padding: 1em;
         border-radius: 5px;
+        min-width: 90%;
     }
 
     // story text:
@@ -92,6 +96,11 @@ export const UserButton = styled.div `
     align-items: center;
     align-self: flex-start;
 
+    :active {
+        transform: scale(0.98);
+        box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    }
+
     // react 3 dot icon:
     .options-icon {
         border: 1px solid lightgray;
@@ -140,9 +149,10 @@ export const FullImageModal = styled.div `
 `
 
 export const Image = styled.img `
-        display: block;
-        max-width: 100%;
-        margin: 0 auto;
+    max-height: 95%;
+    max-width: 95%;
+    display: block;
+    margin: 0 auto;   
 `
 
 export const CloseModalButton = styled(PageButton) `
@@ -152,3 +162,32 @@ export const CloseModalButton = styled(PageButton) `
     margin-top: 1em;
     margin-left: 1em;
 `
+
+export const FadingBackground = styled(BaseModalBackground)`
+    color: #DABC39;
+    .delete-warning {
+        padding: 2em;
+        background-color: white;
+        border-radius: 20px;
+        width: 20em;
+        height: 20em;
+        display: flex;
+        gap: 2em;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+`;
+
+export const DeleteWarningModal = styled(Modal)`
+
+`;
+
+export const DeleteModalProvider = styled(ModalProvider)`
+`;
+
+export const CommentButton = styled(PageButton)`
+    width: fit-content;
+    margin: 1em auto;
+`;

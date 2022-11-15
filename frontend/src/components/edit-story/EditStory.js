@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CreateStoryWrapper, FormWrapper } from './CreateStory.styles';
+import { CreateStoryWrapper } from './EditStory.styles';
 import { PageButton } from '../../styles/global.styles';
-import { UserHeader } from '../story-page/StoryPage.styles';
-import { PostButton } from './CreateStory.styles';
+import { UserHeader } from '../../pages/story-page/StoryPage.styles';
+import { FormWrapper } from './EditStory.styles';
+import { useParams } from 'react-router-dom';
 
-const CreateStory = () => {
+const EditStory = props => {
 
     const [loggedInUser, setLoggedInUser] = useState('');
     const localToken = (JSON.parse(localStorage.getItem("bagsAuth"))).bagsToken;
+    const { id } = useParams();
 
     // fetch logged-in user:
     useEffect(() => {
@@ -29,10 +31,11 @@ const CreateStory = () => {
     const [storyImage, setStoryImage] = useState(null);
     const [storyData, setStoryData] = useState(
         {
-        title: "",
-        content: ""
+        title: props.title,
+        content: props.content
         }
     )
+    
     const [created, setCreated] = useState(false);
 
     const handleStoryChange = e => {
@@ -49,7 +52,7 @@ const CreateStory = () => {
         setStoryImage(imageUrl[0]);
     }
 
-    //   Post a story:   
+    //   Update a story:   
     const CreateStory = e => {
         e.preventDefault();
         // after successful posting:
@@ -62,20 +65,6 @@ const CreateStory = () => {
                 content: ""
             })
             navigate('/story');
-        }
-
-        const formData = new FormData();
-
-        formData.append("title", storyData.title);
-        formData.append("content", storyData.content);
-        formData.append("image", storyImage);
-        const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/post/"
-        const config = {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${localToken}`
-            },
-            body: formData,
         }
 
         if (!storyData.title) {
@@ -91,15 +80,30 @@ const CreateStory = () => {
             return;
         };
 
+        const formData = new FormData();
+
+        formData.append("title", storyData.title);
+        formData.append("content", storyData.content);
+        formData.append("image", storyImage);
+        const url = `https://bag-for-everyone.propulsion-learn.ch/backend/api/post/${id}/`
+        const config = {
+            method: "PATCH",
+            headers: {           
+                "Authorization": `Bearer ${localToken}`
+            },
+            body: formData,
+        }
         fetch(url, config)
-            .then(response => {
-                response.json();
-                setCreated(true);
-            })
-            .then(data => {
-                setTimeout(cleanUp, 2000);
-            })
-            .catch(error => console.log(error))
+        .then(response => {
+                response.json()
+                if (response.status === 200) {
+                    setCreated(true);
+                }
+        })
+        .then(data => {
+            setTimeout(cleanUp, 2000);
+        })
+        .catch(error => alert(error))
     }
 
     return (
@@ -108,31 +112,31 @@ const CreateStory = () => {
                 <div className='modal-story-wrapper'>
                     <UserHeader>
                     <div className='user-info-wrapper'>
-                        <img src='../assets/images/user/avatar.png' alt='user avatar'></img>
+                        <img src='../assets/images/user/user.png' alt='user avatar'></img>
                         <span>{loggedInUser ? loggedInUser[0].username : loggedInUser}</span>
                     </div>
                     </UserHeader>
                     <FormWrapper>
                         <label>
-                        Your title *
+                        Edit title *
                         </label>
-                        <input className='form-input' id="title" type="text" name="title" onChange = {handleStoryChange} required></input>
+                        <input className='form-input' value={storyData.title} id="title" type="text" name="title" onChange = {handleStoryChange} required></input>
                         <label>
-                        Your story *
+                        Edit story *
                         </label>
-                        <textarea id="story" name="content" onChange = {handleStoryChange} required></textarea>
-                        <label htmlFor="select">Upload image:</label>
+                        <textarea value={storyData.content} id="story" name="content" onChange = {handleStoryChange} required></textarea>
+                        <label htmlFor="select">Choose the new image:</label>
                         <div className='file-field'>
                             <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
                         </div>
-                        <PostButton type={"submit"} 
+                        <PageButton type={"submit"} 
                                     onClick={CreateStory}
-                        >{created ? 'CREATED!' : 'POST'}
-                        </PostButton> 
+                        >{created ? 'SUCCESS!' : 'Edit'}
+                        </PageButton> 
                     </ FormWrapper>
                 </div>
         </CreateStoryWrapper>
     )
 }
 
-export default CreateStory
+export default EditStory
