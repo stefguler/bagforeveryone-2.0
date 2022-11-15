@@ -21,7 +21,7 @@ class Order(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=OPEN)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    products = models.ManyToManyField(to=Product, related_name="order", blank=True)
+    products = models.TextField(max_length=30, blank=True)
     # Infos that can come from the User or the Frontend Form:
     email = models.EmailField(max_length=30, blank=True)
     first_name = models.TextField(max_length=30, blank=True)
@@ -38,7 +38,3 @@ class Order(models.Model):
 
     def __str__(self):
         return f'ID {self.pk}: {self.email}'
-
-class ProductType(models.Model):
-    type = models.ForeignKey("product.Product", on_delete=models.CASCADE)
-    orderid = models.ForeignKey("order.Order", on_delete=models.CASCADE)
