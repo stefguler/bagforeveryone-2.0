@@ -43,7 +43,6 @@ export const StyledTeamContainer = styled.div`
             gap: 10px;
             height: 170px;
             margin-top: 30px;
-            radius: 15px;
 
             label {
                 text-align: center;

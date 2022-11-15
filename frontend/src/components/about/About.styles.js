@@ -7,8 +7,8 @@ export const AboutContainerDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     width: 100vw;
-    margin-top: 70px;
-    margin-bottom: 70px;
+    margin-top: 7em;
+    margin-bottom: 6em;
     flex-direction: column;
 `;
 
