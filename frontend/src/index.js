@@ -22,6 +22,9 @@ import StoryPage from "./pages/story-page/StoryPage";
 import CreateStory from "./pages/create-story/CreateStory";
 import CreateComment from './pages/create-comment/CreateComment'
 import { CookiesProvider } from "react-cookie";
+import CreateProductPage from "./pages/createProductPage/createProductPage";
+import UpdateProductStockPage from "./pages/udpateProductStockPage/UpdateProductStockPage";
+import MissionModal from "./components/mission/Mission";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -31,14 +34,15 @@ root.render(
     <CookiesProvider>
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<AboutPage />} />
+      <Route path="/" element={<MissionModal />} />
+      <Route path="/about" element={<AboutPage />} />
         <Route path="/story" element={<Storiespage />} />
         <Route path="/story/:id" element={<StoryPage />} />
         <Route path="/story/create" element={<CreateStory />} />
         <Route path="/comment/create/:id" element={<CreateComment />} />
         <Route path="/create" element={<CreateProduct />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/shop/:id" element={<Product />} />
+        <Route path="/:page" element={<ShopPage />} />
+        <Route path="/shop/:category/:id" element={<Product />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/orderconfirmed" element={<OrderConfirmationPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -46,7 +50,9 @@ root.render(
         <Route path="/validate" element={<ValidatePage />} />  
         <Route path="/verified" element={<VerifiedPage />} />     
         <Route path="/team" element={<TeamPage />} /> 
-        <Route path="/updateStock" element={<UpdateStockPage />} /> 
+        <Route path="/updateStockII" element={<UpdateStockPage />} /> 
+        <Route path="/createproduct" element={<CreateProductPage />} /> 
+        <Route path="/updatestock" element={<UpdateProductStockPage />} /> 
       </Routes>
     </BrowserRouter>
     </CookiesProvider>

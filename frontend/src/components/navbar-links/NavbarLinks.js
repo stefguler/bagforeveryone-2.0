@@ -18,10 +18,10 @@ const NavbarLinks = () => {
     return (
         <NavbarWrapper>
             <GroupLeft>
-                <Logo onClick={() => navigate('/')} src='../assets/images/logo/logo.png'></Logo>
+                <Logo onClick={() => navigate('/about')} src='../../assets/images/logo/logo.png'></Logo>
                 <ul>
                     <li>
-                    <NavLink to="/" style={({ isActive }) => isActive ? activeStyle : undefined}
+                    <NavLink to="/about" style={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                     ABOUT
                     </NavLink>

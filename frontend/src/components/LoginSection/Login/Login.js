@@ -64,7 +64,7 @@ const Login = () => {
 
             localStorage.setItem("bagsAuth", JSON.stringify(jsObject));
             console.log("the token was stored to local storage");
-            navigate("/")
+            navigate("/about")
         }
       }, [token]);
 

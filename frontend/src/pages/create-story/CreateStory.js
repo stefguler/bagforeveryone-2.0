@@ -72,7 +72,7 @@ const CreateStory = () => {
         const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/post/"
         const config = {
             method: "POST",
-            headers: {           
+            headers: {
                 "Authorization": `Bearer ${localToken}`
             },
             body: formData,
@@ -93,10 +93,8 @@ const CreateStory = () => {
 
         fetch(url, config)
             .then(response => {
-                response.json()
-                if (response.status === 500) {
-                    setCreated(true);
-                }
+                response.json();
+                setCreated(true);
             })
             .then(data => {
                 setTimeout(cleanUp, 2000);

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { BaseModalBackground } from "styled-react-modal";
+
 
 export const CheckoutContainer = styled.div`
     display: flex;
@@ -89,10 +91,8 @@ export const DeliveryInfoForm = styled.div`
 `
 export const RightSide = styled.div`
     display: flex;
-    position: fixed;
-    right: 10%;
     flex-direction: column;
-    min-width: 25%;
+    min-width: 50%;
     padding: 1rem;
     gap: 1rem;
 
@@ -126,6 +126,13 @@ export const ShoppingCart = styled.div`
   padding: 1rem;
   border: 1px solid #DABC39;
 `
+
+export const ProductGrid = styled.div`
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 1rem;
+ 
+ `
 
 export const Price = styled.div`
 
@@ -289,3 +296,9 @@ export const AddRemoveContainer = styled.div`
           }
 
         }`
+
+export const FadingBackground = styled(BaseModalBackground)`
+opacity: ${(props) => props.opacity};
+transition: all 0.3s ease-in-out;
+`;
+

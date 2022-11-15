@@ -9,7 +9,6 @@ export default function AboutPage() {
 
   return (
         <>
-        <Mission />
         <Navbar />
         <LandingPage />
         <Footer />

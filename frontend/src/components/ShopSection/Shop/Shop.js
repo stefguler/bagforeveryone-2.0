@@ -5,7 +5,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Sidebar from "react-sidebar";
 import { useEffect } from "react";
-import Cart from  "../Cart/Cart"
+import { useParams } from "react-router-dom";
 import {
   PageSection,
   StickyCartContainer,
@@ -15,23 +15,35 @@ import {
   AddRemoveContainer,
   SidebarFooter,
   SubTotalContainer,
-  CheckoutContainer
+  CheckoutContainer,
+  FadingBackground
 
 } from "./Shop.styled";
 import { useNavigate } from "react-router-dom";
+import { ModalProvider } from "styled-react-modal";
+import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
 
 export default function Shop() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   let [cart, setCart] = useState([]);
   let localCart = localStorage.getItem("cart");
   const navigate = useNavigate();
-
-
+  const {page} = useParams();
+  const [pageRouting, setPageRouting] = useState()
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NjQwNjYwLCJpYXQiOjE2NjgwODU0NjAsImp0aSI6IjU4NjNkOWY1MjUxZDRiNzM4NzY0NTc3MTNkZWI3YTk5IiwidXNlcl9pZCI6MX0.9gMDpZdC1yI3Os1QWDpmDOU-KU1XVeo-m-Qz-nuYiBQ";
+  const [isOpen, setIsOpen] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+  const [scenario, setScenario] = useState();
+  
   useEffect(() => {
+
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
-  }, [])
-  
+
+      setPageRouting(page)
+    
+  }, [JSON.parse(localCart)?.length, page]);
 
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
@@ -49,7 +61,9 @@ export default function Shop() {
       let stringCart = JSON.stringify(cartCopy);
       localStorage.setItem("cart", stringCart);
     } else {
-      alert("This would exceed the available quantity")
+      setScenario("low stock")
+      toggleModal()
+      // alert("This would exceed the available quantity")
     }
   };
 
@@ -57,9 +71,9 @@ const handleRemoveFromCart = (product) => {
 
   let cartCopy = [...cart];
   const index = cartCopy.map(object => object.id).indexOf(product.id)
-  console.log(index)
   cartCopy.splice(index, 1)
-
+  // try using slice to avoid changing the order within the array!!!
+  // ...ARRAY.slice(0, index).concat(a.slice(index + 1)) ??
 
   setCart(cartCopy);
   let stringCart = JSON.stringify(cartCopy);
@@ -67,9 +81,22 @@ const handleRemoveFromCart = (product) => {
 
 }
 
+function toggleModal(e) {
+  setOpacity(0);
+  setIsOpen(!isOpen);
+}
+
+const resetIsOpen = () => {
+  setIsOpen(false)
+}
+
+
+
+
 
 return (
     <>
+    <ModalProvider backgroundComponent={FadingBackground}>
       <PageSection>
         <Sidebar
           sidebar={
@@ -90,8 +117,8 @@ return (
                 ))
                 ).map((product, idx) => {
                   return (
-                    <>
-                      <ProductContainer key = {idx}>
+                    <div key = {idx}>
+                      <ProductContainer>
                         <img src={product?.image} alt="product in cart"></img>
                         <div>
                           <span>{product?.name}</span>
@@ -103,7 +130,7 @@ return (
                           </AddRemoveContainer>
                         </div>
                       </ProductContainer>
-                    </>
+                    </div>
                   );
                 })}
                 </>
@@ -146,9 +173,11 @@ return (
               }
               </div>
           </StickyCartContainer>
-          <Catalog />
+          <Catalog page={pageRouting}/>
         </Sidebar>
+        <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </PageSection>
+      </ModalProvider>
     </>
   );
 }

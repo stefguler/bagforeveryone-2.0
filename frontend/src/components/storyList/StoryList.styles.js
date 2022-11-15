@@ -36,6 +36,23 @@ export const StoryPageWrapper = styled.section `
         max-width: 400px;
     }
 
+    .search-story {
+        min-width: 75%;
+        padding: 0.3rem;
+        border: none;
+        border-bottom: 1px solid #D3D3D3;
+    }
+
+    /* img {
+        display: block;
+        max-width: 100%;
+        margin: 0 auto;
+        width: 250px; 
+        aspect-ratio: 1 / 1;
+        object-fit: cover; 
+        object-position: 100% 0;
+    } */
+
     @media (min-width: 480px) {
             // new distance due to change of header and footer:
             margin: 5em 0;

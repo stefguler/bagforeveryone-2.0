@@ -19,16 +19,19 @@ import {
   Subtotal,
   OrderButton,
   Price,
+  ProductGrid,
+  FadingBackground
 } from "./Checkout.styled.js";
 import { useEffect, useState } from "react";
-import { GoDiffAdded, GoDiffRemoved } from "react-icons/go";
-import { IconContext } from "react-icons";
+import { ModalProvider } from "styled-react-modal";
+import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
 import { loadStripe } from "@stripe/stripe-js"
 
 
 export default function Checkout() {
   let [cart, setCart] = useState([]);
-  let [localCart, setLocalCart] = useState(localStorage.getItem("cart"));
+  let localCart = localStorage.getItem("cart");
+
 
   // STRIPE START
   const handleOrderClick = () => {
@@ -122,7 +125,9 @@ export default function Checkout() {
   const [country, setCountry] = useState("")
   const [phone, setPhone] = useState("")
   const [note, setNote] = useState("")
-  const [rerenderPage, setRerender] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [opacity, setOpacity] = useState(0);
+  const [scenario, setScenario] = useState();
 
   // handle inputs
   const handleBuyerChange = (e) => {
@@ -173,32 +178,58 @@ export default function Checkout() {
   }
 
   const handleOrderSubmit = (e) => {
-    e.preventDefault()
-    let apiCart = JSON.stringify(cart);
-    // console.log("submited")
-    const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/order/"
-    const formData = new FormData()
-    formData.append("products", apiCart)
-    formData.append("email", email)
-    formData.append("first_name", first_name)
-    formData.append("last_name", last_name)
-    formData.append("street", street)
-    formData.append("street_number", street_number)
-    formData.append("zip", zip)
-    formData.append("city", city)
-    formData.append("country", country)
-    formData.append("phone", phone)
-    formData.append("shopping_note", note)
+    // STRIPE:
+    handleOrderClick();
 
-    // console.log("cart: ", cart)
-    // console.log("formData: ", formData)
-    for (var pair of formData.entries()) {
-      console.log("item in formdata", pair[0]+ ', ' + pair[1]);
-  }
+    e.preventDefault();
+    
+    const apiCart = cart.map(product => product.id);
+    
+
+    const apiCartFormatted = JSON.stringify(apiCart);
+    
+    console.log("submited")
+    const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/order/"
+    // const formData = new FormData()
+    // formData.append("products", apiCart)
+    // formData.append("email", email)
+    // formData.append("first_name", first_name)
+    // formData.append("last_name", last_name)
+    // formData.append("street", street)
+    // formData.append("street_number", street_number)
+    // formData.append("zip", zip)
+    // formData.append("city", city)
+    // formData.append("country", country)
+    // formData.append("phone", phone)
+    // formData.append("shopping_note", note)
+
+    const body = {
+      products: apiCart,
+      email: email,
+      first_name: first_name,
+      last_name: last_name,
+      street: street,
+      street_number: street_number,
+      zip: zip,
+      city: city,
+      country: country,
+      phone: phone,
+      shopping_note: note
+    }
+
+    console.log("cart: ", cart);
+  //   console.log("formData: ", formData)
+  //   for (var pair of formData.entries()) {
+  //     console.log("item in formdata", pair[0]+ ', ' + pair[1]);
+  // }
 
     const config = {
       method: "POST",
-      body: formData
+            headers: new Headers({
+                "Authorization": `Bearer ${JSON.parse(localStorage.getItem("bagsAuth")).bagsToken}`,
+                "Content-Type": "application/json"
+      }),
+      body: JSON.stringify(body)
     }
 
     fetch(url, config)
@@ -213,11 +244,10 @@ export default function Checkout() {
   }
 
   useEffect(() => {
-
-    if (localStorage.getItem("bagsAuth")) {
-   
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
+
+     if (localStorage.getItem("bagsAuth")) {
 
     const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/user/me/"
 
@@ -232,10 +262,11 @@ export default function Checkout() {
       .then(response => response.json())
       .then(data => setUserData(data))
 }
-  }, []);
+  }, [JSON.parse(localCart)?.length]);
 
   // If the user is logged in... autofill his information
     useEffect(() => {
+
         if (userData) {handleAutoFill()}
         console.log(userData)
     }, [userData]);
@@ -266,7 +297,9 @@ export default function Checkout() {
       let stringCart = JSON.stringify(cartCopy);
       localStorage.setItem("cart", stringCart);
     } else {
-      alert("This would exceed the available quantity")
+      setScenario("low stock")
+      toggleModal()
+      // alert("This would exceed the available quantity")
     }
   };
 
@@ -293,8 +326,19 @@ export default function Checkout() {
       localStorage.setItem("cart", stringCart);
    }
 
+   function toggleModal(e) {
+    setOpacity(0);
+    setIsOpen(!isOpen);
+  }
+
+  const resetIsOpen = () => {
+    setIsOpen(false)
+  }
+
+
   return (
     <>
+     <ModalProvider backgroundComponent={FadingBackground}>
       <CheckoutContainer >
         <CheckoutHeader>Checkout</CheckoutHeader>
         <CheckoutForm onSubmit={(e) => handleOrderSubmit(e)}>
@@ -369,7 +413,8 @@ export default function Checkout() {
           <RightSide>
             <ShoppingCart>
               <span style={{ fontWeight: "bold", fontSize: "24px" }}>Order Summary</span>
-              {cart.filter((value, index, self) =>
+              <ProductGrid>
+              {cart?.filter((value, index, self) =>
                 index === self.findIndex((t) => (
                   t?.place === value?.place && t?.name === value?.name
                 ))
@@ -391,6 +436,7 @@ export default function Checkout() {
                   </>
                 );
               })}
+              </ProductGrid>
               <button type="button" name="orderItems" onClick={handleClearCart}>Clear Cart</button>
 
               <TotalsContainer>
@@ -402,12 +448,13 @@ export default function Checkout() {
               </TotalsContainer>
             </ShoppingCart>
 
-            <OrderButton onClick={ handleOrderClick } disabled={loading}>
-                {loading ? 'Processing' : 'Place Order'}</OrderButton>
+            <OrderButton type="submit" onClick={handleOrderSubmit}>Place Order</OrderButton>
 
           </RightSide>
         </CheckoutForm>
+        <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </CheckoutContainer>
+      </ModalProvider>
     </>
   );
 }
