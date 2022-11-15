@@ -16,6 +16,7 @@ COPY ./backend /backend
 COPY ./scripts /scripts
 RUN chmod +x ./scripts
 
+ENV PYTHONDONTWRITEBYTECODE=1
 RUN /opt/conda/bin/conda env create -f /backend/requirements.yml
 ENV PATH /opt/conda/envs/team-2/bin:$PATH
 RUN echo "source activate team-2">~/.bashrc
