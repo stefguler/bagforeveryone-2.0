@@ -25,6 +25,7 @@ import {
 import { useEffect, useState } from "react";
 import { ModalProvider } from "styled-react-modal";
 import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
+import { loadStripe } from "@stripe/stripe-js"
 
 
 export default function Checkout() {
@@ -32,6 +33,57 @@ export default function Checkout() {
   let localCart = localStorage.getItem("cart");
 
 
+  // STRIPE START
+  const handleOrderClick = () => {
+      let stripeCart = [];
+      const stripeCounter = {};
+      cart.forEach(elem => {
+        if (!stripeCounter.hasOwnProperty(elem.stripe_price)) {
+          stripeCounter[elem.stripe_price] = 1;
+        } else {
+          stripeCounter[elem.stripe_price] += 1;
+        }
+      })
+        let stripeList = Object.entries(stripeCounter);
+        stripeList.forEach(elem => {
+          stripeCart.push({price: elem[0], quantity: elem[1]})
+        })
+        redirectToCheckout(stripeCart)
+  }
+
+  const [stripeError, setStripeError] = useState(null);
+  if (stripeError) alert(stripeError);
+  const [loading, setLoading] = useState(false);
+  let stripePromise;
+
+  const redirectToCheckout = async (list) => {
+    const checkoutOptions = {
+      lineItems: list,
+      mode: "payment",
+      successUrl: `${window.location.origin}/orderconfirmed`,
+      cancelUrl: `${window.location.origin}/cancel`
+    }
+    setLoading(true);
+    // console.log("redirecting to checkout");
+
+    const stripe = await getStripe();
+
+    const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    console.log("Stripe checkout error", error)
+
+    if (error) setStripeError(error.message);
+    setLoading(false);
+  }
+
+  const getStripe = () => {
+      if (!stripePromise) {
+          stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+      }
+      return stripePromise;
+  }
+  // STRIPE COMPLETE
+
+  const navigate = useNavigate();
   // // form states
   //   const [checkOutData, setCheckoutData] = useState(
   //     {
@@ -125,35 +177,59 @@ export default function Checkout() {
 
   }
 
-  console.log("cart from checkout, ", cart)
-
   const handleOrderSubmit = (e) => {
-    e.preventDefault()
-    let apiCart = JSON.stringify(cart);
+    // STRIPE:
+    handleOrderClick();
+
+    e.preventDefault();
+    
+    const apiCart = cart.map(product => product.id);
+    
+
+    const apiCartFormatted = JSON.stringify(apiCart);
+    
     console.log("submited")
     const url = "https://bag-for-everyone.propulsion-learn.ch/backend/api/order/"
-    const formData = new FormData()
-    formData.append("products", apiCart)
-    formData.append("email", email)
-    formData.append("first_name", first_name)
-    formData.append("last_name", last_name)
-    formData.append("street", street)
-    formData.append("street_number", street_number)
-    formData.append("zip", zip)
-    formData.append("city", city)
-    formData.append("country", country)
-    formData.append("phone", phone)
-    formData.append("shopping_note", note)
+    // const formData = new FormData()
+    // formData.append("products", apiCart)
+    // formData.append("email", email)
+    // formData.append("first_name", first_name)
+    // formData.append("last_name", last_name)
+    // formData.append("street", street)
+    // formData.append("street_number", street_number)
+    // formData.append("zip", zip)
+    // formData.append("city", city)
+    // formData.append("country", country)
+    // formData.append("phone", phone)
+    // formData.append("shopping_note", note)
 
-    console.log("cart: ", cart)
-    console.log("formData: ", formData)
-    for (var pair of formData.entries()) {
-      console.log("item in formdata", pair[0]+ ', ' + pair[1]);
-  }
+    const body = {
+      products: apiCart,
+      email: email,
+      first_name: first_name,
+      last_name: last_name,
+      street: street,
+      street_number: street_number,
+      zip: zip,
+      city: city,
+      country: country,
+      phone: phone,
+      shopping_note: note
+    }
+
+    console.log("cart: ", cart);
+  //   console.log("formData: ", formData)
+  //   for (var pair of formData.entries()) {
+  //     console.log("item in formdata", pair[0]+ ', ' + pair[1]);
+  // }
 
     const config = {
       method: "POST",
-      body: formData
+            headers: new Headers({
+                "Authorization": `Bearer ${JSON.parse(localStorage.getItem("bagsAuth")).bagsToken}`,
+                "Content-Type": "application/json"
+      }),
+      body: JSON.stringify(body)
     }
 
     fetch(url, config)
@@ -168,7 +244,6 @@ export default function Checkout() {
   }
 
   useEffect(() => {
-
     localCart = JSON.parse(localCart);
     if (localCart) setCart(localCart);
 
@@ -258,7 +333,7 @@ export default function Checkout() {
 
   const resetIsOpen = () => {
     setIsOpen(false)
-  } 
+  }
 
 
   return (

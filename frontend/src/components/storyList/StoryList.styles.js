@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { BaseModalBackground, ModalProvider } from "styled-react-modal";
+import Modal from "styled-react-modal";
 
 // mobile designs first (480px width and less):
 export const StoryPageWrapper = styled.section `
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 
@@ -34,6 +35,23 @@ export const StoryPageWrapper = styled.section `
         max-width: 400px;
     }
 
+    .search-story {
+        min-width: 75%;
+        padding: 0.3rem;
+        border: none;
+        border-bottom: 1px solid #D3D3D3;
+    }
+
+    /* img {
+        display: block;
+        max-width: 100%;
+        margin: 0 auto;
+        width: 250px; 
+        aspect-ratio: 1 / 1;
+        object-fit: cover; 
+        object-position: 100% 0;
+    } */
+
     @media (min-width: 480px) {
             // new distance due to change of header and footer:
             margin: 5em 0;
@@ -57,6 +75,8 @@ export const StoryPageWrapper = styled.section `
 // will change to grid and adjust column numbers:
 export const StoryListWrapper = styled.div `
 
+    margin: 0 auto;
+
     @media (min-width: 420px) {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -70,7 +90,27 @@ export const StoryListWrapper = styled.div `
         grid-gap: .5em;
         padding: .5em;
     }
-    
  `
 
+export const FadingBackground = styled(BaseModalBackground)`
+    color: #DABC39;
+    .warning {
+        background-color: white;
+        border-radius: 20px;
+        width: 20em;
+        height: 20em;
+        display: flex;
+        gap: 2em;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+`;
+
+export const LoginWarningModal = styled(Modal)`
+
+`;
+
+export const WarningModalProvider = styled(ModalProvider)`
+`;
     

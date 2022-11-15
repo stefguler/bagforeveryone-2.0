@@ -8,7 +8,6 @@ User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Post
         fields = '__all__'
@@ -20,7 +19,11 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class NewPostSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Post
         fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['author'] = UserSerializer(instance.author).data
+        return representation

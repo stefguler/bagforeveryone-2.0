@@ -44,6 +44,10 @@ export const GlobalStyle = createGlobalStyle`
         left: .8em;
         z-index: 2;
     }
+
+    textarea, .form-input {
+        font-family: 'Montserrat', sans-serif;
+    }
 `;
 
 export const PageButton = styled.button`
@@ -53,6 +57,12 @@ export const PageButton = styled.button`
     border-radius: 15px;
     font-family: 'Montserrat', sans-serif;
     color: black;
+
+    :active {
+        transform: scale(0.9);
+        box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    }
+   
 `
 
     

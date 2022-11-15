@@ -72,6 +72,8 @@ const handleRemoveFromCart = (product) => {
   let cartCopy = [...cart];
   const index = cartCopy.map(object => object.id).indexOf(product.id)
   cartCopy.splice(index, 1)
+  // try using slice to avoid changing the order within the array!!!
+  // -> cartCopy.slice(0, index).concat(a.slice(index + 1))
 
   setCart(cartCopy);
   let stringCart = JSON.stringify(cartCopy);
@@ -115,8 +117,8 @@ return (
                 ))
                 ).map((product, idx) => {
                   return (
-                    <>
-                      <ProductContainer key = {idx}>
+                    <div key = {idx}>
+                      <ProductContainer>
                         <img src={product?.image} alt="product in cart"></img>
                         <div>
                           <span>{product?.name}</span>
@@ -128,7 +130,7 @@ return (
                           </AddRemoveContainer>
                         </div>
                       </ProductContainer>
-                    </>
+                    </div>
                   );
                 })}
                 </>

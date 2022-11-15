@@ -1,67 +1,64 @@
 import React from 'react'
-import styled from "styled-components";
 import { useState } from 'react';
-import Modal, { ModalProvider, BaseModalBackground } from "styled-react-modal";
+import  { ModalProvider } from "styled-react-modal";
+import { useNavigate } from 'react-router-dom';
+import { Statement, StyledModal, FadingBackground, 
+Sentence, Reference } from './Mission.styles';
 
+const MissionModal = () => {  
 
-const StyledModal = Modal.styled`
-  width: 70vw;
-  height: 50vh;
-  display: flex;
-  flex-direction: collumn;
-  justify-content: flex-start;
-  align-items: left;
-  color: #DABC39;
-  background-color: rgba(255, 255, 255, 0.0);
-  transition : all 0.3s ease-in-out;
-  font-family: 'Montserrat', sans-serif;
-  
-  h3 {
-    font-size: 50px;
-}
-    p {
-     font-size: 14px;
-    }
+    const [isOpen, setIsOpen] = useState(true);
+    const navigate = useNavigate();
 
-    @media only screen and (max-width: 450px) {
+    setTimeout(() => navigate('/about'), 8000);
 
-        h3 { 
-            font-size: 30px;
-            width: 250px;
-        }
-
-        p {
-            font-size: 18px;
-           }
-    }      
-`;
-
-
-const MissionModal = () => {
-
-    const [isOpen, setIsOpen] = useState(true)
-
-    function closeModal(e) {
-      setIsOpen(!isOpen)
+    const handleModal = () => {
+      setIsOpen(!isOpen);
+      navigate('/about');
     }
 
     return (
             <ModalProvider backgroundComponent={FadingBackground}>
                 <StyledModal
                         isOpen={isOpen}
-                        onBackgroundClick={closeModal}
+                        onBackgroundClick={handleModal}
                         allowScroll = {false}
-                        onClick={closeModal}
+                        onClick={handleModal}
                         >
-                        <h3>'We are living in the era of barbed wire and walls…please let us stop this shipwreck of civilization!'</h3>
+                        <Statement>
+                          <Sentence>
+                            <span>'We</span>
+                            <span>are</span>
+                            <span> living </span>
+                            <span>in</span>
+                            <span>an</span>
+                            <span>era</span>
+                            <span>of</span>
+                            <span>barbed</span>
+                            <span>wire</span>
+                            <span>and</span>
+                            <span>walls...</span>
+                          </Sentence>
+                          <Sentence>
+                            <span>please</span>
+                            <span>let</span>
+                            <span>us</span>
+                            <span>stop</span>
+                            <span>this</span>
+                            <span>shipwreck</span>
+                            <span>of</span>
+                            <span>civilization!'</span>
+                          </Sentence>
+                          <Reference>
+                          <span>Pope Francis while visiting camp for refugees in Moria, on the Greek island of Lesvos</span>
+                          </Reference>
+                        </Statement>
+                        {/* <Statement>'We are living in the era of barbed wire and walls… please let us stop this shipwreck of civilization!'</Statement> */}
+                        {/* 'We are living in the era of barbed wire and walls… please let us stop this shipwreck of civilization! */}
                         { /*  <p>Pope Francis when visiting camp for refugees in Moria, on the Greek island of Lesvos  </p> */ }
                 </StyledModal>
             </ModalProvider>
     )
 }
-
-const FadingBackground = styled(BaseModalBackground)`
-  background-color: rgba(255, 255, 255, 0.92);
-`; 
 
 export default MissionModal

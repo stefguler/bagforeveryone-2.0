@@ -119,24 +119,23 @@ import styled from "styled-components";
 // }
 // `
 
-// export const Logo = styled.img`
-//     width: 80px;
-//     padding: .5em;
+export const Logo = styled.img`
+    border: 5px solid red;
+    width: 50px;
 
-//     @media (min-width: 480px) {
-//         width: 100px;
-// 	}
+    /* @media (min-width: 480px) {
+        width: 100px;
+	}
 
-//     @media (min-width: 800px) {
-//         width: 120px;
-//         padding: 1em;
-// 	}
+    @media (min-width: 800px) {
+        padding: 1em;
+	} */
 
-//     @media (min-width: 1000px) {
-//         width: 150px;
-//         padding: 1em;
-// 	}
-// `
+    /* @media (min-width: 1000px) {
+        width: 70px;
+        padding: 1em;
+	} */
+`
 
 export const NavWrapper = styled.nav`
     display: flex;
