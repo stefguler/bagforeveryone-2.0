@@ -49,7 +49,7 @@ const NavbarLinks = () => {
             <GroupRight>
                 <ul>
                     <li>
-                        <NavLink id="donate" to="/donate" className={({ isActive }) => isActive ? activeClassName : undefined}
+                        <NavLink to="/donate" className={({ isActive }) => isActive ? activeClassName : undefined}
                         >
                             <Donate onClick={() => navigate('/donate')}/>
                             DONATE
@@ -57,7 +57,7 @@ const NavbarLinks = () => {
                     </li>
                     {(!authSlice.accessToken || authSlice.accessToken.length < 1) &&
                         <li>
-                            <NavLink onClick={() => localStorage.removeItem('bagsAuth')} id="login" to="/login" className={({ isActive }) => isActive ? activeClassName : undefined}
+                            <NavLink onClick={() => localStorage.removeItem('bagsAuth')} to="/login" className={({ isActive }) => isActive ? activeClassName : undefined}
                             >
                                 <Login />
                                 {localToken ? 'LOGOUT' : 'LOGIN'}

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { StoryListWrapper, StoryPageWrapper, 
-  FadingBackground, LoginWarningModal, WarningModalProvider } from './StoryList.styles';
+  FadingBackground, LoginWarningModal, 
+  WarningModalProvider, PostButton } from './StoryList.styles';
 import StoryCard from '../storyCard/StoryCard';
 import { SlMagnifier } from 'react-icons/sl';
 import { PageButton } from '../../styles/global.styles';
@@ -86,7 +87,7 @@ const StoryList = () => {
             </div>
             <SlMagnifier onClick={handleSearch}/>
           </div>
-          <PageButton onClick={handlePostClick}>POST</PageButton>
+          <PostButton onClick={handlePostClick}>POST</PostButton>
         </div>
         <StoryListWrapper>
             {stories && allStories}

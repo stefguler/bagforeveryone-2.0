@@ -25,7 +25,8 @@ import {
 import { useEffect, useState } from "react";
 import { ModalProvider } from "styled-react-modal";
 import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
-import { loadStripe } from "@stripe/stripe-js"
+import { loadStripe } from "@stripe/stripe-js";
+import { StickyButtonDiv } from "../../about/About.styles.js";
 
 
 export default function Checkout() {
@@ -453,6 +454,9 @@ export default function Checkout() {
 
           </RightSide>
         </CheckoutForm>
+          <StickyButtonDiv>
+                <button onClick={() => navigate("/story")}>Story</button>
+          </StickyButtonDiv>
         <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </CheckoutContainer>
       </ModalProvider>

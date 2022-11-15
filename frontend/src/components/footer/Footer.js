@@ -40,7 +40,7 @@ const Footer = () => {
         <ModalProvider backgroundComponent={FadingBackground}>
             <FooterWrapperDiv>
             <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v15.0" nonce="gi0i2cN5"></script>
+<script async defer crossOrigin="anonymous" src="https://connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v15.0" nonce="gi0i2cN5"></script>
                 <TabsContainerDiv>
                     <TabsDiv>
                     <p onClick={() => handleNavigateTo("team")}>Team</p>
@@ -110,7 +110,7 @@ const Footer = () => {
                         <a href="https://www.instagram.com">  {  /* how do i share page on social media? */ }
                             <SlSocialInstagram />     
                         </a>
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbag-for-everyone.propulsion-learn.ch%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbag-for-everyone.propulsion-learn.ch%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">
                             <SlSocialFacebook />    
                         </a>
                         <a href="https://twitter.com">

@@ -188,6 +188,7 @@ export const DeleteModalProvider = styled(ModalProvider)`
 `;
 
 export const CommentButton = styled(PageButton)`
-    width: fit-content;
     margin: 1em auto;
+    padding: .5em 1em;
+    font-size: 1.2;
 `;

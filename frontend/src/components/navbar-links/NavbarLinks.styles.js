@@ -52,60 +52,41 @@ export const NavbarWrapper = styled.nav`
     @media (min-width: 780px) {
         font-size: 1em;
 	}
-
-    #donate {
-        border: 1px solid #DABC39;
-        border-radius: 5px;
-
-        @media (min-width: 900px) {
-            padding: .5em;
-            border-radius: 10px;
-	    }
-    }
-
-    #login {
-        border-left: 1px solid #DABC39;
-        padding-left: .1em;
-
-        @media (min-width: 900px) {
-            padding-left: 1em;
-	    }
-    }
 `
 // Navbar React icons:
 export const SewingMachine = styled(GiSewingMachine)`
     font-size: 1.5em;
     position: relative;
     top: .1em;
-    right: .2em;
+    right: .5em;
 `
 
 export const Book = styled(GiBlackBook)`
     font-size: 1.5em;
     position: relative;
     top: .1em;
-    right: .2em;
+    right: .5em;
 `
 
 export const Bag = styled(SlHandbag)`
     font-size: 1.5em;
     position: relative;
     top: .1em;
-    right: .2em;
+    right: .5em;
 `
 
 export const Donate = styled(BiDonateHeart)`
     font-size: 1.5em;
     position: relative;
     top: .1em;
-    right: .2em;
+    right: .5em;
 `
 
 export const Login = styled(SlLogin)`
     font-size: 1.5em;
     position: relative;
     top: .1em;
-    right: .2em;
+    right: .5em;
 `
 
 export const GroupLeft = styled.div`

@@ -41,7 +41,7 @@ const About1 = () => {
             </TextBoxDiv>
             <StickyButtonDiv>
                 <button onClick={() => handleNavigateTo("story")}>Story</button>
-            </StickyButtonDiv> 
+            </StickyButtonDiv>
         </AboutContainerDiv>
         </>
     )

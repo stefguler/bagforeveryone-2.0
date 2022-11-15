@@ -21,6 +21,13 @@ export const CreateStoryWrapper = styled.section `
             width: 75%;
             margin: 0 auto;
         }
+
+        .select {
+            padding: 1em;
+            border: 1px solid lightgray;
+            border-radius: 5px; 
+            font-family: 'Montserrat', sans-serif;
+        }
     }
 
     .modal-story-button {

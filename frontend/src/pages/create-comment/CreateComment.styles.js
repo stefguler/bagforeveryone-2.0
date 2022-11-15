@@ -1,27 +1,13 @@
 import styled from "styled-components";
 import { StoryWrapper } from "../story-page/StoryPage.styles";
 
-export const CreateStoryWrapper = styled.section `
+export const CreateCommentWrapper = styled(StoryWrapper) `
     position: fixed;
     top: 0;
     left: 0;
     background-color: black;
     width: 100%;
     height: 100%;
-
-    .modal-story-wrapper {
-        margin: 1em;
-        background-color: white;
-
-        @media (min-width: 480px) {
-            width: 90%;
-            margin: 0 auto;
-        }
-        @media (min-width: 650px) {
-            width: 75%;
-            margin: 0 auto;
-        }
-    }
 
     .close-comment {
         align-self: flex-start;
@@ -32,6 +18,7 @@ export const CreateStoryWrapper = styled.section `
 `
 
 export const FormWrapper = styled(StoryWrapper)`
+    width: 60%;
     gap: 1em;
     padding: 1em;
 

@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { BaseModalBackground, ModalProvider } from "styled-react-modal";
 import Modal from "styled-react-modal";
+import { PageButton } from '../../styles/global.styles'
 
 // mobile designs first (480px width and less):
 export const StoryPageWrapper = styled.section `
     display: flex;
+    margin-top: 3em;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
     flex-direction: column;
     justify-content: flex-start; 
     width: 100%;
@@ -41,31 +45,10 @@ export const StoryPageWrapper = styled.section `
         border: none;
         border-bottom: 1px solid #D3D3D3;
     }
-
-    /* img {
-        display: block;
-        max-width: 100%;
-        margin: 0 auto;
-        width: 250px; 
-        aspect-ratio: 1 / 1;
-        object-fit: cover; 
-        object-position: 100% 0;
-    } */
-
-    @media (min-width: 480px) {
-            // new distance due to change of header and footer:
-            margin: 5em 0;
-
-        }
     
     .search-form {
         justify-content: center;
     }
-
-    @media (min-width: 800px) {
-        // new distance due to change of header:
-            margin-top: 7em;
-        }
     
     .search-form {
         justify-content: center;
@@ -114,3 +97,8 @@ export const LoginWarningModal = styled(Modal)`
 export const WarningModalProvider = styled(ModalProvider)`
 `;
     
+export const PostButton = styled(PageButton)`
+    padding: 1em 2em;
+    border-radius: 20px;
+    font-size: 1em;
+`;

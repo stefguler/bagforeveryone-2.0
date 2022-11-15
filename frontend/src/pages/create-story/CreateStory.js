@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreateStoryWrapper, FormWrapper } from './CreateStory.styles';
 import { PageButton } from '../../styles/global.styles';
-import { UserHeader } from '../story-page/StoryPage.styles';
-import { PostButton } from './CreateStory.styles';
+import { PostButton, CreateStoryUserHeader } from './CreateStory.styles';
 
 const CreateStory = () => {
 
@@ -106,12 +105,10 @@ const CreateStory = () => {
         <CreateStoryWrapper>
                 <PageButton onClick={() => navigate('/story')} className='modal-story-button'>X</PageButton>
                 <div className='modal-story-wrapper'>
-                    <UserHeader>
-                    <div className='user-info-wrapper'>
-                        <img src='../assets/images/user/avatar.png' alt='user avatar'></img>
-                        <span>{loggedInUser ? loggedInUser[0].username : loggedInUser}</span>
-                    </div>
-                    </UserHeader>
+                    <CreateStoryUserHeader>
+                            <img src='../assets/images/user/avatar.png' alt='user avatar'></img>
+                            <span>{loggedInUser ? loggedInUser[0].username : loggedInUser}</span>
+                    </CreateStoryUserHeader>
                     <FormWrapper>
                         <label>
                         Your title *
@@ -123,7 +120,7 @@ const CreateStory = () => {
                         <textarea id="story" name="content" onChange = {handleStoryChange} required></textarea>
                         <label htmlFor="select">Upload image:</label>
                         <div className='file-field'>
-                            <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
+                            <input id="select" className='select' multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
                         </div>
                         <PostButton type={"submit"} 
                                     onClick={CreateStory}

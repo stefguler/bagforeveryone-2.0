@@ -28,6 +28,7 @@ export const StoryWrapper = styled.section `
 
             h3:hover{
                 opacity: 1;
+                cursor: pointer;
             }
 	}
 

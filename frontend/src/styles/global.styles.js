@@ -15,6 +15,13 @@ export const GlobalStyle = createGlobalStyle`
         *{
             box-sizing: border-box;
         }
+        button {
+            cursor: pointer;
+        }
+
+        img {
+            cursor: pointer;
+        }
     }
     // hamburger icon in mobile size (it is
     // a flex item):
@@ -48,6 +55,17 @@ export const GlobalStyle = createGlobalStyle`
     textarea, .form-input {
         font-family: 'Montserrat', sans-serif;
     }
+
+    // this applies to file input form button:
+    input::file-selector-button {
+        background-color: #DABC39;
+        border: 3px solid #DABC39;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        border-radius: 15px;
+        font-family: 'Montserrat', sans-serif;
+        color: black;
+        font-size: 1.2em;
+    }
 `;
 
 export const PageButton = styled.button`
@@ -57,6 +75,7 @@ export const PageButton = styled.button`
     border-radius: 15px;
     font-family: 'Montserrat', sans-serif;
     color: black;
+    font-size: 1.2em;
 
     :active {
         transform: scale(0.9);

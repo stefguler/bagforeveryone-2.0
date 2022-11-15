@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreateStoryWrapper } from './EditStory.styles';
 import { PageButton } from '../../styles/global.styles';
+import { PostButton } from '../../pages/create-story/CreateStory.styles';
 import { UserHeader } from '../../pages/story-page/StoryPage.styles';
 import { FormWrapper } from './EditStory.styles';
 import { useParams } from 'react-router-dom';
@@ -112,7 +113,7 @@ const EditStory = props => {
                 <div className='modal-story-wrapper'>
                     <UserHeader>
                     <div className='user-info-wrapper'>
-                        <img src='../assets/images/user/user.png' alt='user avatar'></img>
+                        <img src='../assets/images/user/avatar.png' alt='user avatar'></img>
                         <span>{loggedInUser ? loggedInUser[0].username : loggedInUser}</span>
                     </div>
                     </UserHeader>
@@ -127,12 +128,12 @@ const EditStory = props => {
                         <textarea value={storyData.content} id="story" name="content" onChange = {handleStoryChange} required></textarea>
                         <label htmlFor="select">Choose the new image:</label>
                         <div className='file-field'>
-                            <input id="select" multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
+                            <input id="select" className='select' multiple type='file' name='image' accept='image/' onChange={e => handleImageUpload(e)}></input>
                         </div>
-                        <PageButton type={"submit"} 
+                        <PostButton type={"submit"} 
                                     onClick={CreateStory}
-                        >{created ? 'SUCCESS!' : 'Edit'}
-                        </PageButton> 
+                        >{created ? 'SUCCESS!' : 'EDIT'}
+                        </PostButton> 
                     </ FormWrapper>
                 </div>
         </CreateStoryWrapper>

@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import ProductPage from "../ProductPage/ProductPage.js";
 import { ModalProvider } from "styled-react-modal";
 import StockInfoModal from "../../Utilities/Modals/StockInfoModal/StockInfoModal";
+import { StickyButtonDiv } from "../../about/About.styles";
 
 export default function ProductPageSidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -186,6 +187,9 @@ export default function ProductPageSidebar(props) {
             </div>
           </StickyCartContainer>
           <ProductPage products={products} category={props.category}/>
+          <StickyButtonDiv>
+                <button onClick={() => navigate("/story")}>Story</button>
+          </StickyButtonDiv>
         </Sidebar>
         <StockInfoModal isOpen={isOpen} scenario={scenario} onClick={resetIsOpen}/>
       </PageSection>

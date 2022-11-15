@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { PostButton } from '../../components/storyList/StoryList.styles';
 import { PageButton } from '../../styles/global.styles';
-import { FormWrapper, CreateStoryWrapper } from './CreateComment.styles';
+import { FormWrapper, CreateCommentWrapper } from './CreateComment.styles';
 
 const CreateComment = () => {
 
@@ -61,7 +62,7 @@ const CreateComment = () => {
         }
    
     return (
-        <CreateStoryWrapper>
+        <CreateCommentWrapper>
                     <FormWrapper>
                         <PageButton 
                             className='close-comment' 
@@ -71,12 +72,12 @@ const CreateComment = () => {
                         Your Comment *
                         </label>
                         <textarea id="comment" name="content" onChange = {handleCommentChange} required></textarea>
-                        <PageButton type={"submit"} 
+                        <PostButton type={"submit"} 
                                     onClick={handleCommentCreate}
                         >{created ? 'CREATED!' : 'Post'}
-                        </PageButton>
+                        </PostButton>
                     </ FormWrapper>
-        </CreateStoryWrapper>
+        </CreateCommentWrapper>
     )
 }
 

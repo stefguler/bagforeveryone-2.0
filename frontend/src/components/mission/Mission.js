@@ -10,7 +10,7 @@ const MissionModal = () => {
     const [isOpen, setIsOpen] = useState(true);
     const navigate = useNavigate();
 
-    setTimeout(() => navigate('/about'), 8000);
+    setTimeout(() => navigate('/about'), 6000);
 
     const handleModal = () => {
       setIsOpen(!isOpen);
@@ -27,30 +27,24 @@ const MissionModal = () => {
                         >
                         <Statement>
                           <Sentence>
-                            <span>'We</span>
-                            <span>are</span>
-                            <span> living </span>
-                            <span>in</span>
-                            <span>an</span>
-                            <span>era</span>
-                            <span>of</span>
-                            <span>barbed</span>
-                            <span>wire</span>
-                            <span>and</span>
-                            <span>walls...</span>
+                            <span>'Shine</span>
+                            <span>a</span>
+                            <span> light </span>
+                            <span>on</span>
+                            <span>talents!</span>
                           </Sentence>
                           <Sentence>
-                            <span>please</span>
-                            <span>let</span>
-                            <span>us</span>
-                            <span>stop</span>
-                            <span>this</span>
-                            <span>shipwreck</span>
-                            <span>of</span>
-                            <span>civilization!'</span>
+                            <span>Bags</span>
+                            <span>made</span>
+                            <span>with</span>
+                            <span>love</span>
+                            <span>from</span>
+                            <span>refugees</span>
+                            <span>in</span>
+                            <span>Lesvos &#9825;.'</span>
                           </Sentence>
                           <Reference>
-                          <span>Pope Francis while visiting camp for refugees in Moria, on the Greek island of Lesvos</span>
+                          <span>Team bagforeveryone, 2021.</span>
                           </Reference>
                         </Statement>
                         {/* <Statement>'We are living in the era of barbed wire and walls… please let us stop this shipwreck of civilization!'</Statement> */}
