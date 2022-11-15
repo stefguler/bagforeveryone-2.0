@@ -33,15 +33,6 @@ class ListCreateOrderView(ListCreateAPIView):
 
     permission_classes = []
 
-    def perform_create(self, serializer):
-        send_mail(
-            'bags order',
-            'Thank you for sending your money to Vedrans stripe account. He will use the money for good things, like buying himself some nice things.',
-            'bag.for.everyone.contact@gmail.com',
-            ['manuelwinkler@bluewin.ch'],
-            fail_silently=False,
-        )
-
 # class ListOwnOrderView(ListAPIView):
 #     """
 #        get:
@@ -76,34 +67,63 @@ class ListCreateOrderView(ListCreateAPIView):
 #         return Order.objects.filter(buyer=self.kwargs["userID"])
 #
 #
-# class RetrieveUpdateDestroyPostView(RetrieveUpdateDestroyAPIView):
-#     """
-#        get:
-#        Get a specific post by id
-#
-#        Get the content of one post by passing the post-id as a parameter into the URL.
-#
-#        put:
-#        Update a specific post by id
-#
-#        Update the entire content of a specific post. The entire data is required and will be overwritten.
-#        Only allowed if user is owner of the post or staff.
-#
-#        patch:
-#        Update parts of a specific post by id
-#
-#        Update partial data of a specific post.
-#        Only allowed if user is owner of the post or staff.
-#
-#        delete:
-#        Delete a post by id
-#
-#        Delete a post by passing the post-id as a parameter into the URL.
-#        Only allowed if user is owner of the post or staff.
-#     """
-#     # permission_classes = [
-#     #     XXX IsOwnerOrReadOnly
-#     # ]
-#     serializer_class = OrderSerializer
-#     queryset = Order.objects.all()
-#     lookup_field = 'id'
+class RetrieveUpdateDestroyOrderView(RetrieveUpdateDestroyAPIView):
+    """
+       get:
+       Get a specific post by id
+
+       Get the content of one post by passing the post-id as a parameter into the URL.
+
+       put:
+       Update a specific post by id
+
+       Update the entire content of a specific post. The entire data is required and will be overwritten.
+       Only allowed if user is owner of the post or staff.
+
+       patch:
+       Update parts of a specific post by id
+
+       Update partial data of a specific post.
+       Only allowed if user is owner of the post or staff.
+
+       delete:
+       Delete a post by id
+
+       Delete a post by passing the post-id as a parameter into the URL.
+       Only allowed if user is owner of the post or staff.
+    """
+
+    # class RetrieveUpdateDestroyPostView(RetrieveUpdateDestroyAPIView):
+    #     """
+    #        get:
+    #        Get a specific order by id
+    #
+    #        Get the content of one order by passing the order-id as a parameter into the URL.
+    #
+    #        put:
+    #        Update a specific order by id
+    #
+    #        Update the entire content of a specific order. The entire data is required and will be overwritten.
+    #
+    #        patch:
+    #        Update parts of a specific order by id
+    #
+    #        Update partial data of a specific order.
+    #
+    #        delete:
+    #        Delete an order by id
+    #
+    #        Delete an order by passing the order-id as a parameter into the URL.
+    #     """
+
+    send_mail(
+        'bags order',
+        'Thank you for sending your money to Vedrans stripe account. He will use the money for good things, like buying himself some nice things.',
+        'bag.for.everyone.contact@gmail.com',
+        ['manuelwinkler@bluewin.ch'],
+        fail_silently=False,
+    )
+
+    serializer_class = ChangeOrderStatusSerializer
+    queryset = Order.objects.all()
+    lookup_field = 'id'

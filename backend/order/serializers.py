@@ -13,10 +13,9 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = "__all__"
 
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-    #     representation['owner'] = RepresentationUserSerializer(instance.owner, many=False).data
-    #     return representation
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        return representation
 
 
 class NewOrderSerializer(serializers.ModelSerializer):
