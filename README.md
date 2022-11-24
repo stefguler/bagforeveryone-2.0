@@ -21,54 +21,55 @@ Adding some **Social Media** flair with the option to post **Stories** and a **C
 
 ### Stories
 
-
+![Stories](https://user-images.githubusercontent.com/93710089/203813116-8ce4aa7e-3060-451d-8daa-051277120edc.png)
 
 ### Shop Overview
-
-
+![Shop Overview](https://user-images.githubusercontent.com/93710089/203813203-df3ab989-f3ce-43c5-b1b3-436b870d9813.png)
 
 ### Detailed Product View 1
-
+![Red Bag](https://user-images.githubusercontent.com/93710089/203813237-2f519e04-a9a1-4995-87ff-49e82f785ce8.png)
 
 
 ### Detailed Product View 2
-
+![Green Bag](https://user-images.githubusercontent.com/93710089/203813274-eec781d4-1a0c-4fd9-828b-a882dd2d4315.png)
 
 
 ### Shopping Cart
-
+![Cart](https://user-images.githubusercontent.com/93710089/203813286-a8440889-196d-4091-bfec-65c4d575cc61.png)
 
 
 ### Checkout
+![Checkout](https://user-images.githubusercontent.com/93710089/203813476-aa51df24-33f9-4a9d-be59-bd9c87fbb09d.png)
 
 
 
 ### Payment
+![Payment](https://user-images.githubusercontent.com/93710089/203813354-0ddbef7d-a758-4b96-b406-c31c8ba576bc.png)
 
 
 
 ### Confirmation
-
+![Confirmation](https://user-images.githubusercontent.com/93710089/203813295-e62a2934-3707-4a1f-aa28-75755ea16864.png)
 
 
 ### Login
+![Login](https://user-images.githubusercontent.com/93710089/203813365-621b486e-e5c2-4382-9d2b-207282d175f0.png)
 
 
-
-### Welcoming Message
-
+### Welcoming Message!
+[Message](https://user-images.githubusercontent.com/93710089/203813374-066cd61e-0214-4d63-8f98-3eadeddfd330.png)
 
 
 ### Donations
-
+![Donations](https://user-images.githubusercontent.com/93710089/203813338-83098576-56e7-4ca8-bd48-5d763e41b264.png)
 
 
 ### About Page 1
-
+![About](https://user-images.githubusercontent.com/93710089/203813411-50190be0-f660-476f-a880-22818fe4c6a2.png)
 
 
 ### About Page 2
-
+![Statistics](https://user-images.githubusercontent.com/93710089/203813447-1fe98dd5-7613-42dd-9988-4e1f4c22c573.png)
 
 
 ## GitLab / GitHub
