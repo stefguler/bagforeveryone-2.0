@@ -57,7 +57,7 @@ Adding some **Social Media** flair with the option to post **Stories** and a **C
 
 
 ### Welcoming Message!
-[Message](https://user-images.githubusercontent.com/93710089/203813374-066cd61e-0214-4d63-8f98-3eadeddfd330.png)
+![Message](https://user-images.githubusercontent.com/93710089/203813374-066cd61e-0214-4d63-8f98-3eadeddfd330.png)
 
 
 ### Donations
